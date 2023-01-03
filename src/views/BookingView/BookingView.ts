@@ -1,3 +1,4 @@
+import Booking from "@/components/Booking/Booking.vue";
 import Calender from "@/components/Calender/Calender.vue";
 import { getAuth, signOut } from "firebase/auth";
 import { defineComponent } from "vue";
@@ -31,7 +32,8 @@ if (sessionStorage.getItem("user")){
     }, 
     components : {
 
-    Calender
+    Calender,
+    Booking
     }
 
 
