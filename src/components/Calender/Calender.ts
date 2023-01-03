@@ -6,45 +6,27 @@ import {collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, s
 export default defineComponent({
     name: 'Calender', 
     
-    async setup(){
+     setup (){
         const db = getFirestore() 
 
 
         
-    //   HÄR SLUTADE DU IGÅR!
-        // if (inputPlayer.length === 0) {
-        //     setIfError('Please enter player name')
-        // } else { 
-        //     axios.get(`${URL}${player_url}`, {
-        //         "headers": {
-        //         "authorization": `Bearer ${TOKEN} `,
-        //         "Accept": "application/vnd.api+json"
-        //     }
-        // }).then(
-        //         (response:any) => {
-        //         setDoc(doc(db, "players", "playerOne"), {
-
-        //             playerName: (response.data.data[0].attributes.name),
-        //             accountID: (response.data.data[0].id),
-        //             date: Date.now()
-
-        //           })
-        //         }).catch(function (error) { if (error.response) 
-        //             {setIfError(error.response.data.errors[0].detail)}
-        //         })
-        //     }
+async function getDates() {
+  const colRef = query(collection(db, 'calender'))
+  const snapshots = await getDocs(colRef)
+  const docs = snapshots.docs.map(doc => {
+    const data = doc.data()
+          data.id = doc.id
+          return data
+  })
+  console.log(docs)
+  
+}
         
 
 
         
-              const colRef = query(collection(db, 'calender'))
-              const snapshots = await getDocs(colRef)
-              const docs = snapshots.docs.map(doc => {
-                const data = doc.data()
-                      data.id = doc.id
-                      return data
-              })
-              console.log(docs)
+              
               
         
         
@@ -52,20 +34,48 @@ export default defineComponent({
 
 
 
-        async function createDate() {
-      
-            const daysMonth = [];
+           function createDate() {
+            
+            const daysMonth:any = [];
+            let collectionDates = daysMonth
+            console.log(collectionDates)
+
+            
+            
+            
             const todayDate = ref(new Date()).value;
             const weekStartDate = startOfWeek(todayDate);
             const daysInMonth = getDaysInMonth(todayDate);
-        
+           
             for (let day = 0; day < daysInMonth; day++) {
-              daysMonth.push(format(addDays(weekStartDate, day), "E d MMMM"));
+              let object = {
+                  date: format(addDays(weekStartDate, day), "E d MMMM"),
+                  slot: "hej"
+                }
+              
+              
+            
+                  daysMonth.push(object)
+              
             }
-         
           
-          }
+
         
+          //   setDoc(doc(db, "calender", "dates"), {
+
+          //    collectionDates: {
+          //     slot: collectionDates
+          //    },
+             
+
+          // })
+          getDates()
+          }
+        return {
+          createDate,
+          
+          
+        }
 
     }, 
     components : {
