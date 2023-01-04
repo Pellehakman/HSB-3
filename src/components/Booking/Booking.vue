@@ -7,15 +7,11 @@
     
         <form @submit.prevent="submitBooking">
             <div class="box">
-            <label v-for="day in data">
+            <label v-for="day in dateDocs">
                 <input v-model="dateValue" :value="day.date" type="radio" name="day"/>
                     <div>{{ day.date }}</div> 
+                    
             </label>
-
-            
-
-
-
 
         </div>
             <label>

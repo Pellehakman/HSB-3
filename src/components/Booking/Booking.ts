@@ -1,6 +1,3 @@
-/* eslint-disable vue/multi-word-component-names */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
 
 import { defineComponent, ref } from "vue";
 import { format, addDays, startOfWeek, getDaysInMonth } from "date-fns";
@@ -13,22 +10,20 @@ export default defineComponent({
         const db = getFirestore() 
         const todayDate = ref(new Date()).value;
         const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
-        const DateChoice = ref(thisDayDate)
-        const dateValue = ref('')
+        
+        const dateValue = ref(thisDayDate)
         const timeValue = ref('')
-        // hämta all data och sortera efter "Id" så att de ligger i ordning när du mappar ut
+
+        // get data from firebase and sort by timeID
         const dateRef = query(collection(db, 'calender'), orderBy("timeID"))
         const snapshots = await getDocs(dateRef)
-        const docs = snapshots.docs.map(doc => {
+        const dateDocs = snapshots.docs.map(doc => {
             const data = doc.data()
                 data.id = doc.id
                 return data
         })
         
-        //this is what you send
-        const data = docs
-
-        // this function is when 
+        // FUNCTION this is submit
         async function submitBooking(){
             // new ref from firebase that runs every submit
             const bookingRef = query(collection(db, 'calender'))
@@ -98,23 +93,15 @@ export default defineComponent({
                     return alert('already booked')
                 }
             }
-            
-            
         }
-       
-            
-        
-
-        
-
-
+        // end of submit
         
         return {
             
             submitBooking,
-            data,
+            dateDocs,
             timeValue,
-            dateValue
+            dateValue  
         }
      },
 })
