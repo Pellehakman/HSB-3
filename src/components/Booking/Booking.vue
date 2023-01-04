@@ -1,3 +1,4 @@
+
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
@@ -53,7 +54,7 @@
 .box{
     display: flex;
     height: 10rem;
-    background-color: green;
+    background-color: rgb(0, 0, 0);
     gap: 2rem;
     width: 20rem;
     overflow-x: scroll;
