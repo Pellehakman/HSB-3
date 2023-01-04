@@ -4,7 +4,7 @@
     <h1>This is booking</h1>
     <Suspense>
       <Booking />
- </Suspense>
+    </Suspense>
     
     <Calender />
     <button @click="SignOut">Sign Out</button>

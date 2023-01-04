@@ -2,21 +2,63 @@
 
 <template>
     <div>BOOKING </div>
-    <div>
-        <label v-for="day in data" class="bg-blue-400">
-                <input 
-                    
-                    :value="day"
-                    type="radio"
-                    class="hidden peer " 
-                    name="day"
-                    />
-                    
-                <div 
-                    class="peer-checked:bg-red-600 select-none cursor-pointer">{{ day.date }}
-            </div> 
+    
+    
+        <form @submit.prevent="submitBooking">
+            <div class="box">
+            <label v-for="day in data">
+                <input v-model="dateValue" :value="day.date" type="radio" name="day"/>
+                    <div>{{ day.date }}</div> 
             </label>
 
+            
+
+
+
+
+        </div>
+            <label>
+                <input v-model="timeValue" value="07:00 till 11:00" type="radio" class="hidden peer" name="time" />
+                <div class="">07:00 till 11:00</div> 
+            </label>
+
+            <label>
+                <input v-model="timeValue" value="11:00 till 15:00" type="radio" class="hidden peer" name="time" />
+                <div class="">11:00 till 15:00</div> 
+            </label>
+
+            <label>
+                <input v-model="timeValue" value="15:00 till 19:00" type="radio" class="hidden peer" name="time" />
+                <div class="">15:00 till 19:00</div> 
+            </label>
+
+            <label> 
+                <input v-model="timeValue" value="19:00 till 23:00" type="radio" class="hidden peer" name="time" />
+                <div class="">19:00 till 23:00</div> 
+            </label>
+
+
+            <input value="BOKA" type="submit"/>
+        </form>
+    
+    <div>
+        
+        
+
     </div>
-    <!-- <button @click="createDate">createDate</button> -->
+    
 </template>
+
+<style>
+.box{
+    display: flex;
+    height: 10rem;
+    background-color: green;
+    gap: 2rem;
+    width: 20rem;
+    overflow-x: scroll;
+    
+    
+
+}
+</style>
