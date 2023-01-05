@@ -24,15 +24,11 @@ export default defineComponent({
   setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
-    const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
+
 
     async function addNewDay() {
       const daysInMonth = getDaysInMonth(todayDate);
-      const weekStartDate = startOfWeek(todayDate);
-      const result = endOfMonth(todayDate);
-
       const addDay = addDays(todayDate, daysInMonth);
-
       const addDayFormat = ref(format(addDay, "E d MMMM")).value;
 
       // get ref from firebase

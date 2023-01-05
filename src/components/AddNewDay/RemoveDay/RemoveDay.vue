@@ -2,6 +2,6 @@
 
 <template>
   <div>
-    <button @click="addNewDay">add new day</button>
+    <button @click="removeDay">REMOVE DAY</button>
   </div>
 </template>

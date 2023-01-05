@@ -24,7 +24,7 @@ export default defineComponent({
   async setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
-    const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
+    
 
     async function createDate() {
       const daysInMonth = getDaysInMonth(todayDate);
