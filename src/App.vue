@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
+  <!-- <header>
    
 
     <div class="wrapper">
@@ -15,7 +15,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/booking">BOKINING</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
   <RouterView />
 </template>

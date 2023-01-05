@@ -10,7 +10,7 @@ export default defineComponent({
     
     setup(){
         const router = useRouter()
-if (sessionStorage.getItem("user")){
+if (sessionStorage.getItem("uid")){
 
 } else{
     router.push({ path: '/login' })

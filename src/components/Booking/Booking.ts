@@ -5,7 +5,9 @@ import {collection, orderBy, updateDoc, doc, getDocs, getFirestore, query, setDo
 
 export default defineComponent({
     name: 'Booking', 
-    
+    mount:{
+
+    },
      async setup (){
         const db = getFirestore() 
         const todayDate = ref(new Date()).value;
@@ -48,7 +50,7 @@ export default defineComponent({
                 if (slot1[0] === null){
                     alert('Success')
                     await updateDoc(updateRef, {
-                        slot1:{ id: "2gb3qe", time: timeValue.value}
+                        slot1:{ id: sessionStorage.getItem("uid"), time: timeValue.value}
                     })
                 } else {
                     return alert('already booked')
@@ -61,7 +63,7 @@ export default defineComponent({
                 if (slot2[0] === null){
                     alert('Success')
                     await updateDoc(updateRef, {
-                        slot2:{ id: "2gb3qe", time: timeValue.value}
+                        slot2:{ id: sessionStorage.getItem("uid"), time: timeValue.value}
                     })
                 } else {
                     return alert('already booked')
@@ -74,7 +76,7 @@ export default defineComponent({
                 if (slot3[0] === null){
                     alert('Success')
                     await updateDoc(updateRef, {
-                        slot3:{ id: "2gb3qe", time: timeValue.value}
+                        slot3:{ id: sessionStorage.getItem("uid"), time: timeValue.value}
                     })
                 } else {
                     return alert('already booked')
@@ -87,7 +89,7 @@ export default defineComponent({
                 if (slot4[0] === null){
                     alert('Success')
                     await updateDoc(updateRef, {
-                        slot4:{ id: "2gb3qe", time: timeValue.value}
+                        slot4:{ id: sessionStorage.getItem("uid"), time: timeValue.value}
                     })
                 } else {
                     return alert('already booked')
@@ -104,4 +106,5 @@ export default defineComponent({
             dateValue  
         }
      },
+     
 })

@@ -5,11 +5,13 @@ export default defineComponent({
     name: 'Login', 
 
         setup(){
+          
             const router = useRouter()
             let email = ref('')
             let password = ref('')
           
         const auth = getAuth();
+        
             function NewUser(){ 
                 signInWithEmailAndPassword(auth, email.value, password.value)
                 .then((userCredential) => {
@@ -18,7 +20,8 @@ export default defineComponent({
                   if (user){
                     console.log('lets fucking go')
                     console.log(user.email)
-                    sessionStorage.setItem("user", JSON.stringify(user.email))
+                    console.log(user.uid)
+                    sessionStorage.setItem("uid", JSON.stringify(user.uid))
                     router.push({ path: '/booking' })
                   }
                 })
