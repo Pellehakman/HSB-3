@@ -4,6 +4,6 @@
     
     <h1>my page</h1>
     <RouterLink to="/booking">Tillbaka</RouterLink>
-    <button @click="hej"></button>
+    <button @click="hej">acasc</button>
 
 </template>

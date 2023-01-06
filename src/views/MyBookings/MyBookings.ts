@@ -1,9 +1,9 @@
 import { collection, getDocs, getFirestore, query } from "firebase/firestore";
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 
 export default defineComponent({
-    name: 'Register', 
+    name: 'mybookings', 
     
     setup(){
       const db = getFirestore();
@@ -15,16 +15,23 @@ export default defineComponent({
         const data = doc.data();
         return data;
       });
+
+      console.log('bookingDocs')
       // filter slot from firebase with date value from form
       const findSlot = bookingDocs.filter((f) => {
        
       });
      }
+     onMounted(() => {
+      hej()
+     })
 
-return{
-  hej
-}
-    }
+
+    },
+   
+      
+    
+    
     
 
 

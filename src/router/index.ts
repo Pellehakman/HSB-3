@@ -1,9 +1,8 @@
 import BookingView from '@/views/BookingView/BookingView.vue'
 import Login from '@/views/Login/Login.vue'
-import MyBookings from '@/views/MyBookings/MyBookings'
+import MyBookings from '@/views/MyBookings/MyBookings.vue'
 import Register from '@/views/Register/Register.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Login/Login.vue'
 
 
 const router = createRouter({
@@ -30,7 +29,7 @@ const router = createRouter({
     },
     {
       path: '/mybookings',
-      name: 'myBookings',
+      name: 'mybookings',
       component: MyBookings
     }
   ]
