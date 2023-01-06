@@ -7,6 +7,8 @@ import {
   nextDay,
   endOfMonth,
   formatISO,
+  isYesterday,
+  getDate
 } from "date-fns";
 import {
   doc,
@@ -23,9 +25,9 @@ export default defineComponent({
   setup() {
     const db = getFirestore();
 
-    const todayDate = ref(new Date()).value;
+ 
 
-    console.log(todayDate)
+    
     
 // här slutatde du, Nu ska du ta ta bort det som du hämtat i existing days. caya
     async function removeDay() {
@@ -35,9 +37,16 @@ export default defineComponent({
         const data = doc.data();
         return data;
       });
+
       const existingDays = removeDayDocs.map((f) => f.date);
-      console.log(existingDays[0])
-      
+      if (existingDays.includes(removeDayDocs)) {
+        console.log("already a day with same date");
+        return;
+      } else {
+        console.log("lets add day");
+
+     
+      }
     }
 
     

@@ -12,7 +12,7 @@ export default defineComponent({
           
         const auth = getAuth();
         
-            function NewUser(){ 
+            function LoginSubmit(){ 
                 signInWithEmailAndPassword(auth, email.value, password.value)
                 .then((userCredential) => {
                   // Signed in 
@@ -36,7 +36,7 @@ export default defineComponent({
             return{
                 email,
                 password,
-                NewUser
+                LoginSubmit
             }
     
         }, 

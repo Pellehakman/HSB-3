@@ -9,7 +9,7 @@ export default defineComponent({
         let password = ref('')
       
     const auth = getAuth();
-        function NewUser(){ 
+        function RegisterSubmit(){ 
         createUserWithEmailAndPassword(auth, email.value, password.value)
 
         .then((userCredential) => {
@@ -27,7 +27,7 @@ export default defineComponent({
         return{
             email,
             password,
-            NewUser
+            RegisterSubmit
         }
 
     }, 

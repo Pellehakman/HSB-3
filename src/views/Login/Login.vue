@@ -8,7 +8,7 @@
   <form>
     <input v-model="email" type="email" placeholder="email" />
     <input v-model="password" type="password" placeholder="password" />
-    <input value="LOGGA IN" type="submit" @click.prevent="NewUser()"/>
+    <input value="LOGGA IN" type="submit" @click.prevent="LoginSubmit()"/>
     
   </form>
   <RouterLink to="/register">register</RouterLink>

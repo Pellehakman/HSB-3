@@ -2,37 +2,37 @@
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
-    <div>BOOKING </div>
+    <div >BOOKING </div>
     
     
         <form @submit.prevent="submitBooking">
-            <div class="box">
-            <label v-for="day in dateDocs">
-                <input v-model="dateValue" :value="day.date" type="radio" name="day"/>
+            <div id="date" class="box">
+            <div   v-for="day in dateDocs" ref="items" >
+                <input   v-model="dateValue" :value="day.date" type="radio" name="day" />
                     <div>{{ day.date }}</div> 
                     
-            </label>
+            </div>
 
         </div>
-            <label>
+            <div>
                 <input v-model="timeValue" value="07:00 till 11:00" type="radio" class="hidden peer" name="time" />
-                <div class="">07:00 till 11:00</div> 
-            </label>
+                <div class="userlist">07:00 till 11:00</div> 
+            </div>
 
-            <label>
+            <div>
                 <input v-model="timeValue" value="11:00 till 15:00" type="radio" class="hidden peer" name="time" />
                 <div class="">11:00 till 15:00</div> 
-            </label>
+            </div>
 
-            <label>
+            <div>
                 <input v-model="timeValue" value="15:00 till 19:00" type="radio" class="hidden peer" name="time" />
                 <div class="">15:00 till 19:00</div> 
-            </label>
+            </div>
 
-            <label> 
+            <div> 
                 <input v-model="timeValue" value="19:00 till 23:00" type="radio" class="hidden peer" name="time" />
                 <div class="">19:00 till 23:00</div> 
-            </label>
+            </div>
 
 
             <input value="BOKA" type="submit"/>

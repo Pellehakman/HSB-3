@@ -71,7 +71,7 @@ export default defineComponent({
 
     setInterval(() => {
       addNewDay();
-    }, 86400000);
+    }, 864023523);
     return {
       addNewDay,
     };

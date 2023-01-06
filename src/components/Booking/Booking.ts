@@ -1,4 +1,4 @@
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted, nextTick } from "vue";
 import { format } from "date-fns";
 import {
   collection,
@@ -13,15 +13,32 @@ import {
 
 export default defineComponent({
   name: "Booking",
-  mount: {},
+
+  
+
   async setup() {
+    
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
-
+    
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
 
+
+   // finding todays date in DOM and centers it
+    onMounted(() => {
+      
+      let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${thisDayDate}"]`);
+      
+      DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}));
+      
+    })
+
+    
+    console.log(onMounted)
+    const items = ref(document.getElementsByClassName('box'))
+    console.log(items.value)
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(dateRef);
@@ -103,12 +120,15 @@ export default defineComponent({
       }
     }
     // end of submit
+    
 
     return {
       submitBooking,
       dateDocs,
       timeValue,
       dateValue,
+      
+      
     };
   },
 });
