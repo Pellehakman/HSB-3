@@ -1,5 +1,6 @@
 import BookingView from '@/views/BookingView/BookingView.vue'
 import Login from '@/views/Login/Login.vue'
+import MyBookings from '@/views/MyBookings/MyBookings'
 import Register from '@/views/Register/Register.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Login/Login.vue'
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/booking',
       name: 'booking',
       component: BookingView
+    },
+    {
+      path: '/mybookings',
+      name: 'myBookings',
+      component: MyBookings
     }
   ]
 })

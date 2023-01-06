@@ -28,17 +28,13 @@ export default defineComponent({
 
    // finding todays date in DOM and centers it
     onMounted(() => {
-      
+      //path
       let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${thisDayDate}"]`);
-      
+      //scroll
       DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}));
       
     })
 
-    
-    console.log(onMounted)
-    const items = ref(document.getElementsByClassName('box'))
-    console.log(items.value)
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(dateRef);

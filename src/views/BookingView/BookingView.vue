@@ -2,6 +2,9 @@
 <template>
   <div class="booking-container">
     <h1>This is booking</h1>
+    
+    <RouterLink to="/myBookings">till mina bokningar</RouterLink>
+  
     <Suspense>
       <Booking />
     </Suspense>
