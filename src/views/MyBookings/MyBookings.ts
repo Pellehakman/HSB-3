@@ -4,10 +4,10 @@ import { defineComponent, onMounted, ref } from "vue";
 export default defineComponent({
   name: "mybookings",
 
-  setup() {
+  async setup() {
     const db = getFirestore();
     const uid = sessionStorage.getItem("uid")
-    async function hej() {
+    
       const bookingRef = query(collection(db, "calender"));
       const snapshots = await getDocs(bookingRef);
       const mybookingsDocs = snapshots.docs.map((doc) => {
@@ -21,11 +21,11 @@ export default defineComponent({
       console.log(john)
         
     
-    }
-    onMounted(() => {
-      hej();
+    
+    // onMounted(() => {
+    //   hej();
       
-    });
+    // });
    
   },
 });

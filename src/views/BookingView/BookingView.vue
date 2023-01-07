@@ -3,7 +3,7 @@
   <div class="booking-container">
     <h1>This is booking</h1>
 
-    <RouterLink to="/mybookings">till mina bokningar</RouterLink>
+   <Central />
 
     <Suspense>
       <Booking />

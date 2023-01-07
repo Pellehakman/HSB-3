@@ -4,6 +4,7 @@ import MyBookings from "../MyBookings/MyBookings.vue";
 import { getAuth, signOut } from "firebase/auth";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
+import Central from "@/components/Central/Central.vue";
 
 export default defineComponent({
   name: "LoginView",
@@ -27,6 +28,6 @@ export default defineComponent({
   components: {
     Calender,
     Booking,
-    MyBookings,
+    Central,
   },
 });

@@ -1,3 +1,4 @@
+import Central from '@/components/Central/Central.vue'
 import BookingView from '@/views/BookingView/BookingView.vue'
 import Login from '@/views/Login/Login.vue'
 import MyBookings from '@/views/MyBookings/MyBookings.vue'
@@ -28,9 +29,9 @@ const router = createRouter({
       component: BookingView
     },
     {
-      path: '/mybookings',
-      name: 'mybookings',
-      component: MyBookings,
+      path: '/central',
+      name: 'central',
+      component: Central,
       
     }
   ]
