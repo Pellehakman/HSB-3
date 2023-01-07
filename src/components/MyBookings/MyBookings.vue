@@ -4,11 +4,30 @@
     
     <h1>this is my page</h1>
     <RouterLink to="/booking">Tillbaka</RouterLink>
-    <!-- <div v-for="day in ida" >
-        <div>{{ day.date }}</div> 
-        <div>{{ day.slot1.time }}</div> 
+   
+    <div v-for="day in findBookings" className="datebox" >
+        <div >
+            <div className="gap" :id="day.bookingid">{{ day.date }} {{ day.time }} </div> 
+            
+        </div>
+        
+        
     
-    </div> -->
+    </div>
     
 
 </template>
+
+<style>
+.datebox{
+    background-color: aqua;
+    color: black;
+    gap: 1rem;
+    
+}
+.gap{
+    
+    margin: 1rem;
+}
+
+</style>

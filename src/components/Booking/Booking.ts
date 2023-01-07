@@ -1,5 +1,6 @@
 import { defineComponent, ref, onMounted, nextTick } from "vue";
 import { format } from "date-fns";
+import { nanoid } from 'nanoid'
 import {
   collection,
   orderBy,
@@ -19,6 +20,7 @@ export default defineComponent({
   async setup() {
     
     const db = getFirestore();
+    const uid = JSON.parse(sessionStorage.getItem("uid") || '{}');
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
     
@@ -65,11 +67,11 @@ export default defineComponent({
 
       // push to firebase from slot1
       if (timeValue.value === "07:00 till 11:00") {
-        const slot1 = findSlot.map((b) => b.slot1.id);
+        const slot1 = findSlot.map((b) => b.slot1.userid);
         if (slot1[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot1: { id: sessionStorage.getItem("uid"), time: timeValue.value },
+            slot1: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value },
           });
         } else {
           return alert("already booked");
@@ -78,11 +80,11 @@ export default defineComponent({
 
       // push to firebase from slot2
       if (timeValue.value === "11:00 till 15:00") {
-        const slot2 = findSlot.map((b) => b.slot2.id);
+        const slot2 = findSlot.map((b) => b.slot2.userid);
         if (slot2[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot2: { id: sessionStorage.getItem("uid"), time: timeValue.value },
+            slot2: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value  },
           });
         } else {
           return alert("already booked");
@@ -91,11 +93,11 @@ export default defineComponent({
 
       // push to firebase from slot3
       if (timeValue.value === "15:00 till 19:00") {
-        const slot3 = findSlot.map((b) => b.slot3.id);
+        const slot3 = findSlot.map((b) => b.slot3.userid);
         if (slot3[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot3: { id: sessionStorage.getItem("uid"), time: timeValue.value },
+            slot3: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value  },
           });
         } else {
           return alert("already booked");
@@ -104,11 +106,11 @@ export default defineComponent({
 
       // push to firebase from slot4
       if (timeValue.value === "19:00 till 23:00") {
-        const slot4 = findSlot.map((b) => b.slot4.id);
+        const slot4 = findSlot.map((b) => b.slot4.userid);
         if (slot4[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot4: { id: sessionStorage.getItem("uid"), time: timeValue.value },
+            slot4: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value  },
           });
         } else {
           return alert("already booked");
