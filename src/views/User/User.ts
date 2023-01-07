@@ -1,10 +1,11 @@
 
-import MyBookings from "@/views/MyBookings/MyBookings.vue";
+
+import MyBookings from "@/components/MyBookings/MyBookings.vue";
 import { defineComponent } from "vue";
 
 
 export default defineComponent({
-  name: "LoginView",
+  name: "User",
 
   setup() {
     

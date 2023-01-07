@@ -1,8 +1,10 @@
-import Central from '@/components/Central/Central.vue'
+
+
 import BookingView from '@/views/BookingView/BookingView.vue'
 import Login from '@/views/Login/Login.vue'
-import MyBookings from '@/views/MyBookings/MyBookings.vue'
+
 import Register from '@/views/Register/Register.vue'
+import User from '@/views/User/User.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
@@ -29,9 +31,9 @@ const router = createRouter({
       component: BookingView
     },
     {
-      path: '/central',
-      name: 'central',
-      component: Central,
+      path: '/user',
+      name: 'User',
+      component: User,
       
     }
   ]

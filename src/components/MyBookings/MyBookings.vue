@@ -2,7 +2,7 @@
 
 <template>
     
-    <h1>my page</h1>
+    <h1>this is my page</h1>
     <RouterLink to="/booking">Tillbaka</RouterLink>
     <!-- <div v-for="day in ida" >
         <div>{{ day.date }}</div> 

@@ -1,7 +1,7 @@
-<script src="./Central.ts" lang="ts"></script>
+<script src="./User.ts" lang="ts"></script>
 <template>
     <!-- <myBooking/> -->
-    <h1>jek</h1>
+    <h1>This is USER</h1>
     <Suspense>
         <MyBookings />
     </Suspense>
