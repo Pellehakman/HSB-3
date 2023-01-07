@@ -2,21 +2,17 @@
 <template>
   <div class="booking-container">
     <h1>This is booking</h1>
-    
+
     <RouterLink to="/mybookings">till mina bokningar</RouterLink>
-  
+
     <Suspense>
       <Booking />
     </Suspense>
     <Suspense>
       <Calender />
     </Suspense>
-    
+
     <button @click="SignOut">Sign Out</button>
   </div>
 </template>
-<style>
-
-</style>
-
-
+<style></style>

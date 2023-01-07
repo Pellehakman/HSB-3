@@ -2,42 +2,32 @@ import { defineComponent, ref } from "vue";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default defineComponent({
-    name: 'Register', 
-    
-    setup(){
-        let email = ref('')
-        let password = ref('')
-      
-    const auth = getAuth();
-        function RegisterSubmit(){ 
-        createUserWithEmailAndPassword(auth, email.value, password.value)
+  name: "Register",
 
+  setup() {
+    let email = ref("");
+    let password = ref("");
+
+    const auth = getAuth();
+    function RegisterSubmit() {
+      createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user)
+          const user = userCredential.user;
+          console.log(user);
         })
-        .catch((error: { code: any; message: any; }) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode)
-            console.log(errorMessage)  
+        .catch((error: { code: any; message: any }) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
         });
     }
-        
-        return{
-            email,
-            password,
-            RegisterSubmit
-        }
 
-    }, 
-    components : {
-
-    }
-
-
-
-
-
-
-})
+    return {
+      email,
+      password,
+      RegisterSubmit,
+    };
+  },
+  components: {},
+});
