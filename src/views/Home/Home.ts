@@ -8,11 +8,11 @@ import User from "../User/User.vue";
 
 
 export default defineComponent({
-  name: "LoginView",
+  name: "Home",
 
   setup() {
     const router = useRouter();
-    if (sessionStorage.getItem("uid")) {
+    if (JSON.parse(sessionStorage.getItem("uid") || '{}')) {
     } else {
       router.push({ path: "/login" });
     }

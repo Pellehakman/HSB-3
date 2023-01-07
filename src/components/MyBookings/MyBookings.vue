@@ -3,17 +3,18 @@
 <template>
     
     <h1>this is my page</h1>
-    <RouterLink to="/booking">Tillbaka</RouterLink>
+    <RouterLink to="/home">Tillbaka</RouterLink>
    
-    <div v-for="day in findBookings" className="datebox" >
-        <div >
-            <div className="gap" :id="day.bookingid">{{ day.date }} {{ day.time }} </div> 
-            
-        </div>
+    <div @click="handleActiveBooking" v-for="day in findBookings" className="datebox" > 
+        <div className="gap" :id="day.bookingid">
+            {{ day.date }} {{ day.time }} 
+        </div> 
         
-        
-    
     </div>
+
+    <button @click="handleEdit">ÄNDRA</button>
+    <button @click="handleRemove">AVBOKA</button>
+   
     
 
 </template>
@@ -26,7 +27,7 @@
     
 }
 .gap{
-    
+    cursor: pointer;
     margin: 1rem;
 }
 

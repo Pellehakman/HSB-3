@@ -1,6 +1,7 @@
 
 
-import BookingView from '@/views/BookingView/BookingView.vue'
+
+import Home from '@/views/Home/Home.vue'
 import Login from '@/views/Login/Login.vue'
 
 import Register from '@/views/Register/Register.vue'
@@ -26,9 +27,9 @@ const router = createRouter({
       component: Register
     },
     {
-      path: '/booking',
-      name: 'booking',
-      component: BookingView
+      path: '/home',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/user',

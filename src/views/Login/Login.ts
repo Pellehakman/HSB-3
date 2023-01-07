@@ -25,7 +25,7 @@ export default defineComponent({
             console.log(user.email);
             console.log(user.uid);
             sessionStorage.setItem("uid", JSON.stringify(user.uid));
-            router.push({ path: "/booking" });
+            router.push({ path: "/home" });
           }
         })
         .catch((error) => {

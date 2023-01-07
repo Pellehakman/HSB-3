@@ -1,4 +1,4 @@
-<script src="./BookingView.ts" lang="ts"></script>
+<script src="./Home.ts" lang="ts"></script>
 <template>
   <div class="booking-container">
     <h1>This is booking</h1>
