@@ -6,21 +6,26 @@ export default defineComponent({
 
   setup() {
     const db = getFirestore();
-
+    const uid = sessionStorage.getItem("uid")
     async function hej() {
       const bookingRef = query(collection(db, "calender"));
       const snapshots = await getDocs(bookingRef);
-      const bookingDocs = snapshots.docs.map((doc) => {
+      const mybookingsDocs = snapshots.docs.map((doc) => {
         const data = doc.data();
         return data;
       });
 
-      console.log("bookingDocs");
-      // filter slot from firebase with date value from form
-      const findSlot = bookingDocs.filter((f) => {});
+      let john = mybookingsDocs.filter(f => f.slot1.id === uid)
+
+      
+      console.log(john)
+        
+    
     }
     onMounted(() => {
       hej();
+      
     });
+   
   },
 });

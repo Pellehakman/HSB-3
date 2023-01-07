@@ -8,6 +8,7 @@
     <Suspense>
       <Booking />
     </Suspense>
+    
     <Suspense>
       <Calender />
     </Suspense>
