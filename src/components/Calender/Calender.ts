@@ -1,4 +1,6 @@
 import { defineComponent, ref } from "vue";
+import { storeToRefs } from "pinia";
+import { useuserStore } from '../../stores/userStore';
 import {
   format,
   addDays,
@@ -24,6 +26,8 @@ export default defineComponent({
   async setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
+    const userStore = useuserStore();
+    const { bookingIdStore } = storeToRefs(userStore);
     
 
     async function createDate() {
@@ -38,7 +42,7 @@ export default defineComponent({
 
         await setDoc(doc(db, "calender", `${object}`), {
           date: format(addDays(weekStartDate, day), "E d MMMM"),
-          timeID: formatISO(objects, { format: "basic" }),
+          timeID: objects.toISOString(),
           slot1: {
             time: "07:00 till 11:00",
             userid: null,

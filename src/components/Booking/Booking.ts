@@ -11,6 +11,8 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
+import { useuserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia";
 
 export default defineComponent({
   name: "Booking",
@@ -23,9 +25,10 @@ export default defineComponent({
     const uid = JSON.parse(sessionStorage.getItem("uid") || '{}');
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
-    
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
+    const userStore = useuserStore();
+    const { bookingIdStore } = storeToRefs(userStore);
 
 
    // finding todays date in DOM and centers it

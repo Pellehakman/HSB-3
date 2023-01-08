@@ -13,9 +13,16 @@
     </div>
 
     <button @click="handleEdit">ÄNDRA</button>
-    <button @click="handleRemove">AVBOKA</button>
-   
+
+        <button @click="handleRemove">AVBOKA</button>
+       
+  
     
+   
+    <div>
+    
+        {{ bookingObjStore }}
+    </div>
 
 </template>
 

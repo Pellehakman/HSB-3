@@ -48,7 +48,7 @@ export default defineComponent({
         console.log("lets add day");
         await setDoc(doc(db, "calender", `${addDayFormat}`), {
           date: addDayFormat,
-          timeID: formatISO(addDay, { format: "basic" }),
+          timeID: addDay.toISOString(),
           slot1: {
             time: "07:00 till 11:00",
             userid: null,
