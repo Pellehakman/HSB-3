@@ -5,8 +5,8 @@ export default defineComponent({
   name: "Register",
 
   setup() {
-    let email = ref("");
-    let password = ref("");
+    const email = ref("");
+    const password = ref("");
 
     const auth = getAuth();
     function RegisterSubmit() {

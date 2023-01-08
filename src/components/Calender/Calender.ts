@@ -1,6 +1,6 @@
 import { defineComponent, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useuserStore } from '../../stores/userStore';
+import { useuserStore } from "../../stores/userStore";
 import {
   format,
   addDays,
@@ -26,11 +26,10 @@ export default defineComponent({
   async setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
-    const userStore:any = useuserStore();
+    const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
 
-    console.log('this is calender', userStore.myObj.date)
-    
+    console.log("this is calender", userStore.myObj.date);
 
     async function createDate() {
       const daysInMonth = getDaysInMonth(todayDate);
@@ -49,25 +48,25 @@ export default defineComponent({
             time: "07:00 till 11:00",
             userid: null,
             bookingid: null,
-            date: format(addDays(weekStartDate, day), "E d MMMM")
+            date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
           slot2: {
             time: "11:00 till 15:00",
             userid: null,
             bookingid: null,
-            date: format(addDays(weekStartDate, day), "E d MMMM")
+            date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
           slot3: {
             time: "15:00 till 19:00",
             userid: null,
             bookingid: null,
-            date: format(addDays(weekStartDate, day), "E d MMMM")
+            date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
           slot4: {
             time: "19:00 till 23:00",
             userid: null,
             bookingid: null,
-            date: format(addDays(weekStartDate, day), "E d MMMM")
+            date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
         });
       }

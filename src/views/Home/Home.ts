@@ -6,13 +6,12 @@ import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import User from "../User/User.vue";
 
-
 export default defineComponent({
   name: "Home",
 
   setup() {
     const router = useRouter();
-    if (JSON.parse(sessionStorage.getItem("uid") || '{}')) {
+    if (JSON.parse(sessionStorage.getItem("uid") || "{}")) {
     } else {
       router.push({ path: "/login" });
     }
@@ -24,12 +23,11 @@ export default defineComponent({
     }
     return {
       SignOut,
-    }
+    };
   },
   components: {
     Calender,
     Booking,
-    User
-    
+    User,
   },
 });

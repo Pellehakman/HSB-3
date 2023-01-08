@@ -1,13 +1,5 @@
 import { defineComponent, ref } from "vue";
-import {
-  format,
-  addDays,
-  startOfWeek,
-  getDaysInMonth,
-  nextDay,
-  endOfMonth,
-  formatISO,
-} from "date-fns";
+import { format, addDays, getDaysInMonth } from "date-fns";
 import {
   doc,
   getFirestore,
@@ -19,12 +11,11 @@ import {
 import RemoveDay from "./RemoveDay/RemoveDay.vue";
 
 export default defineComponent({
-  components:{RemoveDay},
+  components: { RemoveDay },
   name: "AddNewDay",
   setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
-
 
     async function addNewDay() {
       const daysInMonth = getDaysInMonth(todayDate);

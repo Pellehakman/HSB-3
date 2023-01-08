@@ -8,7 +8,7 @@ import {
   endOfMonth,
   formatISO,
   isYesterday,
-  getDate
+  getDate,
 } from "date-fns";
 import {
   doc,
@@ -25,11 +25,7 @@ export default defineComponent({
   setup() {
     const db = getFirestore();
 
- 
-
-    
-    
-// här slutatde du, Nu ska du ta ta bort det som du hämtat i existing days. caya
+    // här slutatde du, Nu ska du ta ta bort det som du hämtat i existing days. caya
     async function removeDay() {
       const removeRef = query(collection(db, "calender"), orderBy("timeID"));
       const snapshots = await getDocs(removeRef);
@@ -44,17 +40,11 @@ export default defineComponent({
         return;
       } else {
         console.log("lets add day");
-
-     
       }
     }
 
-    
- 
-
- 
     return {
       removeDay,
-    }
-  }
-})
+    };
+  },
+});

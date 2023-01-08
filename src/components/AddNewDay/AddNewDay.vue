@@ -1,6 +1,3 @@
-
-import RemoveDay from './RemoveDay/RemoveDay';
-
 <script lang="ts" src="./AddNewDay.ts"></script>
 
 <template>

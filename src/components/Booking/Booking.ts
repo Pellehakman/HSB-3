@@ -1,6 +1,6 @@
 import { defineComponent, ref, onMounted, nextTick } from "vue";
 import { format } from "date-fns";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 import {
   collection,
   orderBy,
@@ -17,40 +17,37 @@ import { storeToRefs } from "pinia";
 export default defineComponent({
   name: "Booking",
 
-  
-
   async setup() {
     const userStore = useuserStore();
     const db = getFirestore();
-    const uid = JSON.parse(sessionStorage.getItem("uid") || '{}');
+    const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
-
 
     // if (userStore.myObj.date){
     //   let dateValue = ref(thisDayDate);
     // } else {
     //   const dateValue = ref(thisDayDate);
     // }
-    
-    
-  
-   // finding todays date in DOM and centers it
+
+    // finding todays date in DOM and centers it
     onMounted(() => {
       //path
-      if (userStore.myObj.date){
-        let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${userStore.myObj.date}"]`);
-        DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}));
-      } else{
-        let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${thisDayDate}"]`);
+      if (userStore.myObj.date) {
+        const DOMdate = document.querySelector(
+          `div div.booking-container form div.box input[value="${userStore.myObj.date}"]`
+        );
+        DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
+      } else {
+        const DOMdate = document.querySelector(
+          `div div.booking-container form div.box input[value="${thisDayDate}"]`
+        );
         //scroll
-        DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}))
+        DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
-      
-      
-    })
+    });
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
@@ -87,7 +84,12 @@ export default defineComponent({
         if (slot1[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot1: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value },
+            slot1: {
+              userid: uid,
+              bookingid: nanoid(),
+              time: timeValue.value,
+              date: dateValue.value,
+            },
           });
         } else {
           return alert("already booked");
@@ -100,7 +102,12 @@ export default defineComponent({
         if (slot2[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot2: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value  },
+            slot2: {
+              userid: uid,
+              bookingid: nanoid(),
+              time: timeValue.value,
+              date: dateValue.value,
+            },
           });
         } else {
           return alert("already booked");
@@ -113,7 +120,12 @@ export default defineComponent({
         if (slot3[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot3: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value  },
+            slot3: {
+              userid: uid,
+              bookingid: nanoid(),
+              time: timeValue.value,
+              date: dateValue.value,
+            },
           });
         } else {
           return alert("already booked");
@@ -126,7 +138,12 @@ export default defineComponent({
         if (slot4[0] === null) {
           alert("Success");
           await updateDoc(updateRef, {
-            slot4: { userid: uid, bookingid: nanoid(), time: timeValue.value, date: dateValue.value  },
+            slot4: {
+              userid: uid,
+              bookingid: nanoid(),
+              time: timeValue.value,
+              date: dateValue.value,
+            },
           });
         } else {
           return alert("already booked");
@@ -134,15 +151,12 @@ export default defineComponent({
       }
     }
     // end of submit
-    
 
     return {
       submitBooking,
       dateDocs,
       timeValue,
       dateValue,
-      
-      
     };
   },
 });

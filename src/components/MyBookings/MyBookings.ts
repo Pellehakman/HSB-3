@@ -11,24 +11,17 @@ import { useuserStore } from "../../stores/userStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
-
 export default defineComponent({
   name: "mybookings",
 
   async setup() {
-  
     const router = useRouter();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
-    const userStore:any = useuserStore();
+    const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
 
     // console.log(userStore.date)
-
-
-
-
-
 
     const bookingRef = query(collection(db, "calender"));
     const snapshots = await getDocs(bookingRef);
@@ -37,7 +30,7 @@ export default defineComponent({
       return data;
     });
     //GLOBAL
-    let filterBookings = mybookingsDocs.filter((f) => {
+    const filterBookings = mybookingsDocs.filter((f) => {
       if (f.slot1.userid === uid) {
         return f;
       }
@@ -52,7 +45,7 @@ export default defineComponent({
       }
     });
     //GLOBAL
-    let findBookings = filterBookings.map((e) => {
+    const findBookings = filterBookings.map((e) => {
       if (e.slot1.userid === uid) {
         return e.slot1;
       }
@@ -69,9 +62,9 @@ export default defineComponent({
 
     //FUNCTION HANDLE YOUR DATES
     const handleActiveBooking = (event: any) => {
-      let editValue: string = ref(event.target.id).value;
+      const editValue: string = ref(event.target.id).value;
 
-      let bookingId = mybookingsDocs.filter((f) => {
+      const bookingId = mybookingsDocs.filter((f) => {
         if (f.slot1.bookingid === editValue) {
           return f;
         }
@@ -85,7 +78,7 @@ export default defineComponent({
           return f;
         }
       });
-      let findBookings = bookingId.map((e) => {
+      const findBookings = bookingId.map((e) => {
         if (e.slot1.bookingid === editValue) {
           return e.slot1;
         }
@@ -150,9 +143,8 @@ export default defineComponent({
       router.push({ path: "/home" });
     }
     function handleEdit() {
-      
-      console.log(userStore.myObj.date)
-      
+      console.log(userStore.myObj.date);
+
       if (userStore.myObj.date) {
         router.push({ path: "/home" });
       }
@@ -163,7 +155,7 @@ export default defineComponent({
       handleActiveBooking,
       handleRemove,
       handleEdit,
-      
+
       BookingObject,
     };
   },

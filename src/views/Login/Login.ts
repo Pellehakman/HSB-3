@@ -10,8 +10,8 @@ export default defineComponent({
 
   setup() {
     const router = useRouter();
-    let email = ref("");
-    let password = ref("");
+    const email = ref("");
+    const password = ref("");
 
     const auth = getAuth();
 
