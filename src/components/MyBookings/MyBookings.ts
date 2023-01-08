@@ -10,17 +10,25 @@ import { defineComponent, onMounted, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import { reload } from "firebase/auth";
+
 
 export default defineComponent({
   name: "mybookings",
 
   async setup() {
+  
     const router = useRouter();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
-    const userStore = useuserStore();
-    const { bookingIdStore, bookingObjStore } = storeToRefs(userStore);
+    const userStore:any = useuserStore();
+    const { BookingObject } = storeToRefs(userStore);
+
+    // console.log(userStore.date)
+
+
+
+
+
 
     const bookingRef = query(collection(db, "calender"));
     const snapshots = await getDocs(bookingRef);
@@ -63,7 +71,6 @@ export default defineComponent({
     const handleActiveBooking = (event: any) => {
       let editValue: string = ref(event.target.id).value;
 
-      userStore.addBookingId(editValue);
       let bookingId = mybookingsDocs.filter((f) => {
         if (f.slot1.bookingid === editValue) {
           return f;
@@ -143,8 +150,10 @@ export default defineComponent({
       router.push({ path: "/home" });
     }
     function handleEdit() {
-      console.log("edit", bookingIdStore.value);
-      if (bookingIdStore.value) {
+      
+      console.log(userStore.myObj.date)
+      
+      if (userStore.myObj.date) {
         router.push({ path: "/home" });
       }
     }
@@ -154,8 +163,8 @@ export default defineComponent({
       handleActiveBooking,
       handleRemove,
       handleEdit,
-      bookingIdStore,
-      bookingObjStore,
+      
+      BookingObject,
     };
   },
 });

@@ -5,28 +5,26 @@ import { ref } from "vue";
 export const useuserStore = defineStore("user", {
   // collect string to myData
   state: () => ({
-    myData: "",
-    myObj: [],
+    
+    myObj: []
   }),
   //send this back to wherever
   getters: {
-    bookingIdStore(state) {
-      return state.myData;
-    },
-    bookingObjStore(state) {
+    
+    BookingObject(state) {
       return state.myObj;
     },
   },
 
   // send editValue from click on "MyBookings" to state "myData"
   actions: {
-    addBookingId(editValue: string) {
-      this.myData = editValue;
-    },
+    
     addBookingObj(findBookings: any) {
       this.myObj = findBookings;
       // console.log(findBookings)
     },
   },
 });
+
+
 

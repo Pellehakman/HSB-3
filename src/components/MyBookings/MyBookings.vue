@@ -17,7 +17,7 @@
   <button @click="handleRemove">AVBOKA</button>
 
   <div>
-    {{ bookingObjStore }}
+    {{ BookingObject }}
   </div>
 </template>
 

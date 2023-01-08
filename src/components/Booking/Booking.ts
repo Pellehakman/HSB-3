@@ -20,23 +20,35 @@ export default defineComponent({
   
 
   async setup() {
-    
+    const userStore = useuserStore();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || '{}');
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
-    const userStore = useuserStore();
-    const { bookingIdStore } = storeToRefs(userStore);
 
 
+    // if (userStore.myObj.date){
+    //   let dateValue = ref(thisDayDate);
+    // } else {
+    //   const dateValue = ref(thisDayDate);
+    // }
+    
+    
+  
    // finding todays date in DOM and centers it
     onMounted(() => {
       //path
-      let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${thisDayDate}"]`);
-      //scroll
-      DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}));
+      if (userStore.myObj.date){
+        let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${userStore.myObj.date}"]`);
+        DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}));
+      } else{
+        let DOMdate = document.querySelector(`div div.booking-container form div.box input[value="${thisDayDate}"]`);
+        //scroll
+        DOMdate?.scrollIntoView(({behavior: "smooth", inline: "center"}))
+      }
+      
       
     })
 
@@ -51,6 +63,7 @@ export default defineComponent({
 
     // FUNCTION this is submit
     async function submitBooking() {
+      // console.log(BookingObject)
       // new ref from firebase that runs every submit
       const bookingRef = query(collection(db, "calender"));
       const snapshots = await getDocs(bookingRef);

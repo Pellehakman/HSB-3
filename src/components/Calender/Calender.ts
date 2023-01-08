@@ -26,8 +26,10 @@ export default defineComponent({
   async setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
-    const userStore = useuserStore();
-    const { bookingIdStore } = storeToRefs(userStore);
+    const userStore:any = useuserStore();
+    const { BookingObject } = storeToRefs(userStore);
+
+    console.log('this is calender', userStore.myObj.date)
     
 
     async function createDate() {
