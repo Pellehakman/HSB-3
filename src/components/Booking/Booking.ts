@@ -26,12 +26,6 @@ export default defineComponent({
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
 
-    // if (userStore.myObj.date){
-    //   let dateValue = ref(thisDayDate);
-    // } else {
-    //   const dateValue = ref(thisDayDate);
-    // }
-
     // finding todays date in DOM and centers it
     onMounted(() => {
       //path
@@ -60,7 +54,6 @@ export default defineComponent({
 
     // FUNCTION this is submit
     async function submitBooking() {
-      // console.log(BookingObject)
       // new ref from firebase that runs every submit
       const bookingRef = query(collection(db, "calender"));
       const snapshots = await getDocs(bookingRef);
@@ -68,6 +61,7 @@ export default defineComponent({
         const data = doc.data();
         return data;
       });
+
       // filter slot from firebase with date value from form
       const findSlot = bookingDocs.filter((f) => {
         if (f.date === dateValue.value) {

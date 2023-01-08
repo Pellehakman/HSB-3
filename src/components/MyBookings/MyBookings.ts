@@ -21,8 +21,6 @@ export default defineComponent({
     const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
 
-    // console.log(userStore.date)
-
     const bookingRef = query(collection(db, "calender"));
     const snapshots = await getDocs(bookingRef);
     const mybookingsDocs = snapshots.docs.map((doc) => {

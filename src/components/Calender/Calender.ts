@@ -1,22 +1,15 @@
 import { defineComponent, ref } from "vue";
-import { storeToRefs } from "pinia";
 import { useuserStore } from "../../stores/userStore";
 import {
   format,
   addDays,
   startOfWeek,
   getDaysInMonth,
-  nextDay,
-  endOfMonth,
-  formatISO,
 } from "date-fns";
 import {
   doc,
   getFirestore,
   setDoc,
-  query,
-  collection,
-  getDocs,
 } from "firebase/firestore";
 import AddNewDay from "../AddNewDay/AddNewDay.vue";
 
@@ -27,7 +20,6 @@ export default defineComponent({
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
     const userStore: any = useuserStore();
-    const { BookingObject } = storeToRefs(userStore);
 
     console.log("this is calender", userStore.myObj.date);
 
