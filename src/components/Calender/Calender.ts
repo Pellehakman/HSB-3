@@ -21,8 +21,6 @@ export default defineComponent({
     const todayDate = ref(new Date()).value;
     const userStore: any = useuserStore();
 
-    console.log("this is calender", userStore.myObj.date);
-
     async function createDate() {
       const daysInMonth = getDaysInMonth(todayDate);
       const weekStartDate = startOfWeek(todayDate);
@@ -36,25 +34,25 @@ export default defineComponent({
         await setDoc(doc(db, "calender", `${object}`), {
           date: format(addDays(weekStartDate, day), "E d MMMM"),
           timeID: objects.toISOString(),
-          slot1: {
+          ["07:00 till 11:00"]: {
             time: "07:00 till 11:00",
             userid: null,
             bookingid: null,
             date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
-          slot2: {
+          ["11:00 till 15:00"]: {
             time: "11:00 till 15:00",
             userid: null,
             bookingid: null,
             date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
-          slot3: {
+          ["15:00 till 19:00"]: {
             time: "15:00 till 19:00",
             userid: null,
             bookingid: null,
             date: format(addDays(weekStartDate, day), "E d MMMM"),
           },
-          slot4: {
+          ["19:00 till 23:00"]: {
             time: "19:00 till 23:00",
             userid: null,
             bookingid: null,

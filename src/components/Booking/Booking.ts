@@ -14,24 +14,34 @@ import {
 import { useuserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
 import BookingDay from "../BookingDay/BookingDay.vue";
+import BookingSlot from "./BookingSlot/BookingSlot.vue";
 
 export default defineComponent({
   name: "Booking",
-  components:{BookingDay},
+  components:{BookingDay, BookingSlot},
+  props:{
+    title: String
+  },
 
-  async setup() {
+  async setup(props) {
     const userStore = useuserStore();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
     const dateValue = ref(thisDayDate);
-    const timeValue = ref("");
+    const timeValue = ref('');
+ 
+const BookingDayData = (chosenDate:string) => {
+  console.log(chosenDate)
+  dateValue.value = chosenDate
+}
 
-    function searchCompleted(scannedItem: string) {
-      console.log(scannedItem)
-      }
-  
+const BookingTimeData = (chosenTime:string) => {
+  console.log(chosenTime)
+  timeValue.value = chosenTime
+}
+
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
@@ -59,16 +69,16 @@ export default defineComponent({
         }
       });
 
-      //get ref from firebase from collection "calender"
+      //get ref from firebase from collection with specific dateValue "calender"
       const updateRef = doc(db, "calender", dateValue.value);
 
       // push to firebase from slot1
-      if (timeValue.value === "07:00 till 11:00") {
-        const slot1 = findSlot.map((b) => b.slot1.userid);
-        if (slot1[0] === null) {
-          alert("Success");
+      if (timeValue.value) {
+        let checkIfNull = findSlot.map((b) => b[`${timeValue.value}`].bookingid);
+        if (checkIfNull[0] === null) {
+          console.log("Success");
           await updateDoc(updateRef, {
-            slot1: {
+            [`${timeValue.value}`]: {
               userid: uid,
               bookingid: nanoid(),
               time: timeValue.value,
@@ -76,63 +86,10 @@ export default defineComponent({
             },
           });
         } else {
-          return alert("already booked");
+          return console.log("already booked");
         }
       }
 
-      // push to firebase from slot2
-      if (timeValue.value === "11:00 till 15:00") {
-        const slot2 = findSlot.map((b) => b.slot2.userid);
-        if (slot2[0] === null) {
-          alert("Success");
-          await updateDoc(updateRef, {
-            slot2: {
-              userid: uid,
-              bookingid: nanoid(),
-              time: timeValue.value,
-              date: dateValue.value,
-            },
-          });
-        } else {
-          return alert("already booked");
-        }
-      }
-
-      // push to firebase from slot3
-      if (timeValue.value === "15:00 till 19:00") {
-        const slot3 = findSlot.map((b) => b.slot3.userid);
-        if (slot3[0] === null) {
-          alert("Success");
-          await updateDoc(updateRef, {
-            slot3: {
-              userid: uid,
-              bookingid: nanoid(),
-              time: timeValue.value,
-              date: dateValue.value,
-            },
-          });
-        } else {
-          return alert("already booked");
-        }
-      }
-
-      // push to firebase from slot4
-      if (timeValue.value === "19:00 till 23:00") {
-        const slot4 = findSlot.map((b) => b.slot4.userid);
-        if (slot4[0] === null) {
-          alert("Success");
-          await updateDoc(updateRef, {
-            slot4: {
-              userid: uid,
-              bookingid: nanoid(),
-              time: timeValue.value,
-              date: dateValue.value,
-            },
-          });
-        } else {
-          return alert("already booked");
-        }
-      }
     }
     // end of submit
 
@@ -141,7 +98,9 @@ export default defineComponent({
       dateDocs,
       timeValue,
       dateValue,
-      searchCompleted
+      BookingDayData,
+      BookingTimeData
+    
       
     };
   },

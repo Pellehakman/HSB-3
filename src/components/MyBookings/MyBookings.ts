@@ -30,31 +30,31 @@ export default defineComponent({
     console.log(mybookingsDocs)
     //GLOBAL
     const filterBookings = mybookingsDocs.filter((f) => {
-      if (f.slot1.userid === uid) {
+      if (f["07:00 till 11:00"].userid === uid) {
         return f;
       }
-      if (f.slot2.userid === uid) {
+      if (f["11:00 till 15:00"].userid === uid) {
         return f;
       }
-      if (f.slot3.userid === uid) {
+      if (f["15:00 till 19:00"].userid === uid) {
         return f;
       }
-      if (f.slot4.userid === uid) {
+      if (f["19:00 till 23:00"].userid === uid) {
         return f;
       }
     });
     //GLOBAL
     const findBookings = filterBookings.map((e) => {
-      if (e.slot1.userid === uid) {
+      if (e["07:00 till 11:00"].userid === uid) {
         return e.slot1;
       }
-      if (e.slot2.userid === uid) {
+      if (e["11:00 till 15:00"].userid === uid) {
         return e.slot2;
       }
-      if (e.slot3.userid === uid) {
+      if (e["15:00 till 19:00"].userid === uid) {
         return e.slot3;
       }
-      if (e.slot4.userid === uid) {
+      if (e["19:00 till 23:00"].userid === uid) {
         return e.slot4;
       }
     });
