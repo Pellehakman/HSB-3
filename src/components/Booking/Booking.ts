@@ -28,23 +28,10 @@ export default defineComponent({
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
 
-    // finding todays date in DOM and centers it
-    // onMounted(() => {
-    //   //path
-    //   if (userStore.myObj.date) {
-    //     const DOMdate = document.querySelector(
-    //       `div div.booking-container form div.box input[value="${userStore.myObj.date}"]`
-    //     );
-    //     DOMdate.checked = true
-    //     DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
-    //   } else {
-    //     const DOMdate = document.querySelector(
-    //       `div div.booking-container form div.box input[value="${thisDayDate}"]`
-    //     );
-    //     //scroll
-    //     DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
-    //   }
-    // });
+    function searchCompleted(scannedItem: string) {
+      console.log(scannedItem)
+      }
+  
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
@@ -154,6 +141,8 @@ export default defineComponent({
       dateDocs,
       timeValue,
       dateValue,
+      searchCompleted
+      
     };
   },
 });

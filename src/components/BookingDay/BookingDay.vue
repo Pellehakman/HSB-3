@@ -2,7 +2,8 @@
 
 <template>
     <label>
-        <input ref="input" :value="date" type="radio" name="day" :checked="activeDate" @change="selectedDate" />
+        <input ref="input" :value="date" type="radio" name="day" :checked="activeDate" @change="scanningItem"  />
         <div>{{ date }}</div>
+        
     </label>
 </template>

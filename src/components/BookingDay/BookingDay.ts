@@ -1,38 +1,35 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
-    name: 'BookingDay',
+    name: 'QrScanner',
     props:{
         todaysDate: String,
         date: String           
     },
+    emits: ['onItemScanned'],
 
 
-    setup(props){
+    setup(props, {emit}){
         console.log(props.todaysDate === props.date)
          const input = ref<HTMLElement | null >(null)
+         const activeDate = computed(() => props.todaysDate === props.date)
+      
+            function scanningItem(event:any) {
+                emit('onItemScanned', event.target.value);
+                }
 
-         function selectedDate(event:any){
-            console.log('hejk', event.target.value )
 
-         }
-            const activeDate = computed(() => props.todaysDate === props.date)
-        onMounted(() => {
-            
+
+
+
+            onMounted(() => {
             if(  props.todaysDate === props.date && input.value != null){
                 console.log('hjek', input.value)
                 input.value.scrollIntoView();
             }
-            //path
-            // if (props.todaysDate === props.date) {
-            //   const DOMdate = document.querySelector(
-            //     `div div.booking-container form div.box input[value="${userStore.myObj.date}"]`
-            //   );
-            //   DOMdate.checked = true
-            //   DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
-            // } 
+          
           });
 
-return { input, selectedDate, activeDate }
+return { input, activeDate, scanningItem }
     }
 })

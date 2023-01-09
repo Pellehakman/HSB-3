@@ -6,7 +6,9 @@
   <form @submit.prevent="submitBooking">
     <div id="date" class="box">
       <div v-for="(date, index) in dateDocs" :key="`dag_${index}`">
-        <BookingDay :todaysDate="dateValue" :date="date.date"/>
+        <BookingDay :todaysDate="dateValue" :date="date.date" @onItemScanned="searchCompleted"/>
+        
+        
         
       </div>
     </div>
