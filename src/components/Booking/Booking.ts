@@ -13,9 +13,11 @@ import {
 } from "firebase/firestore";
 import { useuserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
+import BookingDay from "../BookingDay/BookingDay.vue";
 
 export default defineComponent({
   name: "Booking",
+  components:{BookingDay},
 
   async setup() {
     const userStore = useuserStore();
@@ -27,21 +29,22 @@ export default defineComponent({
     const timeValue = ref("");
 
     // finding todays date in DOM and centers it
-    onMounted(() => {
-      //path
-      if (userStore.myObj.date) {
-        const DOMdate = document.querySelector(
-          `div div.booking-container form div.box input[value="${userStore.myObj.date}"]`
-        );
-        DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
-      } else {
-        const DOMdate = document.querySelector(
-          `div div.booking-container form div.box input[value="${thisDayDate}"]`
-        );
-        //scroll
-        DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
-      }
-    });
+    // onMounted(() => {
+    //   //path
+    //   if (userStore.myObj.date) {
+    //     const DOMdate = document.querySelector(
+    //       `div div.booking-container form div.box input[value="${userStore.myObj.date}"]`
+    //     );
+    //     DOMdate.checked = true
+    //     DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
+    //   } else {
+    //     const DOMdate = document.querySelector(
+    //       `div div.booking-container form div.box input[value="${thisDayDate}"]`
+    //     );
+    //     //scroll
+    //     DOMdate?.scrollIntoView({ behavior: "smooth", inline: "center" });
+    //   }
+    // });
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));

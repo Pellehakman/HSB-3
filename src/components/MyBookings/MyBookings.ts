@@ -27,6 +27,7 @@ export default defineComponent({
       const data = doc.data();
       return data;
     });
+    console.log(mybookingsDocs)
     //GLOBAL
     const filterBookings = mybookingsDocs.filter((f) => {
       if (f.slot1.userid === uid) {
@@ -76,7 +77,7 @@ export default defineComponent({
           return f;
         }
       });
-      const findBookings = bookingId.map((e) => {
+      const findBookinId = bookingId.map((e) => {
         if (e.slot1.bookingid === editValue) {
           return e.slot1;
         }
@@ -90,8 +91,8 @@ export default defineComponent({
           return e.slot4;
         }
       });
-      //SEND findBookings-object to PINIA
-      userStore.addBookingObj(findBookings[0]);
+      //SEND local scope findBookinId-object to PINIA
+      userStore.addBookingObj(findBookinId[0]);
     };
 
     async function handleRemove() {

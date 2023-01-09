@@ -5,10 +5,10 @@
 
   <form @submit.prevent="submitBooking">
     <div id="date" class="box">
-      <label v-for="day in dateDocs">
-        <input v-model="dateValue" :value="day.date" type="radio" name="day" />
-        <div>{{ day.date }}</div>
-      </label>
+      <div v-for="(date, index) in dateDocs" :key="`dag_${index}`">
+        <BookingDay :todaysDate="dateValue" :date="date.date"/>
+        
+      </div>
     </div>
     <label>
       <input

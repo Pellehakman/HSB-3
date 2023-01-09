@@ -21,7 +21,7 @@ export default defineComponent({
           // Signed in
           const user = userCredential.user;
           if (user) {
-            console.log("lets fucking go");
+            console.log("lets go");
             console.log(user.email);
             console.log(user.uid);
             sessionStorage.setItem("uid", JSON.stringify(user.uid));
