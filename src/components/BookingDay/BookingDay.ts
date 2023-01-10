@@ -29,6 +29,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      
       if (userStore.myObj.date === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
@@ -36,6 +37,7 @@ export default defineComponent({
       if (props.todaysDate === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
+      
     });
 
     return { input, activeDate, dateUpdate };
