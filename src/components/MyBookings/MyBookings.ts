@@ -27,70 +27,78 @@ export default defineComponent({
       const data = doc.data();
       return data;
     });
-    console.log(mybookingsDocs)
-    //GLOBAL
+ 
+
+    
     const filterBookings = mybookingsDocs.filter((f) => {
-      if (f.slot1.userid === uid) {
-        return f;
-      }
-      if (f.slot2.userid === uid) {
-        return f;
-      }
-      if (f.slot3.userid === uid) {
-        return f;
-      }
-      if (f.slot4.userid === uid) {
-        return f;
-      }
+     return Object.values(f).find(slot => slot.useruid === uid)
+      
+      // if (f["07:00 till 11:00"].userid === uid) {
+      //   return f;
+      // }
+      // if (f["11:00 till 15:00"].userid === uid) {
+      //   return f;
+      // }
+      // if (f["15:00 till 19:00"].userid === uid) {
+      //   return f;
+      // }
+      // if (f["19:00 till 23:00"].userid === uid) {
+      //   return f;
+      // }
     });
+
+console.log(filterBookings)
+
     //GLOBAL
     const findBookings = filterBookings.map((e) => {
-      if (e.slot1.userid === uid) {
-        return e.slot1;
+      if (e["07:00 till 11:00"].userid === uid) {
+        return e["07:00 till 11:00"];
       }
-      if (e.slot2.userid === uid) {
-        return e.slot2;
+      if (e["11:00 till 15:00"].userid === uid) {
+        return e["11:00 till 15:00"];
       }
-      if (e.slot3.userid === uid) {
-        return e.slot3;
+      if (e["15:00 till 19:00"].userid === uid) {
+        return e["15:00 till 19:00"];
       }
-      if (e.slot4.userid === uid) {
-        return e.slot4;
+      if (e["19:00 till 23:00"].userid === uid) {
+        return e["19:00 till 23:00"];
       }
     });
 
     //FUNCTION HANDLE YOUR DATES
     const handleActiveBooking = (event: any) => {
       const editValue: string = ref(event.target.id).value;
-
+      console.log(editValue)
       const bookingId = mybookingsDocs.filter((f) => {
-        if (f.slot1.bookingid === editValue) {
+        if (f["07:00 till 11:00"].bookingid === editValue) {
           return f;
         }
-        if (f.slot2.bookingid === editValue) {
+        if (f["11:00 till 15:00"].bookingid === editValue) {
           return f;
         }
-        if (f.slot3.bookingid === editValue) {
+        if (f["15:00 till 19:00"].bookingid === editValue) {
           return f;
         }
-        if (f.slot4.bookingid === editValue) {
+        if (f["19:00 till 23:00"].bookingid === editValue) {
           return f;
         }
       });
+     
       const findBookinId = bookingId.map((e) => {
-        if (e.slot1.bookingid === editValue) {
-          return e.slot1;
+        if (e["07:00 till 11:00"].bookingid === editValue) {
+          return e["07:00 till 11:00"];
         }
-        if (e.slot2.bookingid === editValue) {
-          return e.slot2;
+        if (e["11:00 till 15:00"].bookingid === editValue) {
+          return e["11:00 till 15:00"];
         }
-        if (e.slot3.bookingid === editValue) {
-          return e.slot3;
+        if (e["15:00 till 19:00"].bookingid === editValue) {
+          return e["15:00 till 19:00"];
         }
-        if (e.slot4.bookingid === editValue) {
-          return e.slot4;
+        if (e["19:00 till 23:00"].bookingid === editValue) {
+          return e["19:00 till 23:00"];
         }
       });
+     
       //SEND local scope findBookinId-object to PINIA
       userStore.addBookingObj(findBookinId[0]);
     };

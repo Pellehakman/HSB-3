@@ -15,7 +15,6 @@ export default defineComponent({
       
             function timeUpdate(event:any) {
                 emit('onTimeUpdate', event.target.value);
-                console.log(event.target.value)
                 }
 
             onMounted(() => {
