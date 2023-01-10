@@ -1,30 +1,43 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
-
+import { useuserStore } from "../../stores/userStore";
 export default defineComponent({
-    name: 'BookingDay',
-    props:{
-        todaysDate: String,
-        date: String           
-    },
-    emits: ['onDateUpdate'],
+  name: "BookingDay",
+  props: {
+    todaysDate: String,
+    date: String,
+  },
+  emits: ["onDateUpdate"],
 
-    setup(props, {emit}){
-        // console.log(props.todaysDate === props.date)
-         const input = ref<HTMLElement | null >(null)
-         const activeDate = computed(() => props.todaysDate === props.date)
-      
-            function dateUpdate(event:any) {
-                emit('onDateUpdate', event.target.value);
-                }
+  setup(props, { emit }) {
+    const userStore: any = useuserStore();
 
-            onMounted(() => {
-            if(  props.todaysDate === props.date && input.value != null){
-                // console.log('hjek', input.value)
-                input.value.scrollIntoView();
-            }
-          
-          });
+    const input = ref<HTMLElement | null>(null);
+    console.log(input.value);
 
-return { input, activeDate, dateUpdate }
+    const focusView = ref(props.todaysDate);
+
+    if (userStore.myObj.date) {
+      focusView.value = userStore.myObj.date;
+    } else {
+      focusView.value = props.todaysDate;
     }
-})
+
+    const activeDate = computed(() => `${focusView.value}` === props.date);
+
+    function dateUpdate(event: any) {
+      emit("onDateUpdate", event.target.value);
+    }
+
+    onMounted(() => {
+      if (userStore.myObj.date === props.date && input.value != null) {
+        input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
+      }
+
+      if (props.todaysDate === props.date && input.value != null) {
+        input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
+      }
+    });
+
+    return { input, activeDate, dateUpdate };
+  },
+});
