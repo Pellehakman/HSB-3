@@ -20,6 +20,9 @@ export default defineComponent({
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
     const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
+    const dateValue = ref("");
+    const activeBooking = ref();
+    console.log(activeBooking);
 
     const bookingRef = query(collection(db, "calender"));
     const snapshots = await getDocs(bookingRef);
@@ -27,128 +30,59 @@ export default defineComponent({
       const data = doc.data();
       return data;
     });
- 
 
-    
-    const filterBookings = mybookingsDocs.filter((f) => {
-     return Object.values(f).find(slot => slot.useruid === uid)
-      
-      // if (f["07:00 till 11:00"].userid === uid) {
-      //   return f;
-      // }
-      // if (f["11:00 till 15:00"].userid === uid) {
-      //   return f;
-      // }
-      // if (f["15:00 till 19:00"].userid === uid) {
-      //   return f;
-      // }
-      // if (f["19:00 till 23:00"].userid === uid) {
-      //   return f;
-      // }
-    });
+    const a = Object(
+      mybookingsDocs
+        .map((f) => f["07:00 till 11:00"])
+        .filter((v) => v.userid === uid)
+    );
+    const b = Object(
+      mybookingsDocs
+        .map((f) => f["11:00 till 15:00"])
+        .filter((v) => v.userid === uid)
+    );
+    const c = Object(
+      mybookingsDocs
+        .map((f) => f["15:00 till 19:00"])
+        .filter((v) => v.userid === uid)
+    );
+    const d = Object(
+      mybookingsDocs
+        .map((f) => f["19:00 till 23:00"])
+        .filter((v) => v.userid === uid)
+    );
 
-console.log(filterBookings)
+    const findBookings = a.concat(b, c, d);
 
-    //GLOBAL
-    const findBookings = filterBookings.map((e) => {
-      if (e["07:00 till 11:00"].userid === uid) {
-        return e["07:00 till 11:00"];
-      }
-      if (e["11:00 till 15:00"].userid === uid) {
-        return e["11:00 till 15:00"];
-      }
-      if (e["15:00 till 19:00"].userid === uid) {
-        return e["15:00 till 19:00"];
-      }
-      if (e["19:00 till 23:00"].userid === uid) {
-        return e["19:00 till 23:00"];
-      }
-    });
-
-    //FUNCTION HANDLE YOUR DATES
     const handleActiveBooking = (event: any) => {
       const editValue: string = ref(event.target.id).value;
-      console.log(editValue)
-      const bookingId = mybookingsDocs.filter((f) => {
-        if (f["07:00 till 11:00"].bookingid === editValue) {
-          return f;
-        }
-        if (f["11:00 till 15:00"].bookingid === editValue) {
-          return f;
-        }
-        if (f["15:00 till 19:00"].bookingid === editValue) {
-          return f;
-        }
-        if (f["19:00 till 23:00"].bookingid === editValue) {
-          return f;
-        }
-      });
-     
-      const findBookinId = bookingId.map((e) => {
-        if (e["07:00 till 11:00"].bookingid === editValue) {
-          return e["07:00 till 11:00"];
-        }
-        if (e["11:00 till 15:00"].bookingid === editValue) {
-          return e["11:00 till 15:00"];
-        }
-        if (e["15:00 till 19:00"].bookingid === editValue) {
-          return e["15:00 till 19:00"];
-        }
-        if (e["19:00 till 23:00"].bookingid === editValue) {
-          return e["19:00 till 23:00"];
-        }
-      });
-     
-      //SEND local scope findBookinId-object to PINIA
-      userStore.addBookingObj(findBookinId[0]);
+
+      const findBookingID = Object(
+        findBookings.filter((f: any) => f.bookingid === editValue)
+      );
+
+      activeBooking.value = findBookingID[0];
+
+      // //SEND local scope findBookinId-object to PINIA
+      userStore.addBookingObj(findBookingID[0]);
     };
 
     async function handleRemove() {
-      const RemoveRef = doc(db, "calender", findBookings[0].date);
+      console.log(activeBooking.value.date);
+      const RemoveRef = doc(db, "calender", activeBooking.value.date);
 
-      if (findBookings[0].time === "07:00 till 11:00") {
-        await updateDoc(RemoveRef, {
-          slot1: {
-            userid: null,
-            bookingid: null,
-            time: findBookings[0].time,
-            date: findBookings[0].date,
-          },
-        });
-      }
-      if (findBookings[0].time === "11:00 till 15:00") {
-        await updateDoc(RemoveRef, {
-          slot2: {
-            userid: null,
-            bookingid: null,
-            time: findBookings[0].time,
-            date: findBookings[0].date,
-          },
-        });
-      }
-      if (findBookings[0].time === "15:00 till 19:00") {
-        await updateDoc(RemoveRef, {
-          slot3: {
-            userid: null,
-            bookingid: null,
-            time: findBookings[0].time,
-            date: findBookings[0].date,
-          },
-        });
-      }
-      if (findBookings[0].time === "19:00 till 23:00") {
-        await updateDoc(RemoveRef, {
-          slot4: {
-            userid: null,
-            bookingid: null,
-            time: findBookings[0].time,
-            date: findBookings[0].date,
-          },
-        });
-      }
+      await updateDoc(RemoveRef, {
+        [activeBooking.value.time]: {
+          userid: null,
+          bookingid: null,
+          time: activeBooking.value.time,
+          date: activeBooking.value.date,
+        },
+      });
 
       router.push({ path: "/home" });
     }
+
     function handleEdit() {
       console.log(userStore.myObj.date);
 
@@ -162,7 +96,6 @@ console.log(filterBookings)
       handleActiveBooking,
       handleRemove,
       handleEdit,
-
       BookingObject,
     };
   },
