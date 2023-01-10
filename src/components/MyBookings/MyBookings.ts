@@ -20,7 +20,6 @@ export default defineComponent({
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
     const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
-    const dateValue = ref("");
     const activeBooking = ref();
     console.log(activeBooking);
 
