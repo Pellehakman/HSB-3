@@ -6,7 +6,7 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
@@ -30,24 +30,23 @@ export default defineComponent({
     });
 
     const a = mybookingsDocs
-        .map((f) => f["07:00 till 11:00"])
-        .filter((v) => v.userid === uid)
-    
+      .map((f) => f["07:00 till 11:00"])
+      .filter((v) => v.userid === uid);
+
     const b = mybookingsDocs
-        .map((f) => f["11:00 till 15:00"])
-        .filter((v) => v.userid === uid)
-    
+      .map((f) => f["11:00 till 15:00"])
+      .filter((v) => v.userid === uid);
+
     const c = mybookingsDocs
-        .map((f) => f["15:00 till 19:00"])
-        .filter((v) => v.userid === uid)
-    
+      .map((f) => f["15:00 till 19:00"])
+      .filter((v) => v.userid === uid);
+
     const d = mybookingsDocs
-        .map((f) => f["19:00 till 23:00"])
-        .filter((v) => v.userid === uid)
-    
+      .map((f) => f["19:00 till 23:00"])
+      .filter((v) => v.userid === uid);
 
     const findBookings = a.concat(b, c, d);
-console.log(findBookings)
+    console.log(findBookings);
     const handleActiveBooking = (event: any) => {
       const editValue: string = ref(event.target.id).value;
 

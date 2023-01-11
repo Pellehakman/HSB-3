@@ -8,10 +8,9 @@ import {
   collection,
   getDocs,
 } from "firebase/firestore";
-import RemoveDay from '../../CreateCalender/RemoveDay/RemoveDay.vue'
 
 export default defineComponent({
-  components: { RemoveDay },
+  components: {},
   name: "AddNewDay",
   setup() {
     const db = getFirestore();

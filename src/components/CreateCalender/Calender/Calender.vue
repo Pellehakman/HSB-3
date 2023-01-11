@@ -1,8 +1,8 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 
 <script src="./Calender.ts" lang="ts"></script>
 
 <template>
-  <div>calender</div>
   <AddNewDay />
-  <button @click="createDate">createDate (warning!)</button>
+  <!-- <button @click="createDate">createDate (warning!)</button> -->
 </template>

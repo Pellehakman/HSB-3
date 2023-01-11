@@ -1,25 +1,15 @@
 import { defineComponent, ref } from "vue";
-import { useuserStore } from '../../../stores/userStore'
-import {
-  format,
-  addDays,
-  startOfWeek,
-  getDaysInMonth,
-} from "date-fns";
-import {
-  doc,
-  getFirestore,
-  setDoc,
-} from "firebase/firestore";
+import { format, addDays, startOfWeek, getDaysInMonth } from "date-fns";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import AddNewDay from "../AddNewDay/AddNewDay.vue";
 
 export default defineComponent({
-  name: "Calender",
+  name: "Calender-s",
 
   async setup() {
     const db = getFirestore();
     const todayDate = ref(new Date()).value;
-    const userStore: any = useuserStore();
+    // const userStore: any = useuserStore();
 
     async function createDate() {
       const daysInMonth = getDaysInMonth(todayDate);
@@ -27,9 +17,11 @@ export default defineComponent({
 
       for (let day = 0; day < daysInMonth; day++) {
         // create date with correct format to loop over
-        let object = ref(format(addDays(weekStartDate, day), "E d MMMM")).value;
+        const object = ref(
+          format(addDays(weekStartDate, day), "E d MMMM")
+        ).value;
         // create date with NO format to loop over
-        let objects = ref(addDays(weekStartDate, day)).value;
+        const objects = ref(addDays(weekStartDate, day)).value;
 
         await setDoc(doc(db, "calender", `${object}`), {
           date: format(addDays(weekStartDate, day), "E d MMMM"),

@@ -1,24 +1,42 @@
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
-  <div>BOOKING</div>
+  <h1 v-if="awesome">Ändra tid</h1>
+  <h1 v-else>Välj tid att boka</h1>
 
-  <form @submit.prevent="submitBooking()">
+  <form className="form-container">
     <div id="date" class="box">
       <div v-for="(date, index) in dateDocs" :key="`dag_${index}`">
-        <BookingDate :todaysDate="dateValue" :date="date.date" @onDateUpdate="BookingDayData"/>
+        <BookingDate
+          :todaysDate="dateValue"
+          :date="date.date"
+          @onDateUpdate="BookingDayData"
+        />
       </div>
     </div>
     <BookingSlot @onTimeUpdate="BookingTimeData" />
-    
 
-    <input value="BOKA" type="submit" />
+    <button class="main-btn" @click.prevent="submitBooking()">BOKA</button>
   </form>
 
   <div></div>
 </template>
 
 <style>
+.main-btn {
+  display: flex;
+  width: 10rem;
+  justify-content: center;
+  padding: 1rem;
+  background-color: green;
+  color: white;
+  text-align: center;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .box {
   display: flex;
   height: 10rem;

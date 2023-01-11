@@ -1,16 +1,13 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 // //Options
 export const useuserStore = defineStore("user", {
   // collect string to myData
   state: () => ({
-    
-    myObj: []
+    myObj: [],
   }),
   //send this back to wherever
   getters: {
-    
     BookingObject(state) {
       return state.myObj;
     },
@@ -18,13 +15,9 @@ export const useuserStore = defineStore("user", {
 
   // send editValue from click on "MyBookings" to state "myData"
   actions: {
-    
     addBookingObj(findBookings: any) {
       this.myObj = findBookings;
-      console.log(findBookings)
+      // console.log(findBookings);
     },
   },
 });
-
-
-

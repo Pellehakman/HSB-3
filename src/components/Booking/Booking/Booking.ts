@@ -1,5 +1,5 @@
-import { defineComponent, ref, onMounted, nextTick } from "vue";
-import { format, getTime } from "date-fns";
+import { defineComponent, ref } from "vue";
+import { format } from "date-fns";
 import { nanoid } from "nanoid";
 import {
   collection,
@@ -9,19 +9,21 @@ import {
   getDocs,
   getFirestore,
   query,
-  setDoc,
 } from "firebase/firestore";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingSlot from "../BookingTime/BookingTime.vue";
+import { useuserStore } from "@/stores/userStore";
 
 export default defineComponent({
-  name: "Booking",
+  name: "Booking-component",
   components: { BookingDate, BookingSlot },
   props: {
     title: String,
+    mainPhrase: String,
   },
 
-  async setup(props) {
+  async setup() {
+    const userStore: any = useuserStore();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
@@ -34,7 +36,13 @@ export default defineComponent({
       // console.log(chosenDate)
       dateValue.value = chosenDate;
     };
+    const awesome = ref(false);
 
+    if (userStore.myObj.date) {
+      awesome.value = true;
+
+      /* empty */
+    }
     const BookingTimeData = (chosenTime: string) => {
       // console.log(chosenTime)
       timeValue.value = chosenTime;
@@ -70,6 +78,7 @@ export default defineComponent({
       const updateRef = doc(db, "calender", dateValue.value);
 
       // push to firebase from slot1
+
       if (timeValue.value) {
         const checkIfNull = findSlot.map(
           (b) => b[`${timeValue.value}`].bookingid
@@ -98,6 +107,7 @@ export default defineComponent({
       dateValue,
       BookingDayData,
       BookingTimeData,
+      awesome,
     };
   },
 });

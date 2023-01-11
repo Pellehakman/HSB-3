@@ -1,8 +1,5 @@
 <script lang="ts" src="./AddNewDay.ts"></script>
 
 <template>
-  <div>
-    <RemoveDay />
-    <button @click="addNewDay">add new day</button>
-  </div>
+  <button @click="addNewDay">add new day</button>
 </template>
