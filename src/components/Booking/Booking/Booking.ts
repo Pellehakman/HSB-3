@@ -27,7 +27,7 @@ export default defineComponent({
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
-    const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
+    const thisDayDate = ref(format(todayDate, "eeee d MMM, Y")).value;
     const dateValue = ref(thisDayDate);
     const timeValue = ref("");
     console.log(timeValue);

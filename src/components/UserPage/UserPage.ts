@@ -73,6 +73,7 @@ export default defineComponent({
         },
       });
 
+      userStore.$reset();
       router.push({ path: "/home" });
     }
 

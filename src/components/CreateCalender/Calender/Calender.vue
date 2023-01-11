@@ -4,5 +4,5 @@
 
 <template>
   <AddNewDay />
-  <!-- <button @click="createDate">createDate (warning!)</button> -->
+  <button @click="createDate">createDate (warning!)</button>
 </template>
