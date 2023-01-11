@@ -1,4 +1,4 @@
-import MyBookings from "@/components/MyBookings/MyBookings.vue";
+import UserPage from "@/components/UserPage/UserPage.vue"
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -6,6 +6,6 @@ export default defineComponent({
 
   setup() {},
   components: {
-    MyBookings,
+    UserPage,
   },
 });

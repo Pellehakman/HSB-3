@@ -6,7 +6,7 @@
   <form @submit.prevent="submitBooking()">
     <div id="date" class="box">
       <div v-for="(date, index) in dateDocs" :key="`dag_${index}`">
-        <BookingDay :todaysDate="dateValue" :date="date.date" @onDateUpdate="BookingDayData"/>
+        <BookingDate :todaysDate="dateValue" :date="date.date" @onDateUpdate="BookingDayData"/>
       </div>
     </div>
     <BookingSlot @onTimeUpdate="BookingTimeData" />

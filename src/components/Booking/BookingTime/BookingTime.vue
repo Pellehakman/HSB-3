@@ -1,4 +1,4 @@
-<script src="./BookingSlot.ts" lang="ts"></script>
+<script src="./BookingTime.ts" lang="ts"></script>
 
 <template>
     <label>

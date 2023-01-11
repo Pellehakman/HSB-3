@@ -13,12 +13,12 @@ import {
 } from "firebase/firestore";
 import { useuserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
-import BookingDay from "../BookingDay/BookingDay.vue";
-import BookingSlot from "./BookingSlot/BookingSlot.vue";
+import BookingDate from "../BookingDate/BookingDate.vue";
+import BookingSlot from "../BookingTime/BookingTime.vue";
 
 export default defineComponent({
   name: "Booking",
-  components:{BookingDay, BookingSlot},
+  components:{BookingDate, BookingSlot},
   props:{
     title: String
   },
@@ -41,7 +41,6 @@ const BookingTimeData = (chosenTime:string) => {
   console.log(chosenTime)
   timeValue.value = chosenTime
 }
-
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));

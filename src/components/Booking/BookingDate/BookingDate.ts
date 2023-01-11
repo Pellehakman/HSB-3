@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
-import { useuserStore } from "../../stores/userStore";
+import { useuserStore } from "../../../stores/userStore";
 export default defineComponent({
   name: "BookingDay",
   props: {
@@ -12,8 +12,7 @@ export default defineComponent({
     const userStore: any = useuserStore();
 
     const input = ref<HTMLElement | null>(null);
-    console.log(input.value);
-
+    
     const focusView = ref(props.todaysDate);
 
     if (userStore.myObj.date) {

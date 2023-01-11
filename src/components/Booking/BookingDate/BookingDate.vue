@@ -1,4 +1,4 @@
-<script src="./BookingDay.ts" lang="ts"></script>
+<script src="./BookingDate.ts" lang="ts"></script>
 
 <template>
     <label>

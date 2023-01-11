@@ -3,7 +3,7 @@
   <!-- <myBooking/> -->
   <h1>This is USER</h1>
   <Suspense>
-    <MyBookings />
+    <UserPage />
   </Suspense>
 </template>
 <style></style>

@@ -1,4 +1,4 @@
-<script src="./MyBookings.ts" lang="ts"></script>
+<script src="./UserPage.ts" lang="ts"></script>
 
 <template>
   <h1>this is my page</h1>

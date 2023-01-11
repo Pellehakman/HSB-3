@@ -12,7 +12,7 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
-  name: "mybookings",
+  name: "UserPage",
 
   async setup() {
     const router = useRouter();
@@ -21,7 +21,6 @@ export default defineComponent({
     const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
     const activeBooking = ref();
-    console.log(activeBooking);
 
     const bookingRef = query(collection(db, "calender"));
     const snapshots = await getDocs(bookingRef);
@@ -30,36 +29,32 @@ export default defineComponent({
       return data;
     });
 
-    const a = Object(
-      mybookingsDocs
+    const a = mybookingsDocs
         .map((f) => f["07:00 till 11:00"])
         .filter((v) => v.userid === uid)
-    );
-    const b = Object(
-      mybookingsDocs
+    
+    const b = mybookingsDocs
         .map((f) => f["11:00 till 15:00"])
         .filter((v) => v.userid === uid)
-    );
-    const c = Object(
-      mybookingsDocs
+    
+    const c = mybookingsDocs
         .map((f) => f["15:00 till 19:00"])
         .filter((v) => v.userid === uid)
-    );
-    const d = Object(
-      mybookingsDocs
+    
+    const d = mybookingsDocs
         .map((f) => f["19:00 till 23:00"])
         .filter((v) => v.userid === uid)
-    );
+    
 
     const findBookings = a.concat(b, c, d);
-
+console.log(findBookings)
     const handleActiveBooking = (event: any) => {
       const editValue: string = ref(event.target.id).value;
 
       const findBookingID = Object(
         findBookings.filter((f: any) => f.bookingid === editValue)
       );
-
+      //updating activeBooking REF
       activeBooking.value = findBookingID[0];
 
       // //SEND local scope findBookinId-object to PINIA
