@@ -1,5 +1,5 @@
 import { defineComponent, ref, onMounted, nextTick } from "vue";
-import { format } from "date-fns";
+import { format, getTime } from "date-fns";
 import { nanoid } from "nanoid";
 import {
   collection,
@@ -11,36 +11,34 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
-import { useuserStore } from "@/stores/userStore";
-import { storeToRefs } from "pinia";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingSlot from "../BookingTime/BookingTime.vue";
 
 export default defineComponent({
   name: "Booking",
-  components:{BookingDate, BookingSlot},
-  props:{
-    title: String
+  components: { BookingDate, BookingSlot },
+  props: {
+    title: String,
   },
 
   async setup(props) {
-    const userStore = useuserStore();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "E d MMMM")).value;
     const dateValue = ref(thisDayDate);
-    const timeValue = ref('');
- 
-const BookingDayData = (chosenDate:string) => {
-  console.log(chosenDate)
-  dateValue.value = chosenDate
-}
+    const timeValue = ref("");
+    console.log(timeValue);
 
-const BookingTimeData = (chosenTime:string) => {
-  console.log(chosenTime)
-  timeValue.value = chosenTime
-}
+    const BookingDayData = (chosenDate: string) => {
+      // console.log(chosenDate)
+      dateValue.value = chosenDate;
+    };
+
+    const BookingTimeData = (chosenTime: string) => {
+      // console.log(chosenTime)
+      timeValue.value = chosenTime;
+    };
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
@@ -73,7 +71,9 @@ const BookingTimeData = (chosenTime:string) => {
 
       // push to firebase from slot1
       if (timeValue.value) {
-        let checkIfNull = findSlot.map((b) => b[`${timeValue.value}`].bookingid);
+        const checkIfNull = findSlot.map(
+          (b) => b[`${timeValue.value}`].bookingid
+        );
         if (checkIfNull[0] === null) {
           console.log("Success");
           await updateDoc(updateRef, {
@@ -88,7 +88,6 @@ const BookingTimeData = (chosenTime:string) => {
           return console.log("already booked");
         }
       }
-
     }
     // end of submit
 
@@ -98,9 +97,7 @@ const BookingTimeData = (chosenTime:string) => {
       timeValue,
       dateValue,
       BookingDayData,
-      BookingTimeData
-    
-      
+      BookingTimeData,
     };
   },
 });
