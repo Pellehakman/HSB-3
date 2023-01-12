@@ -4,9 +4,8 @@
   <div className="time-container">
     <label className="time-item">
       <input
+        required
         @change="timeUpdate"
-        ref="input"
-        :checked="activeTime"
         value="07:00 till 11:00"
         type="radio"
         class="hidden peer"
@@ -17,9 +16,8 @@
 
     <label className="time-item">
       <input
+        required
         @change="timeUpdate"
-        ref="input"
-        :checked="activeTime"
         value="11:00 till 15:00"
         type="radio"
         class="hidden peer"
@@ -30,9 +28,8 @@
 
     <label className="time-item">
       <input
+        required
         @change="timeUpdate"
-        ref="input"
-        :checked="activeTime"
         value="15:00 till 19:00"
         type="radio"
         class="hidden peer"
@@ -43,9 +40,8 @@
 
     <label className="time-item">
       <input
+        required
         @change="timeUpdate"
-        ref="input"
-        :checked="activeTime"
         value="19:00 till 23:00"
         type="radio"
         class="hidden peer"

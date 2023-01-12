@@ -21,7 +21,7 @@ export default defineComponent({
     const userStore: any = useuserStore();
     const { BookingObject } = storeToRefs(userStore);
     const activeBooking = ref();
-
+    userStore.$reset();
     const bookingRef = query(collection(db, "calender"));
     const snapshots = await getDocs(bookingRef);
     const mybookingsDocs = snapshots.docs.map((doc) => {
@@ -47,6 +47,7 @@ export default defineComponent({
 
     const findBookings = a.concat(b, c, d);
     console.log(findBookings);
+
     const handleActiveBooking = (event: any) => {
       const editValue: string = ref(event.target.id).value;
 
@@ -78,9 +79,9 @@ export default defineComponent({
     }
 
     function handleEdit() {
-      console.log(userStore.myObj.date);
+      console.log(userStore.deleteObj.date);
 
-      if (userStore.myObj.date) {
+      if (userStore.deleteObj.date) {
         router.push({ path: "/home" });
       }
     }

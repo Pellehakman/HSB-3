@@ -10,26 +10,24 @@ export default defineComponent({
 
   setup(props, { emit }) {
     const userStore: any = useuserStore();
-
     const input = ref<HTMLElement | null>(null);
-
     const focusView = ref(props.todaysDate);
 
-    if (userStore.myObj.date) {
-      focusView.value = userStore.myObj.date;
+    if (userStore.deleteObj.date) {
+      focusView.value = userStore.deleteObj.date;
     } else {
       focusView.value = props.todaysDate;
     }
 
     const activeDate = computed(() => `${focusView.value}` === props.date);
 
-    console.log(focusView.value)
+    console.log(focusView.value);
     function dateUpdate(event: any) {
       emit("onDateUpdate", event.target.value);
     }
 
     onMounted(() => {
-      if (userStore.myObj.date === props.date && input.value != null) {
+      if (userStore.deleteObj.date === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
 

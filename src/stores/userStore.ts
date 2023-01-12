@@ -4,19 +4,19 @@ import { defineStore } from "pinia";
 export const useuserStore = defineStore("user", {
   // collect string to myData
   state: () => ({
-    myObj: [],
+    deleteObj: [],
   }),
   //send this back to wherever
   getters: {
     BookingObject(state) {
-      return state.myObj;
+      return state.deleteObj;
     },
   },
 
   // send editValue from click on "MyBookings" to state "myData"
   actions: {
     addBookingObj(findBookings: any) {
-      this.myObj = findBookings;
+      this.deleteObj = findBookings;
       console.log(findBookings);
     },
   },
