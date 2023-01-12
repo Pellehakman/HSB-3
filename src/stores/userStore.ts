@@ -17,7 +17,7 @@ export const useuserStore = defineStore("user", {
   actions: {
     addBookingObj(findBookings: any) {
       this.myObj = findBookings;
-      // console.log(findBookings);
+      console.log(findBookings);
     },
   },
 });

@@ -11,5 +11,10 @@
     <input value="LOGGA IN" type="submit" @click.prevent="LoginSubmit()"/>
     
   </form>
+  <p class="list-group alert alert-danger" v-if="errors.length > 0">
+        
+           {{ errors }}
+        
+  </p>
   <RouterLink to="/register">register</RouterLink>
 </template>

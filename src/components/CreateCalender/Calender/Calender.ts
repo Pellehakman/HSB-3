@@ -11,7 +11,7 @@ export default defineComponent({
     const todayDate = ref(new Date()).value;
     // const userStore: any = useuserStore();
     const weekStartDate = format(startOfWeek(todayDate), "eeee d MMM, Y")
-    console.log(weekStartDate)
+    // console.log(weekStartDate)
       
     async function createDate() {
       const daysInMonth = getDaysInMonth(todayDate);

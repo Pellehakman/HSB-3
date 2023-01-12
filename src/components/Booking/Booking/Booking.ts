@@ -28,14 +28,26 @@ export default defineComponent({
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "eeee d MMM, Y")).value;
-    const dateValue = ref(thisDayDate);
+   
     const timeValue = ref("");
-    console.log(timeValue);
+    const dateValue = ref(thisDayDate);
+
+    if(userStore.myObj.date){
+      dateValue.value = userStore.myObj.date
+      timeValue.value = userStore.myObj.time
+    }
+    
+    
+    console.log(dateValue.value);
+    console.log(timeValue.value);
 
     const BookingDayData = (chosenDate: string) => {
       // console.log(chosenDate)
       dateValue.value = chosenDate;
     };
+
+   
+    
     const awesome = ref(false);
 
     if (userStore.myObj.date) {
@@ -59,6 +71,7 @@ export default defineComponent({
 
     // FUNCTION this is submit
     async function submitBooking() {
+  
       // new ref from firebase that runs every submit
       const bookingRef = query(collection(db, "calender"));
       const snapshots = await getDocs(bookingRef);
@@ -76,27 +89,47 @@ export default defineComponent({
 
       //get ref from firebase from collection with specific dateValue "calender"
       const updateRef = doc(db, "calender", dateValue.value);
+      // console.log(userStore.myObj.date)
 
       // push to firebase from slot1
 
-      if (timeValue.value) {
-        const checkIfNull = findSlot.map(
-          (b) => b[`${timeValue.value}`].bookingid
-        );
-        if (checkIfNull[0] === null) {
-          console.log("Success");
-          await updateDoc(updateRef, {
-            [`${timeValue.value}`]: {
-              userid: uid,
-              bookingid: nanoid(),
+  
+  //  if(findSlot.map((b) => b[`${timeValue.value}`].bookingid === null)){
+  //   console.log('null')
+  //  }
+
+     
+
+        let checkIfNull = findSlot.map((b) => b[`${timeValue.value}`].bookingid);
+
+        if (checkIfNull[0] != null) {
+          alert("välj ett annat datum");}
+          else {
+            await updateDoc(updateRef, {
+              [`${timeValue.value}`]: {
+                userid: uid,
+                bookingid: nanoid(),
+                time: timeValue.value,
+                date: dateValue.value,
+              },
+            });
+            console.log('you have booked')
+          }
+          
+         
+        if (userStore.myObj.date){
+          const RemoveRef = doc(db, "calender", dateValue.value);
+          await updateDoc(RemoveRef, {
+            [timeValue.value]: {
+              userid: null,
+              bookingid: null,
               time: timeValue.value,
-              date: dateValue.value,
+              date: dateValue.value
             },
           });
-        } else {
-          return console.log("already booked");
         }
-      }
+      
+      
     }
     // end of submit
 

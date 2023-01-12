@@ -1,5 +1,6 @@
 import { defineComponent, ref } from "vue";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import router from "@/router";
 
 export default defineComponent({
   name: "Register",
@@ -14,6 +15,7 @@ export default defineComponent({
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
+          router.push({ path: "/login" });
         })
         .catch((error: { code: any; message: any }) => {
           const errorCode = error.code;

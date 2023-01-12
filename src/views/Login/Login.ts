@@ -14,8 +14,9 @@ export default defineComponent({
     const password = ref("");
 
     const auth = getAuth();
-
+    let errors = ref('')
     function LoginSubmit() {
+      
       signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
           // Signed in
@@ -28,11 +29,18 @@ export default defineComponent({
             router.push({ path: "/home" });
           }
         })
-        .catch((error) => {
+        .catch((error) => {  
           const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode);
-          console.log(errorMessage);
+          console.log(errorCode); 
+          if (error.code === 'auth/wrong-password'){
+            errors.value = 'Ditt lösenord var fel.'
+          }
+          if (error.code === 'auth/user-not-found'){
+            errors.value = 'Din email-adress är felaktig.'
+          }
+          // else{
+          //   errors.value = error.code
+          // }
         });
     }
 
@@ -40,6 +48,7 @@ export default defineComponent({
       email,
       password,
       LoginSubmit,
+      errors
     };
   },
   components: {},
