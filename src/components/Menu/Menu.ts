@@ -1,8 +1,24 @@
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 // import { format, getTime } from "date-fns";
 
 export default defineComponent({
   name: "Menu-item",
 
-  setup() {},
+  setup(props, { emit }) {
+
+    function closeMenu() {
+      emit("onCloseUpdate", false);
+    }
+ 
+
+
+
+
+
+    return{
+      closeMenu
+      
+    
+    }
+  },
 });

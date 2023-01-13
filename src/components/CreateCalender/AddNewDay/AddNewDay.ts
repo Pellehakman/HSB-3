@@ -39,25 +39,29 @@ export default defineComponent({
         await setDoc(doc(db, "calender", `${addDayFormat}`), {
           date: addDayFormat,
           timeID: addDay.toISOString(),
-          slot1: {
+          ["07:00 till 11:00"]: {
             time: "07:00 till 11:00",
             userid: null,
             bookingid: null,
+            date: addDayFormat,
           },
-          slot2: {
+          ["11:00 till 15:00"]: {
             time: "11:00 till 15:00",
             userid: null,
             bookingid: null,
+            date: addDayFormat,
           },
-          slot3: {
+          ["15:00 till 19:00"]: {
             time: "15:00 till 19:00",
             userid: null,
             bookingid: null,
+            date: addDayFormat,
           },
-          slot4: {
+          ["19:00 till 23:00"]: {
             time: "19:00 till 23:00",
             userid: null,
             bookingid: null,
+            date: addDayFormat,
           },
         });
       }

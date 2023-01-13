@@ -13,6 +13,7 @@ import {
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingSlot from "../BookingTime/BookingTime.vue";
 import { useuserStore } from "@/stores/userStore";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Booking-component",
@@ -23,6 +24,7 @@ export default defineComponent({
   },
 
   async setup() {
+    const router = useRouter();
     const userStore: any = useuserStore();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
@@ -116,6 +118,9 @@ export default defineComponent({
             date: userStore.deleteObj.date,
           },
         });
+      } if ( awesome.value = true){
+        router.push({ path: "/user" });
+
       }
     }
     // end of submit
