@@ -40,11 +40,14 @@ export default defineComponent({
     console.log(dateValue.value);
     console.log(timeValue.value);
 
+
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
     };
 
     const awesome = ref(false);
+    const readybook = ref(false);
+    const close = ref(false);
 
     if (userStore.deleteObj.date) {
       awesome.value = true;
@@ -62,42 +65,46 @@ export default defineComponent({
       return data;
     });
 
-    // FUNCTION this is submit
-    async function submitBooking() {
-      // new ref from firebase that runs every submit
+    async function handleConfirm() {
       const bookingRef = query(collection(db, "calender"));
       const snapshots = await getDocs(bookingRef);
       const bookingDocs = snapshots.docs.map((doc) => {
         const data = doc.data();
         return data;
       });
-
-      // filter slot from firebase with date value from form
       const findSlot = bookingDocs.filter((f) => {
         if (f.date === dateValue.value) {
           return f;
         }
       });
 
-      const updateRef = doc(db, "calender", dateValue.value);
-
       const checkIfNull = findSlot.map(
         (b) => b[`${timeValue.value}`].bookingid
       );
 
       if (checkIfNull[0] != null) {
-        alert("välj ett annat datum");
+        console.log("välj ett annat datum");
       } else {
-        await updateDoc(updateRef, {
-          [`${timeValue.value}`]: {
-            userid: uid,
-            bookingid: nanoid(),
-            time: timeValue.value,
-            date: dateValue.value,
-          },
-        });
-        console.log("you have booked");
+        readybook.value = true;
+        console.log("please confirm");
       }
+    }
+
+    // FUNCTION this is submit
+    async function submitBooking() {
+      // new ref from firebase that runs every submit
+      // filter slot from firebase with date value from form
+      const updateRef = doc(db, "calender", dateValue.value);
+      await updateDoc(updateRef, {
+        [`${timeValue.value}`]: {
+          userid: uid,
+          bookingid: nanoid(),
+          time: timeValue.value,
+          date: dateValue.value,
+        },
+      });
+      console.log("you have booked");
+      readybook.value = false;
 
       if (userStore.deleteObj.date) {
         const RemoveRef = doc(db, "calender", userStore.deleteObj.date);
@@ -121,6 +128,9 @@ export default defineComponent({
       BookingDayData,
       BookingTimeData,
       awesome,
+      readybook,
+      handleConfirm,
+      close,
     };
   },
 });

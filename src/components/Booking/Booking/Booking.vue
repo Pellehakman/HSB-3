@@ -16,13 +16,20 @@
     </div>
     <BookingSlot @onTimeUpdate="BookingTimeData" />
 
-    <button class="main-btn" @click.prevent="submitBooking()">BOKA</button>
+    <button class="main-btn" @click.prevent="handleConfirm()">BOKA</button>
   </form>
 
-  <div></div>
+  <div v-if="readybook" className="popup">
+    <p>vill du bekräfta?</p>
+    <button @click="submitBooking()">Ja</button>
+    <button @click="readybook = false">Avbryt</button>
+  </div>
 </template>
 
 <style>
+.popup {
+  background-color: rgb(0, 9, 128);
+}
 .main-btn {
   display: flex;
   width: 10rem;

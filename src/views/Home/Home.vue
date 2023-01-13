@@ -2,13 +2,13 @@
 <template>
   <div class="booking-container">
     <h1>This is booking</h1>
+    <button>MENU</button>
 
-   
     <RouterLink to="/user">gå till mina sidor</RouterLink>
     <Suspense>
       <Booking />
     </Suspense>
-    
+
     <Suspense>
       <Calender />
     </Suspense>

@@ -3,6 +3,7 @@ import {
   doc,
   getDocs,
   getFirestore,
+  orderBy,
   query,
   updateDoc,
 } from "firebase/firestore";
@@ -22,7 +23,7 @@ export default defineComponent({
     const { BookingObject } = storeToRefs(userStore);
     const activeBooking = ref();
     userStore.$reset();
-    const bookingRef = query(collection(db, "calender"));
+    const bookingRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(bookingRef);
     const mybookingsDocs = snapshots.docs.map((doc) => {
       const data = doc.data();
