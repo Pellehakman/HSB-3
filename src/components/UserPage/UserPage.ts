@@ -11,6 +11,7 @@ import { defineComponent, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import Meny from "../Meny/Meny";
 
 export default defineComponent({
   name: "UserPage",
@@ -95,4 +96,7 @@ export default defineComponent({
       BookingObject,
     };
   },
+  components: {
+  
+  }
 });

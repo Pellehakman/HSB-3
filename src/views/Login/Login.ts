@@ -14,7 +14,8 @@ export default defineComponent({
     const password = ref("");
 
     const auth = getAuth();
-    let errors = ref('')
+    let pswErrors = ref('')
+    let emlErrors = ref('')
     function LoginSubmit() {
       
       signInWithEmailAndPassword(auth, email.value, password.value)
@@ -33,10 +34,10 @@ export default defineComponent({
           const errorCode = error.code;
           console.log(errorCode); 
           if (error.code === 'auth/wrong-password'){
-            errors.value = 'Ditt lösenord var fel.'
+            pswErrors.value = 'Ditt lösenord är felaktigt.'
           }
           if (error.code === 'auth/user-not-found'){
-            errors.value = 'Din email-adress är felaktig.'
+            emlErrors.value = 'Din email-adress är felaktig.'
           }
           // else{
           //   errors.value = error.code
@@ -48,7 +49,8 @@ export default defineComponent({
       email,
       password,
       LoginSubmit,
-      errors
+      pswErrors,
+      emlErrors
     };
   },
   components: {},

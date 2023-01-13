@@ -1,6 +1,6 @@
 import Booking from "@/components/Booking/Booking/Booking.vue";
 import Calender from "@/components/CreateCalender/Calender/Calender.vue";
-import Menu from "@/components/Menu/Menu.vue";
+import Meny from "@/components/Meny/Meny.vue";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import User from "../User/User.vue";
@@ -17,7 +17,6 @@ export default defineComponent({
       router.push({ path: "/login" });
     }
    
-
     function SignOut() {
       sessionStorage.clear();
       router.push({ path: "/login" });
@@ -29,7 +28,7 @@ export default defineComponent({
     };
   },
   components: {
-    Menu,
+    Meny,
     Calender,
     Booking,
     User,

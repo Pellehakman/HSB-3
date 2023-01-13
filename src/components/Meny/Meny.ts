@@ -6,17 +6,13 @@ export default defineComponent({
 
   setup(props, { emit }) {
 
-    function closeMenu() {
-      emit("onCloseUpdate", false);
-    }
- 
-
-
-
+    const showMenu = ref(false)
+  
 
 
     return{
-      closeMenu
+
+      showMenu
       
     
     }

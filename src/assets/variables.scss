@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400&family=Ubuntu:wght@400;500&display=swap');
+
+$bg-main: #E3F2FF;
+$bg-hsb-blue: #1D284D;
+$green-dark-bg: #406862;
+$body-bg: #efefef;
+$container-bg: #ffffff;
+$footer-bg: #03292c;
+$price-bg: #ff0000;
+$light-grey: #E9E9E9;
+$medium-grey: #F6F6F6;
+$dark-grey: #B5B5B5;
+
+
+$ff-gothic: 'Gothic A1', sans-serif;
+$ff-ubuntu : 'Ubuntu', sans-serif;
+
+$fs-main-h1: 2.5rem;
+$fs-main-h2: 1.2rem;
+
+#app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: $bg-main;
+  font-family: $ff-ubuntu;
+
+}
+.main-h1{
+  font-family: $ff-gothic;
+  font-size: $fs-main-h1;
+  font-weight: 600;
+  color: $bg-hsb-blue; 
+}
+
+.main-h2{
+  font-family: $ff-ubuntu;
+  font-size: $fs-main-h2;
+  font-weight: 400;
+  color: $bg-hsb-blue; 
+}
+
+.btn-big{
+  
+  background-color: #ff0000;
+  
+}
+
+
+
+

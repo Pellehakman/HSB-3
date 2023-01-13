@@ -1,7 +1,7 @@
 import { defineComponent } from "vue";
 import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
-import Menu from "./components/Menu/Menu.vue";
+import Menu from "./components/Meny/Meny.vue";
 
 
 
@@ -11,16 +11,16 @@ export default defineComponent({
 
     setup(){
 
-        const showMenu = ref(false)
+        // const showMenu = ref(false)
 
 
-        const closeUpdate = (chosenDate: boolean) => {
-            showMenu.value = chosenDate;
-          };
+        // const closeUpdate = (chosenDate: boolean) => {
+        //     showMenu.value = chosenDate;
+        //   };
 
         return{
-            showMenu,
-            closeUpdate
+            // showMenu,
+            // closeUpdate
         }
 
     }

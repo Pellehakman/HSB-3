@@ -1,17 +1,16 @@
 
-import type Menu from '@/components/Menu/Menu';
+import type Menu from '@/components/Meny/Menu';
 
 <script src="./Home.ts" lang="ts"></script>
 <template>
-  <div class="booking-container">
-    <h1>This is booking</h1>
-
-   
-  
-
+  <div>
+ 
     
+    <Meny />
+    <h1>Tidsbokning</h1>
+    <p>Välkommen</p>
+    <p>Måndag 11 december</p>
     
-
     
     <Suspense>
       <Booking />

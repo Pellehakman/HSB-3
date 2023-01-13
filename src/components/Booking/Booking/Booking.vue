@@ -2,10 +2,8 @@
 
 <template>
   <h1 v-if="awesome">Ändra tid</h1>
-  <h1  v-else>Välj tid att boka</h1>
-  <h1 className="bg-blue-800">
-      Hello world!
-    </h1>
+  <h1 v-else >Välj tid att boka</h1>
+
 
   <form className="form-container">
     <div id="date" class="box">
@@ -31,7 +29,7 @@
 
 <!-- <style>
 .popup {
-  background-color: rgb(0, 9, 128);
+  background-color: rgb(0, 9, 128)
 }
 .main-btn {
   display: flex;
