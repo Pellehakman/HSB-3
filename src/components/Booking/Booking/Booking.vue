@@ -2,7 +2,10 @@
 
 <template>
   <h1 v-if="awesome">Ändra tid</h1>
-  <h1 v-else>Välj tid att boka</h1>
+  <h1  v-else>Välj tid att boka</h1>
+  <h1 className="bg-blue-800">
+      Hello world!
+    </h1>
 
   <form className="form-container">
     <div id="date" class="box">
@@ -26,7 +29,7 @@
   </div>
 </template>
 
-<style>
+<!-- <style>
 .popup {
   background-color: rgb(0, 9, 128);
 }
@@ -52,4 +55,4 @@
   width: 20rem;
   overflow-x: scroll;
 }
-</style>
+</style> -->

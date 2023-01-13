@@ -13,7 +13,7 @@
   <RouterView />
 </template>
 
-<style>
+<!-- <style>
 .menu-container{
  display: flex;
  flex-direction: column;
@@ -26,4 +26,4 @@
 background-color: blueviolet;
 
 }
-</style>
+</style> -->

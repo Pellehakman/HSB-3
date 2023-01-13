@@ -6,6 +6,7 @@ import { firebaseConfig } from './firebase/config'
 import { initializeApp } from 'firebase/app'
 import './assets/main.css'
 
+
 initializeApp(firebaseConfig);
 
 

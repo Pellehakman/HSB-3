@@ -22,7 +22,7 @@
     {{ BookingObject }}
   </div> -->
 </template>
-
+<!-- 
 <style>
 .datebox {
   background-color: aqua;
@@ -33,4 +33,4 @@
   cursor: pointer;
   margin: 1rem;
 }
-</style>
+</style> -->

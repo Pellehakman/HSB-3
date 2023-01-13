@@ -14,11 +14,11 @@
   </label>
 </template>
 
-<style>
+<!-- <style>
 .lab{
   display: flex;
   background-color: rgb(80, 79, 78);
   width: 7rem;
   height: 4rem;
 }
-</style>
+</style> -->

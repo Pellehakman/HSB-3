@@ -52,7 +52,7 @@
   </div>
 </template>
 
-<style>
+<!-- <style>
 .time-container {
   display: flex;
   flex-wrap: wrap;
@@ -65,4 +65,4 @@
   display: flex;
   padding: 1.6rem;
 }
-</style>
+</style> -->
