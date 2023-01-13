@@ -13,10 +13,10 @@
     
    
     <input required class="p-4 w-64 rounded-md text-base" v-model="email" type="email" placeholder="E-post" />
-    <p class="flex h-4 justify-end">{{ emlErrors }}</p>
+    <p class="flex h-4 text-xs justify-end mt-3 mb-3 font-medium text-red-600">{{ emlErrors }}</p>
  
     <input required class="p-4 w-64 rounded-md text-base" v-model="password" type="password" placeholder="Lösenord" />
-    <p class="flex h-4 justify-end">{{ pswErrors }}</p>
+    <p class="flex h-4 text-xs justify-end mt-3 mb-3 font-medium text-red-600">{{ pswErrors }}</p>
 
 
     <div class="mt-44">

@@ -37,11 +37,14 @@ export default defineComponent({
             pswErrors.value = 'Ditt lösenord är felaktigt.'
           }
           if (error.code === 'auth/user-not-found'){
-            emlErrors.value = 'Din email-adress är felaktig.'
+            emlErrors.value = 'Din epost är felaktig.'
           }
-          // else{
-          //   errors.value = error.code
-          // }
+          if (error.code === 'auth/invalid-email'){
+            emlErrors.value = 'Ange korrekt epost'
+          }
+          if (error.code === 'auth/internal-error'){
+            return
+          }
         });
     }
 
