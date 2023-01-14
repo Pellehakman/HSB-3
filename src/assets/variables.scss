@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400&family=Ubuntu:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&family=Ubuntu:wght@400;500&display=swap');
 
 $bg-main: #E3F2FF;
-$bg-hsb-blue: #1D284D;
+$bg-hsb-blue: #020A26;
 $green-dark-bg: #406862;
 $body-bg: #efefef;
 $container-bg: #ffffff;
@@ -29,7 +29,7 @@ $fs-main-h2: 1.2rem;
 }
 
 #app{
-  
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,9 +38,31 @@ $fs-main-h2: 1.2rem;
   font-family: $ff-ubuntu;
 
 }
+.time-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: solid 1px rgba(255, 255, 255, 0.295);
+  height: 4rem;
+  color: white;
+ 
+}
 .main-h1{
   font-family: $ff-gothic;
   font-size: $fs-main-h1;
+  font-weight: 700;
+  color: $bg-hsb-blue; 
+}
+.main-menu-font{
+  font-family: $ff-gothic;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white; 
+}
+.main-h2-bold{
+  font-family: $ff-gothic;
+  font-size: 1.6rem;
   font-weight: 600;
   color: $bg-hsb-blue; 
 }
@@ -51,7 +73,9 @@ $fs-main-h2: 1.2rem;
   font-weight: 400;
   color: $bg-hsb-blue; 
 }
-
+.main-blue{
+  background-color: $bg-hsb-blue;
+}
 .btn-big{
   
   background-color: #ff0000;

@@ -11,13 +11,13 @@ import {
   query,
 } from "firebase/firestore";
 import BookingDate from "../BookingDate/BookingDate.vue";
-import BookingSlot from "../BookingTime/BookingTime.vue";
+import BookingTime from "../BookingTime/BookingTime.vue";
 import { useuserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { BookingDate, BookingSlot },
+  components: { BookingDate, BookingTime },
   props: {
     title: String,
     mainPhrase: String,
