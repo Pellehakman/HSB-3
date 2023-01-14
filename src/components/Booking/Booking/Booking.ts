@@ -42,7 +42,6 @@ export default defineComponent({
     console.log(dateValue.value);
     console.log(timeValue.value);
 
-
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
     };
@@ -118,9 +117,9 @@ export default defineComponent({
             date: userStore.deleteObj.date,
           },
         });
-      } if ( awesome.value = true){
+      }
+      if ((awesome.value = true)) {
         router.push({ path: "/user" });
-
       }
     }
     // end of submit

@@ -14,10 +14,9 @@ export default defineComponent({
     const password = ref("");
 
     const auth = getAuth();
-    let pswErrors = ref('')
-    let emlErrors = ref('')
+    const pswErrors = ref("");
+    const emlErrors = ref("");
     function LoginSubmit() {
-      
       signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
           // Signed in
@@ -30,20 +29,20 @@ export default defineComponent({
             router.push({ path: "/home" });
           }
         })
-        .catch((error) => {  
+        .catch((error) => {
           const errorCode = error.code;
-          console.log(errorCode); 
-          if (error.code === 'auth/wrong-password'){
-            pswErrors.value = 'Ditt lösenord är felaktigt.'
+          console.log(errorCode);
+          if (error.code === "auth/wrong-password") {
+            pswErrors.value = "Ditt lösenord är felaktigt.";
           }
-          if (error.code === 'auth/user-not-found'){
-            emlErrors.value = 'Din epost är felaktig.'
+          if (error.code === "auth/user-not-found") {
+            emlErrors.value = "Din epost är felaktig.";
           }
-          if (error.code === 'auth/invalid-email'){
-            emlErrors.value = 'Ange korrekt epost'
+          if (error.code === "auth/invalid-email") {
+            emlErrors.value = "Ange korrekt epost";
           }
-          if (error.code === 'auth/internal-error'){
-            return
+          if (error.code === "auth/internal-error") {
+            return;
           }
         });
     }
@@ -53,7 +52,7 @@ export default defineComponent({
       password,
       LoginSubmit,
       pswErrors,
-      emlErrors
+      emlErrors,
     };
   },
   components: {},

@@ -16,22 +16,13 @@ export default defineComponent({
     } else {
       router.push({ path: "/login" });
     }
-   
-    function SignOut() {
-      sessionStorage.clear();
-      router.push({ path: "/login" });
-    }
-    return {
-      SignOut,
-      
-  
-    };
+
+    return {};
   },
   components: {
     Meny,
     Calender,
     Booking,
     User,
-    
   },
 });

@@ -21,7 +21,6 @@ export default defineComponent({
 
     const activeDate = computed(() => `${focusView.value}` === props.date);
 
-    console.log(focusView.value);
     function dateUpdate(event: any) {
       emit("onDateUpdate", event.target.value);
     }
