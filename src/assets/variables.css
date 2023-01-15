@@ -43,7 +43,7 @@
 @layer base {
   
   #app{
-    @apply bg-cyan-300 font-medium h-screen w-screen
+    @apply bg-cyan-200 font-medium h-screen w-screen
   }
   h1 {
     @apply text-2xl;
@@ -58,19 +58,26 @@
     @apply flex flex-col items-center justify-between h-screen w-screen
   }
   .booking-day{
-    @apply flex flex-row overflow-x-scroll w-screen items-center
+    @apply flex flex-row overflow-x-scroll w-screen items-center gap-4 
   }
-  .booking-day-style{
-    @apply w-32 h-20 flex items-center text-center text-white font-medium peer-checked:bg-cyan-900 select-none cursor-pointer rounded-md border-solid border border-slate-300
+  .booking-day-chevron-l{
+    @apply h-20 w-12 absolute left-0 z-10 flex justify-center items-center text-white bg-gradient-to-r from-cyan-700 via-cyan-700 from-cyan-700
+
+  }
+  .booking-day-chevron-r{
+    @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-cyan-700 via-cyan-700 from-cyan-700
+  }
+  .booking-day-item{
+    @apply w-32 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-cyan-900 select-none cursor-pointer rounded-lg border-solid border border-slate-300
   }
   .booking-time-grid{
-    @apply w-screen grid grid-cols-2 grid-rows-2 px-5 gap-4
+    @apply px-5 gap-4 w-screen grid grid-cols-2 grid-rows-2 
   }
-  .booking-time-style{
-    @apply peer-checked:bg-cyan-900 flex justify-center items-center border border-slate-300 rounded-md h-20 text-white
+  .booking-time-item{
+    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white  peer-checked:bg-cyan-900
   }
   .btn-container{
-    @apply  mt-24 pb-20 flex flex-col gap-4
+    @apply mt-12 pb-8 flex flex-col gap-4
   }
   .btn-primary-lg {
     @apply flex justify-center items-center w-72 h-14 px-4 bg-green-700 text-white font-semibold rounded-lg shadow-md hover:bg-green-800;
@@ -79,7 +86,7 @@
     @apply flex justify-center items-center w-72 h-14 px-4;
   }
   .input-form {
-    @apply w-72 h-14 pl-4 rounded-md bg-white
+    @apply w-72 h-14 pl-4 rounded-lg bg-white
   } 
   .error-input{
     @apply flex h-3 text-xs justify-end font-medium text-red-600

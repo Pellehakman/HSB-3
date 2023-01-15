@@ -11,6 +11,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const userStore: any = useuserStore();
     const input = ref<HTMLElement | null>(null);
+    const booked = ref()
     const focusView = ref(props.todaysDate);
 
     if (userStore.deleteObj.date) {

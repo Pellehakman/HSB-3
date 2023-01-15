@@ -2,42 +2,44 @@
 
 <template>
   <div class="screen-col-standard">
-    <div class="flex flex-col justify-center items-center">
-      <h1>Välkommen!</h1>
-      <h2>Logga in för att boka en tvättid!</h2>
+    <div class="flex-1 flex flex-col w-screen justify-center pl-12 ">
+      <h1>Tidsbokning</h1>
+      <h2>Välkommen</h2>
+      <h3>Måndag 15 januari</h3>
     </div>
 
     <div class="bg-cyan-700">
       <div class="">
         <h1 v-if="awesome">Ändra tid</h1>
-        <h1 class="p-7" v-else>Välj tid för att boka</h1>
+        <h1 class="p-7 text-white" v-else>Välj tid för att boka</h1>
       </div>
 
       <form class="flex flex-col items-center justify-center gap-6">
         <div id="date" class="booking-day">
-          <div
-            class="pl-4"
-            v-for="(date, index) in dateDocs"
-            :key="`dag_${index}`"
-          >
-            <BookingDate
-              :todaysDate="dateValue"
-              :date="date.date"
-              @onDateUpdate="BookingDayData"
-            />
+
+
+          <div class="booking-day-chevron-l"  >
+            <font-awesome-icon icon="fa-solid fa-chevron-left" />
+          </div>
+           
+          
+          
+          <div 
+           v-for="(date, index) in dateDocs" :key="`dag_${index}`" >
+            <BookingDate :todaysDate="dateValue" :date="date.date"  @onDateUpdate="BookingDayData" />
+          </div>
+
+          <div class="booking-day-chevron-r"  >
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
           </div>
         </div>
+        
         <span class="h-px w-4/5 bg-white opacity-30"></span>
 
-        <BookingTime
-          class="booking-time-grid"
-          @onTimeUpdate="BookingTimeData"
-        />
+        <BookingTime class="booking-time-grid" @onTimeUpdate="BookingTimeData" />
         <div class="btn-container">
-          <button class="btn-primary-lg" @click.prevent="handleConfirm()">
-            Boka tid
-          </button>
-          <div class="btn-empty-lg bg-transparent text-black font-normal"></div>
+          <button class="btn-primary-lg" @click.prevent="handleConfirm()">  Boka tid </button>
+          <div class="btn-empty-lg"></div>
         </div>
       </form>
 

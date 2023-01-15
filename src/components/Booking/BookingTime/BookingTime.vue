@@ -11,7 +11,7 @@
         class="hidden peer"
         name="time"
       />
-      <div class="booking-time-style">07:00 till 11:00</div>
+      <div class="booking-time-item">07:00 till 11:00</div>
     </label>
 
     <label className="">
@@ -23,7 +23,7 @@
         class="hidden peer"
         name="time"
       />
-      <div class="booking-time-style">11:00 till 15:00</div>
+      <div class="booking-time-item">11:00 till 15:00</div>
     </label>
 
     <label className="">
@@ -35,7 +35,7 @@
         class="hidden peer"
         name="time"
       />
-      <div class="booking-time-style">15:00 till 19:00</div>
+      <div class="booking-time-item">15:00 till 19:00</div>
     </label>
 
     <label className="">
@@ -47,7 +47,7 @@
         class="hidden peer"
         name="time"
       />
-      <div class="booking-time-style">19:00 till 23:00</div>
+      <div class="booking-time-item">19:00 till 23:00</div>
     </label>
   </div>
 </template>

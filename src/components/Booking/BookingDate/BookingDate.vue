@@ -11,7 +11,7 @@
       :checked="activeDate"
       @change="dateUpdate"
     />
-    <div class="booking-day-style">
+    <div class="booking-day-item">
       {{ date }}
     </div>
   </label>

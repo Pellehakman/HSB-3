@@ -17,10 +17,13 @@ import {
   faBars,
   faUserSecret,
   faXmark,
+  faChevronLeft,
+  faChevronRight
+  
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret, faBars, faXmark);
+library.add(faUserSecret, faBars, faXmark, faChevronLeft, faChevronRight);
 
 initializeApp(firebaseConfig);
 

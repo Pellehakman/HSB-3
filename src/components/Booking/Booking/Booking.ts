@@ -62,7 +62,7 @@ export default defineComponent({
     const snapshots = await getDocs(dateRef);
     const dateDocs = snapshots.docs.map((doc) => {
       const data = doc.data();
-      data.id = doc.id;
+      // data.id = doc.id;
       return data;
     });
 
