@@ -1,27 +1,43 @@
-<script src="./Register.ts" lang="ts">
-
-</script>
+<script src="./Register.ts" lang="ts"></script>
 
 <template>
+  <div class="screen-col-standard">
+    <div class="flex flex-col justify-center items-center">
+      <img class="mt-20 mb-6" src="../../assets/HSB_logo.svg" alt="" />
+      <h1>Välkommen!</h1>
+      <h2>Registrera ny användare</h2>
+    </div>
 
-   <img class="mt-14" src='../../assets/HSB_logo.svg' alt='' />
-  <h1 class="main-h1">Välkommen!</h1>
-  <h2 class="main-h2">Registrera ny användare</h2>
+    <form class="flex flex-col gap-3">
+      <input
+        required
+        class="input-form"
+        v-model="email"
+        type="email"
+        placeholder="E-post"
+      />
 
-  <form class="flex flex-col mt-14">
-    <input required class="p-4 w-64 rounded-md text-base" v-model="email" type="email" placeholder="E-post" />
-    <p class="flex h-4 text-xs justify-end mt-3 mb-3 font-medium text-red-600">{{ emlErrors }}</p>
-    <input required class="p-4 w-64 rounded-md text-base"  v-model="password" type="password" placeholder="Lösenord" />
-    <p class="flex h-4 text-xs justify-end mt-3 mb-3 font-medium text-red-600">{{ pswErrors }}</p>
-    <div class="mt-44">
-      <button class="p-4 w-64 rounded-md text-white bg-green-700 hover:bg-green-800 font-medium rounded-md text-base " @click.prevent="RegisterSubmit()">Registrera</button>
-      <div class="flex justify-center place-self-center">
-        <RouterLink class="text-xs mt-4" to="/login">Tillbaka</RouterLink>
+      <input
+        required
+        class="input-form"
+        v-model="password"
+        type="password"
+        placeholder="Lösenord"
+      />
+      <p class="error-input">
+        {{ displayErrors }}
+      </p>
+    </form>
+    <div class="btn-container">
+      <button
+        class="btn-primary-lg bg-yellow-500"
+        @click.prevent="RegisterSubmit()"
+      >
+        Registrera
+      </button>
+      <div class="btn-empty-lg bg-transparent text-black font-normal">
+        <RouterLink to="/login">Tillbaka</RouterLink>
       </div>
     </div>
-    
-    
-  </form>
-  
- 
+  </div>
 </template>

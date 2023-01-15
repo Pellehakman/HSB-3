@@ -1,49 +1,40 @@
 <script src="./Login.ts" lang="ts"></script>
 
 <template>
-  <div class="flex flex-col items-center mt-14 h-screen justify-between">
-  <img class="mt-14" src="../../assets/HSB_logo.svg" alt="" />
-  <h1 class="main-h1">Välkommen!</h1>
-  <h2 class="main-h2">Logga in för att boka en tvättid!</h2>
+  <div class="screen-col-standard">
+    <div class="flex flex-col justify-center items-center">
+      <img class="mt-20 mb-6" src="../../assets/HSB_logo.svg" alt="" />
+      <h1>Välkommen!</h1>
+      <h2>Logga in för att boka en tvättid!</h2>
+    </div>
 
-  <form>
-    <input
-      required
-      class="p-4 w-64 rounded-md text-base"
-      v-model="email"
-      type="email"
-      placeholder="E-post"
-    />
+    <form class="flex flex-col gap-3">
+      <input
+        required
+        class="input-form"
+        v-model="email"
+        type="email"
+        placeholder="E-post"
+      />
 
-    <p class="flex h-4 text-xs justify-end mt-1 mb-1 font-medium text-red-600">
-      {{ emlErrors }}
-    </p>
-
-    <input
-      required
-      class="p-4 w-64 rounded-md text-base"
-      v-model="password"
-      type="password"
-      placeholder="Lösenord"
-    />
-    <p class="flex h-4 text-xs justify-end mt-1 mb-1 font-medium text-red-600">
-      {{ pswErrors }}
-    </p>
-    <div class="flex justify-center place-self-center">
-        <RouterLink class="text-xs" to="/register"
-          >Inget Konto? Skapa konto här!</RouterLink
-        >
-      </div>
-    <div class="mt-44 pb-20" >
-      <button
-        class="p-4 w-64 rounded-md text-white bg-green-700 hover:bg-green-800 font-medium rounded-md text-base"
-        @click.prevent="LoginSubmit()"
-      >
+      <input
+        required
+        class="input-form"
+        v-model="password"
+        type="password"
+        placeholder="Lösenord"
+      />
+      <p class="error-input">
+        {{ displayErrors }}
+      </p>
+    </form>
+    <div class="btn-container">
+      <button class="btn-primary-lg" @click.prevent="LoginSubmit()">
         Logga in
       </button>
-      
+      <div class="btn-empty-lg bg-transparent text-black font-normal">
+        <RouterLink to="/register">Inget Konto? Skapa konto här!</RouterLink>
+      </div>
     </div>
-  </form>
-
-</div>
+  </div>
 </template>

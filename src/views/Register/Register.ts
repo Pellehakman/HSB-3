@@ -8,8 +8,9 @@ export default defineComponent({
   setup() {
     const email = ref("");
     const password = ref("");
-    let pswErrors = ref('')
-    let emlErrors = ref('')
+    const pswErrors = ref("");
+    const emlErrors = ref("");
+    const displayErrors = ref("");
 
     const auth = getAuth();
     function RegisterSubmit() {
@@ -21,27 +22,26 @@ export default defineComponent({
         })
         .catch((error: { code: any; message: any }) => {
           const errorCode = error.code;
-          console.log(errorCode); 
-          if (error.code === 'auth/wrong-password'){
-            pswErrors.value = 'Ditt lösenord är felaktigt.'
+          console.log(errorCode);
+          if (error.code === "auth/wrong-password") {
+            pswErrors.value = "Ditt lösenord är felaktigt.";
           }
-          if (error.code === 'auth/internal-error'){
-            emlErrors.value = 'Din epost-adress är felaktig.'
+          if (error.code === "auth/internal-error") {
+            emlErrors.value = "Din epost-adress är felaktig.";
           }
-          if (error.code === 'auth/invalid-email'){
-            emlErrors.value = 'Ange korrekt epost-adress'
+          if (error.code === "auth/invalid-email") {
+            emlErrors.value = "Ange korrekt epost-adress";
           }
-          if (error.code === 'auth/missing-email'){
-            emlErrors.value = 'Ange epost-adress'
+          if (error.code === "auth/missing-email") {
+            emlErrors.value = "Ange epost-adress";
           }
         });
     }
 
     return {
       email,
-      emlErrors,
       password,
-      pswErrors,
+      displayErrors,
       RegisterSubmit,
     };
   },

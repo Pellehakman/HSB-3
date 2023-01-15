@@ -2,7 +2,7 @@ import type Menu from '@/components/Meny/Menu';
 
 <script src="./Home.ts" lang="ts"></script>
 <template>
-  <div class="h-screen flex flex-col justify-between">
+  <div class="h-screen flex flex-col justify-between bg-slate-600">
     <Meny />
     <div class="flex flex-1 justify-center flex-col pl-12">
       <h1 class="text-4xl font-bold">Tidsbokning</h1>

@@ -14,8 +14,7 @@ export default defineComponent({
     const password = ref("");
 
     const auth = getAuth();
-    const pswErrors = ref("");
-    const emlErrors = ref("");
+    const displayErrors = ref("");
     function LoginSubmit() {
       signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
@@ -33,13 +32,13 @@ export default defineComponent({
           const errorCode = error.code;
           console.log(errorCode);
           if (error.code === "auth/wrong-password") {
-            pswErrors.value = "Ditt lösenord är felaktigt.";
+            displayErrors.value = "Felaktigt användarnamn eller lösenord.";
           }
           if (error.code === "auth/user-not-found") {
-            emlErrors.value = "Din epost är felaktig.";
+            displayErrors.value = "Felaktigt användarnamn eller lösenord.";
           }
           if (error.code === "auth/invalid-email") {
-            emlErrors.value = "Ange korrekt epost";
+            displayErrors.value = "Felaktigt användarnamn eller lösenord.";
           }
           if (error.code === "auth/internal-error") {
             return;
@@ -51,8 +50,7 @@ export default defineComponent({
       email,
       password,
       LoginSubmit,
-      pswErrors,
-      emlErrors,
+      displayErrors,
     };
   },
   components: {},
