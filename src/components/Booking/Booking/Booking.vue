@@ -1,17 +1,22 @@
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
-  <div class="">
-    <div className="bg-cyan-600 rounded-t-2xl ">
-      <div class="main-menu-font">
+  <div class="screen-col-standard">
+    <div class="flex flex-col justify-center items-center">
+      <h1>Välkommen!</h1>
+      <h2>Logga in för att boka en tvättid!</h2>
+    </div>
+
+    <div class="bg-cyan-700">
+      <div class="">
         <h1 v-if="awesome">Ändra tid</h1>
         <h1 class="p-7" v-else>Välj tid för att boka</h1>
       </div>
 
-      <form class="flex flex-col items-center justify-center">
-        <div id="date" class="flex flex-row overflow-x-scroll w-screen">
+      <form class="flex flex-col items-center justify-center gap-6">
+        <div id="date" class="booking-day">
           <div
-            class="pl-5"
+            class="pl-4"
             v-for="(date, index) in dateDocs"
             :key="`dag_${index}`"
           >
@@ -22,19 +27,17 @@
             />
           </div>
         </div>
+        <span class="h-px w-4/5 bg-white opacity-30"></span>
 
         <BookingTime
-          class="w-screen grid grid-cols-2 grid-rows-2 p-5 gap-5"
+          class="booking-time-grid"
           @onTimeUpdate="BookingTimeData"
         />
-
-        <div class="mt-24 pb-20">
-          <button
-            class="p-4 w-64 rounded-md text-white bg-green-700 hover:bg-green-800 font-medium rounded-md text-base"
-            @click.prevent="handleConfirm()"
-          >
+        <div class="btn-container">
+          <button class="btn-primary-lg" @click.prevent="handleConfirm()">
             Boka tid
           </button>
+          <div class="btn-empty-lg bg-transparent text-black font-normal"></div>
         </div>
       </form>
 

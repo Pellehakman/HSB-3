@@ -1,8 +1,4 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 export default defineComponent({

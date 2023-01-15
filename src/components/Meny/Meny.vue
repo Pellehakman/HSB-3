@@ -12,7 +12,7 @@
 
   <div
     v-if="showMenu"
-    class="main-blue h-screen w-screen absolute flex flex-col justify-center justify-between z-20"
+    class="bg-blue-500 h-screen w-screen absolute flex flex-col justify-center z-20"
   >
     <font-awesome-icon
       style="color: white; font-size: 2rem"
@@ -42,7 +42,7 @@
 
     <div class="flex justify-center pb-20">
       <button
-        class="p-4 w-64 rounded-md text-white bg-red-700 hover:bg-red-800 font-medium rounded-md text-base"
+        class="p-4 w-64 rounded-md text-white bg-red-700 hover:bg-red-800 font-medium text-base"
         @click="SignOut"
       >
         Sign Out
