@@ -23,11 +23,12 @@
           </div>
            
           
-          
+          <Suspense>
           <div 
            v-for="(date, index) in dateDocs" :key="`dag_${index}`" >
-            <BookingDate :todaysDate="dateValue" :date="date.date"  @onDateUpdate="BookingDayData" />
+            <BookingDate :todaysDate="dateValue" :date="date.date"  @onDateUpdate="BookingDayData" @onDateObj="DateObj" />
           </div>
+        </Suspense>
 
           <div class="booking-day-chevron-r"  >
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -35,8 +36,10 @@
         </div>
         
         <span class="h-px w-4/5 bg-white opacity-30"></span>
-
-        <BookingTime class="booking-time-grid" @onTimeUpdate="BookingTimeData" />
+          <div
+          v-for="hej in dateObject">
+        {{ hej }}</div>
+        <!-- <BookingTime class="booking-time-grid" @onTimeUpdate="BookingTimeData" /> -->
         <div class="btn-container">
           <button class="btn-primary-lg" @click.prevent="handleConfirm()">  Boka tid </button>
           <div class="btn-empty-lg"></div>

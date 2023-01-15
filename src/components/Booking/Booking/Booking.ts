@@ -32,6 +32,8 @@ export default defineComponent({
     const thisDayDate = ref(format(todayDate, "eeee d MMM, Y")).value;
 
     const timeValue = ref("");
+    const dateObject = ref();
+    
     const dateValue = ref(thisDayDate);
 
     if (userStore.deleteObj.date) {
@@ -56,6 +58,12 @@ export default defineComponent({
     const BookingTimeData = (chosenTime: string) => {
       timeValue.value = chosenTime;
     };
+
+    const DateObj = (dateObj: Object) => {
+      dateObject.value = dateObj;
+    };
+    
+    
 
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
@@ -135,6 +143,8 @@ export default defineComponent({
       readybook,
       handleConfirm,
       close,
+      DateObj,
+      dateObject
     };
   },
 });
