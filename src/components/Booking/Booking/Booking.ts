@@ -30,10 +30,11 @@ export default defineComponent({
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
     const thisDayDate = ref(format(todayDate, "eeee d MMM, Y")).value;
-
+    const awesome = ref(false);
+    const readybook = ref(false);
+    const close = ref(false);
     const timeValue = ref("");
     const dateObject = ref();
-    
     const dateValue = ref(thisDayDate);
 
     if (userStore.deleteObj.date) {
@@ -41,16 +42,9 @@ export default defineComponent({
       timeValue.value = userStore.deleteObj.time;
     }
 
-    console.log(dateValue.value);
-    console.log(timeValue.value);
-
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
     };
-
-    const awesome = ref(false);
-    const readybook = ref(false);
-    const close = ref(false);
 
     if (userStore.deleteObj.date) {
       awesome.value = true;
@@ -63,8 +57,6 @@ export default defineComponent({
       dateObject.value = dateObj;
     };
     
-    
-
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(dateRef);
