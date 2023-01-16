@@ -1,4 +1,4 @@
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 import {
@@ -32,10 +32,25 @@ export default defineComponent({
     const thisDayDate = ref(format(todayDate, "eeee d MMM, Y")).value;
     const awesome = ref(false);
     const readybook = ref(false);
-    const close = ref(false);
     const timeValue = ref("");
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
+    const testRef = ref("");
+
+    function timeData(event: any) {
+      timeValue.value = event.target.value;
+      console.log(event.target.value);
+      testRef.value = event.target.getAttribute("userid");
+      console.log(testRef.value);
+    }
+
+    // onMounted(() => {
+    //   timeData;
+    //   timeItem
+    // });
+
+    const timeItem = ref<HTMLElement | null>(null);
+    console.log(timeItem.value);
 
     if (userStore.deleteObj.date) {
       dateValue.value = userStore.deleteObj.date;
@@ -56,7 +71,7 @@ export default defineComponent({
     const DateObj = (dateObj: Object) => {
       dateObject.value = dateObj;
     };
-    
+
     // get data from firebase and sort by timeID
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(dateRef);
@@ -118,7 +133,7 @@ export default defineComponent({
           },
         });
       }
-      if ((awesome.value = true)) {
+      if (awesome.value === true) {
         router.push({ path: "/user" });
       }
     }
@@ -134,9 +149,10 @@ export default defineComponent({
       awesome,
       readybook,
       handleConfirm,
-      close,
       DateObj,
-      dateObject
+      dateObject,
+      timeData,
+      timeItem,
     };
   },
 });

@@ -49,6 +49,7 @@ export default defineComponent({
         .filter((v) => v.date === onDateRef.value);
 
       const findBookings = a.concat(b, c, d);
+
       emit("onDateUpdate", onDateRef.value);
       emit("onDateObj", findBookings);
     }

@@ -1,8 +1,10 @@
 import { computed, defineComponent, ref } from "vue";
 // import { format, getTime } from "date-fns";
+import BookingDate from "../BookingDate/BookingDate.vue";
 
 export default defineComponent({
   name: "BookingSlot",
+  components: { BookingDate },
   props: {
     todaysDate: String,
     date: String,
@@ -11,17 +13,16 @@ export default defineComponent({
   emits: ["onTimeUpdate"],
 
   setup(props, { emit }) {
-    // const thisTime = format(getTime(new Date()), "kk:00");
-
-    // const time = "11:00 till 15:00";
-
-    // const input = ref<HTMLElement | null>(null);
-    // const activeTime = computed(() => time === time);
+    const dateValue = ref();
+    const BookingDayData = (chosenDate: string) => {
+      dateValue.value = chosenDate;
+      console.log(chosenDate);
+    };
 
     function timeUpdate(event: any) {
       emit("onTimeUpdate", event.target.value);
     }
 
-    return { timeUpdate };
+    return { timeUpdate, BookingDayData };
   },
 });
