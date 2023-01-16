@@ -53,9 +53,7 @@
                 class="hidden peer"
                 name="time"
               />
-              <div ref="timeItem" class="booking-time-item">
-                {{ timeItem.time }}
-              </div>
+              <div class="booking-time-item">{{ timeItem.time }}</div>
             </label>
           </div>
         </div>

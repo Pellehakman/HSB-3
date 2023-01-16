@@ -153,6 +153,7 @@ export default defineComponent({
       dateObject,
       timeData,
       timeItem,
+      testRef,
     };
   },
 });
