@@ -23,43 +23,38 @@ export default defineComponent({
     const userStore: any = useuserStore();
     const input = ref<HTMLElement | null>(null);
     const focusView = ref(props.todaysDate);
-
-    if (userStore.deleteObj.date) {
-      focusView.value = userStore.deleteObj.date;
-    } else {
-      focusView.value = props.todaysDate;
-    }
-
-    const activeDate = computed(() => `${focusView.value}` === props.date);
+    const onDateRef = ref();
 
     function dateUpdate(event: any) {
-      emit("onDateUpdate", event.target.value);
-      
+      if (event === undefined) {
+        onDateRef.value = props.todaysDate;
+      } else {
+        onDateRef.value = event.target.value;
+      }
 
-     const a = mybookingsDocs
+      const a = mybookingsDocs
         .map((f) => f["07:00 till 11:00"])
-        .filter((v) => v.date === event.target.value);
+        .filter((v) => v.date === onDateRef.value);
 
       const b = mybookingsDocs
         .map((f) => f["11:00 till 15:00"])
-        .filter((v) => v.date === event.target.value);
-        
+        .filter((v) => v.date === onDateRef.value);
+
       const c = mybookingsDocs
         .map((f) => f["15:00 till 19:00"])
-        .filter((v) => v.date === event.target.value);
+        .filter((v) => v.date === onDateRef.value);
 
       const d = mybookingsDocs
         .map((f) => f["19:00 till 23:00"])
-        .filter((v) => v.date === event.target.value);
+        .filter((v) => v.date === onDateRef.value);
 
       const findBookings = a.concat(b, c, d);
-      console.log(findBookings)
-
+      emit("onDateUpdate", onDateRef.value);
       emit("onDateObj", findBookings);
-
     }
 
     onMounted(() => {
+      dateUpdate(event);
       if (userStore.deleteObj.date === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
@@ -75,7 +70,14 @@ export default defineComponent({
       const data = doc.data();
       return data;
     });
+    if (userStore.deleteObj.date) {
+      focusView.value = userStore.deleteObj.date;
+    } else {
+      // eslint-disable-next-line vue/no-setup-props-destructure
+      focusView.value = props.todaysDate;
+    }
 
+    const activeDate = computed(() => `${focusView.value}` === props.date);
 
     return { input, activeDate, dateUpdate };
   },
