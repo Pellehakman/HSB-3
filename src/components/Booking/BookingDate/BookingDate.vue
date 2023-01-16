@@ -9,7 +9,7 @@
       type="radio"
       name="day"
       :checked="activeDate"
-      @change="dateUpdate"
+      @change="dateUpdate(date)"
     />
     <div class="booking-day-item">
       {{ date }}

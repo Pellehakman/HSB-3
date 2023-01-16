@@ -1,0 +1,111 @@
+@import './variables.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&family=Ubuntu:wght@400;500&display=swap'); */
+
+
+@layer base {
+  
+  #app{
+    @apply bg-cyan-200 bg-success font-gothic font-medium h-screen w-screen
+  }
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+}
+@layer components {
+  
+  .screen-col-standard{
+    @apply flex flex-col items-center justify-between h-screen w-screen
+  }
+  .booking-day{
+    @apply flex flex-row overflow-x-scroll w-screen items-center gap-4 
+  }
+  .booking-day-chevron-l{
+    @apply h-20 w-12 absolute left-0 z-10 flex justify-center items-center text-white bg-gradient-to-r from-cyan-700 via-cyan-700 from-cyan-700
+
+  }
+  .booking-day-chevron-r{
+    @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-cyan-700 via-cyan-700 from-cyan-700
+  }
+  .booking-day-item{
+    @apply w-32 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-cyan-900 select-none cursor-pointer rounded-lg border-solid border border-slate-300
+  }
+  .booking-time-grid{
+    @apply px-5 gap-4 w-screen grid grid-cols-2 grid-rows-2 
+  }
+  .booking-time-item{
+    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white  peer-checked:bg-cyan-900
+  }
+  .btn-container{
+    @apply mt-12 pb-8 flex flex-col gap-4
+  }
+  .btn-primary-lg {
+    @apply flex justify-center items-center w-72 h-14 px-4 bg-green-700 text-white font-semibold rounded-lg shadow-md hover:bg-green-800;
+  }
+  .btn-empty-lg {
+    @apply flex justify-center items-center w-72 h-14 px-4;
+  }
+  .input-form {
+    @apply w-72 h-14 pl-4 rounded-lg bg-white
+  } 
+  .error-input{
+    @apply flex h-3 text-xs justify-end font-medium text-red-600
+  }
+
+}
+/*
+.time-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: solid 1px rgba(255, 255, 255, 0.295);
+  height: 4rem;
+  color: white;
+ 
+}
+.main-h1{
+  font-family: --ff-gothic;
+  font-size: --fs-main-h1;
+  font-weight: 700;
+  color: --bg-hsb-blue; 
+}
+.main-menu-font{
+  font-family: --ff-gothic;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white; 
+}
+.main-h2-bold{
+  font-family: --ff-gothic;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: --bg-hsb-blue; 
+}
+
+.main-h2{
+  font-family: --ff-ubuntu;
+  font-size: --fs-main-h2;
+  font-weight: 400;
+  color: --bg-hsb-blue; 
+}
+.main-blue{
+  background-color: --bg-hsb-blue;
+}
+.btn-big{
+  
+  background-color: #ff0000;
+  
+}
+
+
+
+ */

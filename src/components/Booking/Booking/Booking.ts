@@ -35,14 +35,6 @@ export default defineComponent({
     const timeValue = ref("");
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
-    const testRef = ref("");
-
-    function timeData(event: any) {
-      timeValue.value = event.target.value;
-      console.log(event.target.value);
-      testRef.value = event.target.getAttribute("userid");
-      console.log(testRef.value);
-    }
 
     // onMounted(() => {
     //   timeData;
@@ -50,7 +42,7 @@ export default defineComponent({
     // });
 
     const timeItem = ref<HTMLElement | null>(null);
-    console.log(timeItem.value);
+    // console.log(timeItem.value);
 
     if (userStore.deleteObj.date) {
       dateValue.value = userStore.deleteObj.date;
@@ -151,9 +143,6 @@ export default defineComponent({
       handleConfirm,
       DateObj,
       dateObject,
-      timeData,
-      timeItem,
-      testRef,
     };
   },
 });

@@ -1,53 +1,24 @@
 <script src="./BookingTime.ts" lang="ts"></script>
 
 <template>
-  <div className="">
-    <label className="">
-      <input
-        required
-        @change="timeUpdate"
-        value="07:00 till 11:00"
-        type="radio"
-        class="hidden peer"
-        name="time"
-      />
-      <div class="booking-time-item">07:00 till 11:00</div>
-    </label>
-
-    <label className="">
-      <input
-        required
-        @change="timeUpdate"
-        value="11:00 till 15:00"
-        type="radio"
-        class="hidden peer"
-        name="time"
-      />
-      <div class="booking-time-item">11:00 till 15:00</div>
-    </label>
-
-    <label className="">
-      <input
-        required
-        @change="timeUpdate"
-        value="15:00 till 19:00"
-        type="radio"
-        class="hidden peer"
-        name="time"
-      />
-      <div class="booking-time-item">15:00 till 19:00</div>
-    </label>
-
-    <label className="">
-      <input
-        required
-        @change="timeUpdate"
-        value="19:00 till 23:00"
-        type="radio"
-        class="hidden peer"
-        name="time"
-      />
-      <div class="booking-time-item">19:00 till 23:00</div>
-    </label>
+  <div className="booking-time-grid">
+    <!-- <div
+      class="hej"
+      v-for="(timeItem, index) in findBookings"
+      :key="`dag_${index}`"
+    >
+      <label className="">
+        <input
+          @change="timeUpdate"
+          required
+          :value="timeItem.time"
+          :userid="timeItem.userid"
+          type="radio"
+          class="hidden peer"
+          name="time"
+        />
+        <div class="booking-time-item">{{ timeItem.time }}</div>
+      </label>
+    </div> -->
   </div>
 </template>

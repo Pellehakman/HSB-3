@@ -1,15 +1,5 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
 import { useuserStore } from "../../../stores/userStore";
-import {
-  collection,
-  orderBy,
-  updateDoc,
-  doc,
-  getDocs,
-  getFirestore,
-  query,
-} from "firebase/firestore";
-
 export default defineComponent({
   name: "BookingDay",
   props: {
@@ -19,43 +9,24 @@ export default defineComponent({
   emits: ["onDateUpdate", "onDateObj"],
 
   async setup(props, { emit }) {
-    const db = getFirestore();
-    const userStore: any = useuserStore();
     const input = ref<HTMLElement | null>(null);
     const focusView = ref(props.todaysDate);
-    const onDateRef = ref();
+    const onDateRef = ref(props.todaysDate);
+    const userStore: any = useuserStore();
+    console.log(onDateRef.value);
 
-    function dateUpdate(event: any) {
-      if (event === undefined) {
-        onDateRef.value = props.todaysDate;
-      } else {
-        onDateRef.value = event.target.value;
-      }
-
-      const a = mybookingsDocs
-        .map((f) => f["07:00 till 11:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const b = mybookingsDocs
-        .map((f) => f["11:00 till 15:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const c = mybookingsDocs
-        .map((f) => f["15:00 till 19:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const d = mybookingsDocs
-        .map((f) => f["19:00 till 23:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const findBookings = a.concat(b, c, d);
-
+    function dateUpdate(date: any) {
       emit("onDateUpdate", onDateRef.value);
-      emit("onDateObj", findBookings);
+
+      if (date === undefined) {
+        userStore.addDateString(props.todaysDate);
+      } else {
+        userStore.addDateString(date);
+      }
     }
 
     onMounted(() => {
-      dateUpdate(event);
+      dateUpdate(props.todaysDate);
       if (userStore.deleteObj.date === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
@@ -65,12 +36,6 @@ export default defineComponent({
       }
     });
 
-    const bookingRef = query(collection(db, "calender"), orderBy("timeID"));
-    const snapshots = await getDocs(bookingRef);
-    const mybookingsDocs = snapshots.docs.map((doc) => {
-      const data = doc.data();
-      return data;
-    });
     if (userStore.deleteObj.date) {
       focusView.value = userStore.deleteObj.date;
     } else {

@@ -4,7 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 import { firebaseConfig } from "./firebase/config";
 import { initializeApp } from "firebase/app";
-import "./assets/variables.css";
+import "./assets/styles.css";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";

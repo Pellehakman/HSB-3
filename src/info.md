@@ -1,13 +1,17 @@
 {
-    "files.eol": "\n",
+    // "files.eol": "\n",
     
       "editor.codeActionsOnSave": {
           "source.fixAll.eslint": true
       },
-      "eslint.validate": ["javascript"]
+    "eslint.validate": [
+        "javascript"
+    ],
+    "files.eol": "\n"
   
    
 }
+
    class="peer invisible"
 
 

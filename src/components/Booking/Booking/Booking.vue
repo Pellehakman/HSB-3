@@ -37,25 +37,10 @@
         </div>
 
         <span class="h-px w-4/5 bg-white opacity-30"></span>
-        <div class="booking-time-grid">
-          <div
-            class="hej"
-            v-for="(timeItem, index) in dateObject"
-            :key="`dag_${index}`"
-          >
-            <label className="">
-              <input
-                @change="timeData"
-                required
-                :value="timeItem.time"
-                :userid="timeItem.userid"
-                type="radio"
-                class="hidden peer"
-                name="time"
-              />
-              <div class="booking-time-item">{{ timeItem.time }}</div>
-            </label>
-          </div>
+        <div class="">
+          <Suspense>
+            <BookingTime />
+          </Suspense>
         </div>
         <div class="btn-container">
           <button class="btn-primary-lg" @click.prevent="handleConfirm()">
