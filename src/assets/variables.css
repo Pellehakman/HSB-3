@@ -3,11 +3,14 @@
 
 
 :root{
-    --green: #195a13;
+    
     --main-blue: #E3F1FF;
     --booking: #5A9AD4;
     --booking-active: #43709b;
-    
+
+    --success: #2c8f23;
+    --warning: #b2bd1a;
+    --error: #922937;
     
     --ff-pragati: 'Pragati Narrow', sans-serif;
     --ff-roboto : 'Roboto Condensed', sans-serif;

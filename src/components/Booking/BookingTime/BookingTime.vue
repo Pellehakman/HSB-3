@@ -19,8 +19,8 @@
         <div
           class="booking-time-item"
           :class="{
-            'bg-red-600': timeItem.bookingid != null,
-            'bg-green-600': timeItem.userid === uid,
+            'time-item-booked': timeItem.bookingid != null,
+            'time-item-yours': timeItem.userid === uid,
           }"
         >
           {{ timeItem.time }}

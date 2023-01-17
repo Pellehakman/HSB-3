@@ -55,13 +55,13 @@
 
       <div
         v-if="readybook"
-        className="booking-confirm-container flex-col flex justify-between items-center p-8 "
+        className="booking-confirm-container flex-col flex justify-between items-center pt-8 px-8 "
       >
         <div class="flex flex-col self-start gap-1">
           <h1 class="text-4xl">Bekräfta bokning</h1>
           <h2 class="font-bold">Vill du boka denna tid?</h2>
-          <p class="font-bold">{{ timeValue }}</p>
-          <p class="font-bold">{{ dateValue }}</p>
+          <h2 class="font-normal">{{ timeValue }}</h2>
+          <h2 class="font-normal">{{ dateValue }}</h2>
         </div>
         <div class="btn-container">
           <button class="btn-primary-lg" @click="submitBooking()">
