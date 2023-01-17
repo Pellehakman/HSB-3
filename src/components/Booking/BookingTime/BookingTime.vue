@@ -2,11 +2,7 @@
 
 <template>
   <div className="booking-time-grid">
-    <!-- <div
-      class="hej"
-      v-for="(timeItem, index) in findBookings"
-      :key="`dag_${index}`"
-    >
+    <div class="hej" v-for="(timeItem, index) in hej" :key="`dag_${index}`">
       <label className="">
         <input
           @change="timeUpdate"
@@ -17,8 +13,11 @@
           class="hidden peer"
           name="time"
         />
-        <div class="booking-time-item">{{ timeItem.time }}</div>
+        <div class="booking-time-item">
+          {{ timeItem.date }}
+          {{ timeItem.time }}
+        </div>
       </label>
-    </div> -->
+    </div>
   </div>
 </template>

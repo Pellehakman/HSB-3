@@ -8,7 +8,7 @@
       <h3>Måndag 15 januari</h3>
     </div>
 
-    <div class="bg-cyan-700">
+    <div class="booking-container">
       <div class="">
         <h1 v-if="awesome">Ändra tid</h1>
         <h1 class="p-7 text-white" v-else>Välj tid för att boka</h1>
@@ -39,7 +39,10 @@
         <span class="h-px w-4/5 bg-white opacity-30"></span>
         <div class="">
           <Suspense>
-            <BookingTime />
+            <BookingTime
+              @onTimeObj="BookingTimeData"
+              :dateObject="dateObject"
+            />
           </Suspense>
         </div>
         <div class="btn-container">

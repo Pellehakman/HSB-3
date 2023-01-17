@@ -34,7 +34,7 @@ export const useuserStore = defineStore("user", {
     },
     addDateString(findBookings: any) {
       this.timeObj = findBookings;
-      console.log(findBookings);
+      // console.log(findBookings);
     },
   },
 });

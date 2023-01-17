@@ -1,5 +1,12 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
 import { useuserStore } from "../../../stores/userStore";
+import {
+  collection,
+  orderBy,
+  getDocs,
+  getFirestore,
+  query,
+} from "firebase/firestore";
 export default defineComponent({
   name: "BookingDay",
   props: {
@@ -13,17 +20,7 @@ export default defineComponent({
     const focusView = ref(props.todaysDate);
     const onDateRef = ref(props.todaysDate);
     const userStore: any = useuserStore();
-    console.log(onDateRef.value);
-
-    function dateUpdate(date: any) {
-      emit("onDateUpdate", onDateRef.value);
-
-      if (date === undefined) {
-        userStore.addDateString(props.todaysDate);
-      } else {
-        userStore.addDateString(date);
-      }
-    }
+    const db = getFirestore();
 
     onMounted(() => {
       dateUpdate(props.todaysDate);
@@ -35,6 +32,35 @@ export default defineComponent({
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
     });
+    const bookingRef = query(collection(db, "calender"), orderBy("timeID"));
+    const snapshots = await getDocs(bookingRef);
+    const mybookingsDocs = snapshots.docs.map((doc) => {
+      const data = doc.data();
+      return data;
+    });
+    function dateUpdate(date: any) {
+      onDateRef.value = date;
+
+      const a = mybookingsDocs
+        .map((f) => f["07:00 till 11:00"])
+        .filter((v) => v.date === onDateRef.value);
+
+      const b = mybookingsDocs
+        .map((f) => f["11:00 till 15:00"])
+        .filter((v) => v.date === onDateRef.value);
+
+      const c = mybookingsDocs
+        .map((f) => f["15:00 till 19:00"])
+        .filter((v) => v.date === onDateRef.value);
+
+      const d = mybookingsDocs
+        .map((f) => f["19:00 till 23:00"])
+        .filter((v) => v.date === onDateRef.value);
+
+      const findBookings = a.concat(b, c, d);
+      emit("onDateObj", findBookings);
+      emit("onDateUpdate", onDateRef.value);
+    }
 
     if (userStore.deleteObj.date) {
       focusView.value = userStore.deleteObj.date;

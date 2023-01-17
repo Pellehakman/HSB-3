@@ -18,10 +18,6 @@ import { useRouter } from "vue-router";
 export default defineComponent({
   name: "Booking-component",
   components: { BookingDate, BookingTime },
-  props: {
-    title: String,
-    mainPhrase: String,
-  },
 
   async setup() {
     const router = useRouter();
@@ -36,26 +32,19 @@ export default defineComponent({
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
 
-    // onMounted(() => {
-    //   timeData;
-    //   timeItem
-    // });
-
-    const timeItem = ref<HTMLElement | null>(null);
-    // console.log(timeItem.value);
-
     if (userStore.deleteObj.date) {
       dateValue.value = userStore.deleteObj.date;
       timeValue.value = userStore.deleteObj.time;
     }
-
-    const BookingDayData = (chosenDate: string) => {
-      dateValue.value = chosenDate;
-    };
-
     if (userStore.deleteObj.date) {
       awesome.value = true;
     }
+
+    const BookingDayData = (chosenDate: string) => {
+      dateValue.value = chosenDate;
+      console.log(chosenDate);
+    };
+
     const BookingTimeData = (chosenTime: string) => {
       timeValue.value = chosenTime;
     };
@@ -137,12 +126,12 @@ export default defineComponent({
       timeValue,
       dateValue,
       BookingDayData,
-      BookingTimeData,
       awesome,
       readybook,
       handleConfirm,
       DateObj,
       dateObject,
+      BookingTimeData,
     };
   },
 });
