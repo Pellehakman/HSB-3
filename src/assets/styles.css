@@ -11,7 +11,7 @@
 @layer base {
   
   #app{
-    @apply bg-cyan-200 bg-success font-gothic font-medium h-screen w-screen
+    @apply  bg-main font-gothic font-medium h-screen w-screen
   }
   h1 {
     @apply text-2xl;
@@ -25,15 +25,18 @@
   .screen-col-standard{
     @apply flex flex-col items-center justify-between h-screen w-screen
   }
+  .booking-container{
+    @apply bg-booking
+  }
   .booking-day{
     @apply flex flex-row overflow-x-scroll w-screen items-center gap-4 
   }
   .booking-day-chevron-l{
-    @apply h-20 w-12 absolute left-0 z-10 flex justify-center items-center text-white bg-gradient-to-r from-cyan-700 via-cyan-700 from-cyan-700
+    @apply h-20 w-12 absolute left-0 z-10 flex justify-center items-center text-white bg-gradient-to-r from-booking via-booking from-booking
 
   }
   .booking-day-chevron-r{
-    @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-cyan-700 via-cyan-700 from-cyan-700
+    @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-booking via-booking from-booking
   }
   .booking-day-item{
     @apply w-32 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-cyan-900 select-none cursor-pointer rounded-lg border-solid border border-slate-300
@@ -61,51 +64,3 @@
   }
 
 }
-/*
-.time-style{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  border: solid 1px rgba(255, 255, 255, 0.295);
-  height: 4rem;
-  color: white;
- 
-}
-.main-h1{
-  font-family: --ff-gothic;
-  font-size: --fs-main-h1;
-  font-weight: 700;
-  color: --bg-hsb-blue; 
-}
-.main-menu-font{
-  font-family: --ff-gothic;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: white; 
-}
-.main-h2-bold{
-  font-family: --ff-gothic;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: --bg-hsb-blue; 
-}
-
-.main-h2{
-  font-family: --ff-ubuntu;
-  font-size: --fs-main-h2;
-  font-weight: 400;
-  color: --bg-hsb-blue; 
-}
-.main-blue{
-  background-color: --bg-hsb-blue;
-}
-.btn-big{
-  
-  background-color: #ff0000;
-  
-}
-
-
-
- */

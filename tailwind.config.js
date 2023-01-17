@@ -5,7 +5,9 @@ module.exports = {
   theme: {
     extend:{
       colors: {
-        'success': 'var(--green)'
+        'success': 'var(--green)',
+        'main': 'var(--main-blue)',
+        'booking': 'var(--booking)',
   
       },
       fontFamily: {
