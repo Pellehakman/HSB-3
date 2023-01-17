@@ -7,12 +7,13 @@ module.exports = {
       colors: {
         'success': 'var(--green)',
         'main': 'var(--main-blue)',
+        'main-active': 'var(--booking-active)',
         'booking': 'var(--booking)',
   
       },
       fontFamily: {
-        'ubuntu': ["var(--ff-ubuntu)"],
-        'gothic': ["var(--ff-gothic)"]
+        'pragati': ["var(--ff-pragati)"],
+        'roboto': ["var(--ff-roboto)"]
       },
     }
    

@@ -3,15 +3,15 @@
 <template>
   <div class="screen-col-standard">
     <div class="flex-1 flex flex-col w-screen justify-center pl-12">
-      <h1>Tidsbokning</h1>
+      <h1 class="text-5xl">Tidsbokning</h1>
       <h2>Välkommen</h2>
       <h3>Måndag 15 januari</h3>
     </div>
 
     <div class="booking-container">
-      <div class="">
+      <div class="p-7 text-2xl text-white">
         <h1 v-if="awesome">Ändra tid</h1>
-        <h1 class="p-7 text-white" v-else>Välj tid för att boka</h1>
+        <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
       </div>
 
       <form class="flex flex-col items-center justify-center gap-6">

@@ -14,6 +14,7 @@ import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import { useuserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
+import { sv } from "date-fns/locale";
 
 export default defineComponent({
   name: "Booking-component",
@@ -25,7 +26,9 @@ export default defineComponent({
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const todayDate = ref(new Date()).value;
-    const thisDayDate = ref(format(todayDate, "eeee d MMM, Y")).value;
+    const thisDayDate = ref(
+      format(todayDate, "eeee d MMMM", { locale: sv })
+    ).value;
     const awesome = ref(false);
     const readybook = ref(false);
     const timeValue = ref("");

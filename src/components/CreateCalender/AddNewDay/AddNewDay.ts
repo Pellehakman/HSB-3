@@ -8,6 +8,7 @@ import {
   collection,
   getDocs,
 } from "firebase/firestore";
+import { sv } from "date-fns/locale";
 
 export default defineComponent({
   components: {},
@@ -19,7 +20,9 @@ export default defineComponent({
     async function addNewDay() {
       const daysInMonth = getDaysInMonth(todayDate);
       const addDay = addDays(todayDate, daysInMonth);
-      const addDayFormat = ref(format(addDay, "eeee d MMM, Y")).value;
+      const addDayFormat = ref(
+        format(addDay, "eeee d MMM, Y", { locale: sv })
+      ).value;
 
       // get ref from firebase
       const addDayRef = query(collection(db, "calender"));

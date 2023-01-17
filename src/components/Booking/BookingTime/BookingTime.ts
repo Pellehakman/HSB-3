@@ -11,11 +11,12 @@ export default defineComponent({
   },
 
   async setup(props, { emit }) {
-    const hej = ref();
+    const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
+    const dateObject = ref();
     watch(
       () => props.dateObject,
       () => {
-        hej.value = props.dateObject;
+        dateObject.value = props.dateObject;
       }
     );
     // const hej = props.dateObject;
@@ -25,6 +26,6 @@ export default defineComponent({
     }
     onMounted(() => {});
 
-    return { timeUpdate, hej };
+    return { timeUpdate, dateObject, uid };
   },
 });
