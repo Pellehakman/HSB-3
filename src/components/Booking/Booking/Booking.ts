@@ -45,7 +45,6 @@ export default defineComponent({
 
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
-      console.log(chosenDate);
     };
 
     const BookingTimeData = (chosenTime: string) => {
@@ -135,6 +134,7 @@ export default defineComponent({
       DateObj,
       dateObject,
       BookingTimeData,
+      thisDayDate,
     };
   },
 });

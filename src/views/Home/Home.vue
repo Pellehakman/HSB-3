@@ -8,7 +8,7 @@ import type Menu from '@/components/Meny/Menu';
     <Booking />
   </Suspense>
 
-  <Suspense>
+  <!-- <Suspense>
     <Calender />
-  </Suspense>
+  </Suspense> -->
 </template>

@@ -5,7 +5,7 @@
     <div class="flex-1 flex flex-col w-screen justify-center pl-12">
       <h1 class="text-5xl">Tidsbokning</h1>
       <h2>Välkommen</h2>
-      <h3>Måndag 15 januari</h3>
+      <h3>{{ thisDayDate }}</h3>
     </div>
 
     <div class="booking-container">
