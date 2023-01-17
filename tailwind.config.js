@@ -15,6 +15,12 @@ module.exports = {
         'pragati': ["var(--ff-pragati)"],
         'roboto': ["var(--ff-roboto)"]
       },
+      keyframes: {
+        slide: {
+          'from': { top: '-6' },
+          'to': {  top: '-12' },
+        }
+      }
     }
    
   },

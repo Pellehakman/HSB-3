@@ -53,10 +53,25 @@
         </div>
       </form>
 
-      <div v-if="readybook" className="popup">
-        <p>vill du bekräfta?</p>
-        <button @click="submitBooking()">Ja</button>
-        <button @click="readybook = false">Avbryt</button>
+      <div
+        v-if="readybook"
+        className="booking-confirm-container flex-col flex justify-between items-center p-8 "
+      >
+        <div class="flex flex-col self-start gap-1">
+          <h1 class="text-4xl">Bekräfta bokning</h1>
+          <h2 class="font-bold">Vill du boka denna tid?</h2>
+          <p class="font-bold">{{ timeValue }}</p>
+          <p class="font-bold">{{ dateValue }}</p>
+        </div>
+        <div class="btn-container">
+          <button class="btn-primary-lg" @click="submitBooking()">
+            Ja, boka!
+          </button>
+
+          <div class="btn-empty-lg">
+            <button @click="readybook = false">Avbryt</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

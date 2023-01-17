@@ -6,12 +6,20 @@
 
 
 /* @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&family=Ubuntu:wght@400;500&display=swap'); */
-
-
+.slide{
+  animation: slide 0.05s forwards ease-in;
+  
+}
+@keyframes slide {
+  
+  from {top: 30rem;}
+  to {top: 2rem;}
+    
+}
 @layer base {
   
   #app{
-    @apply  bg-main font-roboto font-medium h-screen w-screen
+    @apply  bg-main font-roboto font-medium h-screen w-screen 
   }
   h1 {
     @apply text-6xl font-pragati font-bold;
@@ -26,7 +34,7 @@
     @apply flex flex-col items-center justify-between h-screen w-screen
   }
   .menu-container{
-    @apply bg-booking absolute justify-between z-20
+    @apply bg-main-active absolute justify-between z-20 
   }
   .menu-items-list{
     @apply flex flex-col pt-32   mr-36 items-start gap-8
@@ -38,7 +46,7 @@
     @apply font-normal text-2xl text-white
   }
   .booking-container{
-    @apply bg-booking
+    @apply bg-booking relative rounded-t-xl
   }
   .booking-day{
     @apply flex flex-row overflow-x-scroll w-screen items-center gap-4 
@@ -50,22 +58,25 @@
     @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-booking via-booking from-booking
   }
   .booking-day-item{
-    @apply w-24 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-slate-300
+    @apply w-24 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-gray-300
   }
   .booking-time-grid{
     @apply px-5 gap-4 w-screen grid grid-cols-2 grid-rows-2 
   }
   .booking-time-item{
-    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white  peer-checked:bg-main-active peer-checked:border-0
+    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white peer-checked:bg-main-active peer-checked:border-0 transition ease-in-out
+  }
+  .booking-confirm-container{
+    @apply w-screen h-full absolute top-6 bg-slate-300 z-20 slide rounded-t-xl
   }
   .btn-container{
     @apply mt-12 pb-8 flex flex-col gap-4
   }
   .btn-primary-lg {
-    @apply flex justify-center items-center w-72 h-14 px-4 bg-green-700 text-white font-semibold rounded-lg shadow-md hover:bg-green-800;
+    @apply flex justify-center items-center w-72 h-14 px-4 bg-green-700 text-white font-semibold rounded-lg shadow-md hover:bg-green-800 ; 
   }
   .btn-empty-lg {
-    @apply flex justify-center items-center w-72 h-14 px-4;
+    @apply flex justify-center items-center w-72 h-14 px-4 font-semibold text-black;
   }
   .input-form {
     @apply w-72 h-14 pl-4 rounded-lg bg-white

@@ -29,6 +29,8 @@ export default defineComponent({
     const thisDayDate = ref(
       format(todayDate, "eeee d MMMM", { locale: sv })
     ).value;
+    const ss = ref(format(todayDate, "Eeee d MMMM", { locale: sv })).value;
+    console.log(ss);
     const awesome = ref(false);
     const readybook = ref(false);
     const timeValue = ref("");
