@@ -5,8 +5,8 @@
 :root{
     
     --main-blue: #e5eff9;
-    --booking: #1976d2;
-    --booking-active: #036;
+    --booking: #036;
+    --booking-active: rgb(0, 43, 87);
     --confirm-block: #fbf8f2;
     --blackish: #333;
 

@@ -4,7 +4,7 @@
   <div class="screen-col-standard">
     <div class="flex-1 flex flex-col w-screen justify-center pl-12">
       <h1>Tidsbokning</h1>
-      <h2>Välkommen</h2>
+      <h3>Välkommen</h3>
       <h3>{{ thisDayDate }}</h3>
     </div>
 
@@ -14,7 +14,7 @@
         <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
       </div>
 
-      <form class="flex flex-col items-center justify-center gap-6">
+      <form class="flex flex-col items-center justify-center ">
         <div id="date" class="booking-day">
           <div class="booking-day-chevron-l">
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -45,7 +45,7 @@
             />
           </Suspense>
         </div>
-        <div class="btn-container" >
+        <div class="btn-container">
           <input
             type="button"
             value="Boka tid"
@@ -65,7 +65,7 @@
       <div v-if="readybook" className="booking-confirm-container ">
         <div class="flex flex-col self-start gap-1">
           <h2 class="text-3xl">Bekräfta bokning</h2>
-          <h2>Vill du boka denna tid?</h2>
+          <h3>Vill du boka denna tid?</h3>
           <h3>{{ timeValue }}</h3>
           <h3>{{ dateValue }}</h3>
         </div>

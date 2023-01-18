@@ -15,10 +15,11 @@ import BookingTime from "../BookingTime/BookingTime.vue";
 import { useuserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import { sv } from "date-fns/locale";
+import Meny from "@/components/Meny/Meny";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { BookingDate, BookingTime },
+  components: { BookingDate, BookingTime, Meny },
 
   async setup() {
     const router = useRouter();
