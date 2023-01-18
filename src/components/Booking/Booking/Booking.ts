@@ -29,20 +29,19 @@ export default defineComponent({
     const thisDayDate = ref(
       format(todayDate, "eeee d MMMM", { locale: sv })
     ).value;
-    const ss = ref(format(todayDate, "Eeee d MMMM", { locale: sv })).value;
-    console.log(ss);
-    const awesome = ref(false);
+
+    const handleEdit = ref(false);
     const readybook = ref(false);
     const timeValue = ref("");
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
 
-    if (userStore.deleteObj.date) {
-      dateValue.value = userStore.deleteObj.date;
-      timeValue.value = userStore.deleteObj.time;
+    if (userStore.editObject.date) {
+      dateValue.value = userStore.editObject.date;
+      timeValue.value = userStore.editObject.time;
     }
-    if (userStore.deleteObj.date) {
-      awesome.value = true;
+    if (userStore.editObject.date) {
+      handleEdit.value = true;
     }
 
     const BookingDayData = (chosenDate: string) => {
@@ -62,7 +61,6 @@ export default defineComponent({
     const snapshots = await getDocs(dateRef);
     const dateDocs = snapshots.docs.map((doc) => {
       const data = doc.data();
-      // data.id = doc.id;
       return data;
     });
 
@@ -107,18 +105,19 @@ export default defineComponent({
       console.log("you have booked");
       readybook.value = false;
 
-      if (userStore.deleteObj.date) {
-        const RemoveRef = doc(db, "calender", userStore.deleteObj.date);
+      // Remove booking
+      if (userStore.editObject.date) {
+        const RemoveRef = doc(db, "calender", userStore.editObject.date);
         await updateDoc(RemoveRef, {
-          [userStore.deleteObj.time]: {
+          [userStore.editObject.time]: {
             userid: null,
             bookingid: null,
-            time: userStore.deleteObj.time,
-            date: userStore.deleteObj.date,
+            time: userStore.editObject.time,
+            date: userStore.editObject.date,
           },
         });
       }
-      if (awesome.value === true) {
+      if (handleEdit.value === true) {
         router.push({ path: "/user" });
       }
     }
@@ -130,7 +129,7 @@ export default defineComponent({
       timeValue,
       dateValue,
       BookingDayData,
-      awesome,
+      handleEdit,
       readybook,
       handleConfirm,
       DateObj,

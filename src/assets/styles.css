@@ -18,8 +18,11 @@
 
 
 @layer base {
+  body{
+    @apply bg-main
+  }
   #app{
-    @apply  bg-main font-roboto font-medium h-screen w-screen 
+    @apply  font-roboto font-medium h-screen w-screen 
   }
   h1 {
     @apply text-6xl font-pragati font-bold;
@@ -58,19 +61,26 @@
     @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-booking via-booking from-booking
   }
   .booking-day-item{
-    @apply w-24 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-gray-300
+    @apply w-28 px-2 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-gray-300
   }
   .booking-time-grid{
     @apply px-5 gap-4 w-screen grid grid-cols-2 grid-rows-2 
   }
   .booking-time-item{
-    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white peer-checked:bg-main-active peer-checked:border-0 transition ease-in-out
+    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white  transition ease-in-out
   }
-  .time-item-yours{
-    @apply bg-success border-0
+  .time-free{
+    @apply peer-checked:bg-main-active peer-checked:border-0
   }
-  .time-item-booked{
-    @apply bg-error border-0
+  /* VISA ZARA NÄR DU HAR "time-you" i BookingTime.vue som klass  */
+  .time-you{
+    @apply border-0  bg-green-600
+  }
+  .time-booked{
+    @apply border-0 bg-red-500
+  }
+  .time-edit{
+    @apply  bg-yellow-300 animate-pulse
   }
   .booking-confirm-container{
     @apply w-screen absolute top-6 bg-slate-300 z-20 slide rounded-t-xl bottom-0

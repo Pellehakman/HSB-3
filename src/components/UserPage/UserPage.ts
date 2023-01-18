@@ -11,7 +11,6 @@ import { defineComponent, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import Meny from "../Meny/Meny";
 
 export default defineComponent({
   name: "UserPage",
@@ -81,9 +80,9 @@ export default defineComponent({
     }
 
     function handleEdit() {
-      console.log(userStore.deleteObj.date);
+      console.log(userStore.editObject.date);
 
-      if (userStore.deleteObj.date) {
+      if (userStore.editObject.date) {
         router.push({ path: "/home" });
       }
     }
@@ -96,7 +95,5 @@ export default defineComponent({
       BookingObject,
     };
   },
-  components: {
-  
-  }
+  components: {},
 });

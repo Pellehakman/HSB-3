@@ -24,7 +24,7 @@ export default defineComponent({
 
     onMounted(() => {
       dateUpdate(props.todaysDate);
-      if (userStore.deleteObj.date === props.date && input.value != null) {
+      if (userStore.editObject.date === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
 
@@ -62,8 +62,8 @@ export default defineComponent({
       emit("onDateUpdate", onDateRef.value);
     }
 
-    if (userStore.deleteObj.date) {
-      focusView.value = userStore.deleteObj.date;
+    if (userStore.editObject.date) {
+      focusView.value = userStore.editObject.date;
     } else {
       // eslint-disable-next-line vue/no-setup-props-destructure
       focusView.value = props.todaysDate;

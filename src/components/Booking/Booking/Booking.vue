@@ -10,7 +10,7 @@
 
     <div class="booking-container">
       <div class="p-7 text-2xl text-white">
-        <h1 v-if="awesome">Ändra tid</h1>
+        <h2 v-if="handleEdit">Ändra tid</h2>
         <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
       </div>
 

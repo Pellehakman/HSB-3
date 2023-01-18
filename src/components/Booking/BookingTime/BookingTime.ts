@@ -1,6 +1,7 @@
 import { defineComponent, onMounted, ref, watch } from "vue";
 // import { format, getTime } from "date-fns";
 import BookingDate from "../BookingDate/BookingDate.vue";
+import { useuserStore } from "@/stores/userStore";
 
 export default defineComponent({
   name: "BookingSlot",
@@ -11,12 +12,14 @@ export default defineComponent({
   },
 
   async setup(props, { emit }) {
+    const userStore: any = useuserStore();
+
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
-    const dateObject = ref();
+    const refDateObject = ref();
     watch(
       () => props.dateObject,
       () => {
-        dateObject.value = props.dateObject;
+        refDateObject.value = props.dateObject;
       }
     );
     // const hej = props.dateObject;
@@ -26,6 +29,6 @@ export default defineComponent({
     }
     onMounted(() => {});
 
-    return { timeUpdate, dateObject, uid };
+    return { timeUpdate, refDateObject, uid, userStore };
   },
 });

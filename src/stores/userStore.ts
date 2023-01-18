@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 export const useuserStore = defineStore("user", {
   // collect string to myData
   state: () => ({
-    deleteObj: [],
+    editObject: [],
     dateString: [],
     timeObj: [],
   }),
@@ -12,7 +12,7 @@ export const useuserStore = defineStore("user", {
   //send this back to wherever
   getters: {
     BookingObject(state) {
-      return state.deleteObj;
+      return state.editObject;
     },
     DateString(state) {
       return state.dateString;
@@ -25,7 +25,7 @@ export const useuserStore = defineStore("user", {
   // send editValue from click on "MyBookings" to state "myData"
   actions: {
     addBookingObj(findBookings: any) {
-      this.deleteObj = findBookings;
+      this.editObject = findBookings;
       // console.log(findBookings);
     },
     addTimeObj(findBookings: any) {

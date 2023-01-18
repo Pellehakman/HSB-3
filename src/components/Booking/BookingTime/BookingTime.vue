@@ -15,12 +15,15 @@
           class="hidden peer"
           name="time"
           @change="timeUpdate"
+          :disabled="timeItem.bookingid != null ? true : false"
         />
         <div
           class="booking-time-item"
           :class="{
-            'time-item-booked': timeItem.bookingid != null,
-            'time-item-yours': timeItem.userid === uid,
+            'time-free': timeItem.bookingid === null,
+            'time-booked': timeItem.bookingid != null,
+            'bg-green-600': timeItem.userid === uid,
+            'time-edit': userStore.editObject.time === timeItem.time,
           }"
         >
           {{ timeItem.time }}
