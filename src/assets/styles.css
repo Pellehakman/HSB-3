@@ -22,13 +22,19 @@
     @apply bg-main
   }
   #app{
-    @apply  font-roboto font-medium h-screen w-screen 
+    @apply font-roboto text-main-active h-screen w-screen 
   }
   h1 {
-    @apply text-6xl font-pragati font-bold;
+    @apply text-5xl font-pragati font-bold;
   }
   h2 {
-    @apply text-2xl font-roboto;
+    @apply text-2xl font-bold;
+  }
+  h3{
+    @apply text-xl font-bold text-blackish
+  }
+  h4{
+    @apply text-xl font-normal
   }
 }
 @layer components {
@@ -40,7 +46,7 @@
     @apply bg-main-active absolute justify-between z-20  overflow-hidden
   }
   .menu-items-list{
-    @apply flex flex-col pt-32   mr-36 items-start gap-8
+    @apply flex flex-col pt-32  mr-36 items-start gap-8
   }
   .menu-item-lg{
     @apply font-semibold text-3xl text-white
@@ -61,13 +67,13 @@
     @apply h-20 w-12 absolute right-0 z-10 flex justify-center items-center text-white bg-gradient-to-l from-booking via-booking from-booking
   }
   .booking-day-item{
-    @apply w-28 px-2 h-16 flex shadow-md items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-gray-300
+    @apply w-28 px-2 h-16 flex shadow-lg items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-white border-opacity-30
   }
   .booking-time-grid{
     @apply px-5 gap-4 w-screen grid grid-cols-2 grid-rows-2 
   }
   .booking-time-item{
-    @apply h-16 flex justify-center shadow-md items-center border border-slate-300 rounded-lg  text-white  transition ease-in-out
+    @apply h-16 flex justify-center shadow-md items-center border border-white border-opacity-30 rounded-lg  text-white  transition ease-in-out
   }
   .time-free{
     @apply peer-checked:bg-main-active peer-checked:border-0
@@ -77,23 +83,26 @@
     @apply border-0  bg-green-600
   }
   .time-booked{
-    @apply border-0 bg-red-500
+    @apply border-0 bg-error
   }
-  .time-edit{
+  /* .time-edit{
     @apply  bg-yellow-300 animate-pulse
-  }
+  } */
   .booking-confirm-container{
-    @apply w-screen absolute top-6 bg-slate-300 z-20 slide rounded-t-xl bottom-0
+    @apply w-screen  absolute top-6 bg-confirm-block z-20 slide rounded-t-xl bottom-0 flex-col flex justify-between items-center pt-8 px-8 
   }
   .btn-container{
     @apply mt-12 pb-8 flex flex-col gap-4 font-roboto
   }
   .btn-primary-lg {
-    @apply flex justify-center items-center w-72 h-16 px-4 bg-success text-white font-semibold rounded-lg shadow-md hover:bg-green-800 ; 
+    @apply flex justify-center items-center w-72 h-16 px-4 bg-success text-white font-semibold rounded-lg shadow-md ; 
   }
   
   .btn-empty-lg {
     @apply flex justify-center items-center w-72 h-14 px-4 font-semibold text-black;
+  }
+  .login-form-container{
+    @apply flex flex-col mt-8 gap-4 
   }
   .input-form {
     @apply w-72 h-14 pl-4 rounded-lg bg-white

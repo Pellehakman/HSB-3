@@ -3,11 +3,11 @@
 <template>
   <div class="screen-col-standard">
     <div class="flex flex-col justify-center items-center">
-      <img class="mt-20 mb-6" src="../../assets/HSB_logo.svg" alt="" />
+      <img class="mt-8 mb-6" src="../../assets/HSB_logo.svg" alt="" />
       <h1>Välkommen!</h1>
       <h2>Registrera ny användare</h2>
 
-      <form class="flex flex-col mt-12 gap-3">
+      <form class="login-form-container">
         <input
           required
           class="input-form"

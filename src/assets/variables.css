@@ -1,19 +1,21 @@
 
-  @import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow&family=Roboto+Condensed&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow&family=Roboto&display=swap');
 
 
 :root{
     
-    --main-blue: #E3F1FF;
-    --booking: #5A9AD4;
-    --booking-active: #43709b;
+    --main-blue: #e5eff9;
+    --booking: #1976d2;
+    --booking-active: #036;
+    --confirm-block: #fbf8f2;
+    --blackish: #333;
 
     --success: #2c8f23;
     --warning: #b2bd1a;
-    --error: #922937;
+    --error: #a7505b;
     
     --ff-pragati: 'Pragati Narrow', sans-serif;
-    --ff-roboto : 'Roboto Condensed', sans-serif;
+    --ff-roboto : 'Roboto', sans-serif;
     
     --fs-main-h1: 2.5rem;
     --fs-main-h2: 1.2rem;

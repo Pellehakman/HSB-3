@@ -11,6 +11,8 @@ module.exports = {
         'main': 'var(--main-blue)',
         'main-active': 'var(--booking-active)',
         'booking': 'var(--booking)',
+        'confirm-block':'var(--confirm-block)',
+        'blackish': 'var(--blackish)'
   
       },
       fontFamily: {

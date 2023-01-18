@@ -7,7 +7,7 @@
       <h1>Välkommen!</h1>
       <h2>Logga in för att boka en tvättid!</h2>
 
-      <form class="flex flex-col mt-12 gap-3">
+      <form class="login-form-container">
         <input
           required
           class="input-form"

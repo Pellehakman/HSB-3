@@ -3,7 +3,7 @@
 <template>
   <div class="screen-col-standard">
     <div class="flex-1 flex flex-col w-screen justify-center pl-12">
-      <h1 class="text-5xl">Tidsbokning</h1>
+      <h1>Tidsbokning</h1>
       <h2>Välkommen</h2>
       <h3>{{ thisDayDate }}</h3>
     </div>
@@ -45,28 +45,37 @@
             />
           </Suspense>
         </div>
-        <div class="btn-container">
-          <button class="btn-primary-lg" @click.prevent="handleConfirm()">
-            Boka tid
-          </button>
+        <div class="btn-container" >
+          <input
+            type="button"
+            value="Boka tid"
+            :disabled="timeValue.length < 1 ? true : false"
+            :class="{
+              'bg-gray-500 text-gray-600': timeValue.length < 1,
+              'bg-green-600': timeValue.length > 1,
+            }"
+            class="btn-primary-lg"
+            @click.prevent="handleConfirm()"
+          />
+
           <div class="btn-empty-lg"></div>
         </div>
       </form>
 
-      <div
-        v-if="readybook"
-        className="booking-confirm-container flex-col flex justify-between items-center pt-8 px-8 "
-      >
+      <div v-if="readybook" className="booking-confirm-container ">
         <div class="flex flex-col self-start gap-1">
-          <h1 class="text-4xl">Bekräfta bokning</h1>
-          <h2 class="font-bold">Vill du boka denna tid?</h2>
-          <h2 class="font-normal">{{ timeValue }}</h2>
-          <h2 class="font-normal">{{ dateValue }}</h2>
+          <h2 class="text-3xl">Bekräfta bokning</h2>
+          <h2>Vill du boka denna tid?</h2>
+          <h3>{{ timeValue }}</h3>
+          <h3>{{ dateValue }}</h3>
         </div>
         <div class="btn-container">
-          <button class="btn-primary-lg" @click="submitBooking()">
-            Ja, boka!
-          </button>
+          <input
+            type="button"
+            class="btn-primary-lg"
+            @click="submitBooking()"
+            value="Ja, boka!"
+          />
 
           <div class="btn-empty-lg">
             <button @click="readybook = false">Avbryt</button>
