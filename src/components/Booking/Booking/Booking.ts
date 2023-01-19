@@ -124,6 +124,7 @@ export default defineComponent({
       if (handleEdit.value === true) {
         router.push({ path: "/user" });
       }
+      router.push({ path: "/home" });
     }
     // end of submit
     function abortEdit() {

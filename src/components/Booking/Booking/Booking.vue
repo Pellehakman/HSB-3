@@ -65,6 +65,7 @@
             class="btn-empty-lg"
             value="avbryt"
           />
+          <div class="btn-empty-lg"></div>
         </div>
       </form>
 

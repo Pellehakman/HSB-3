@@ -44,10 +44,13 @@
     @apply flex flex-col items-center justify-between h-screen w-screen
   }
   .menu-container{
-    @apply bg-booking absolute justify-between z-50 overflow-hidden
+    @apply bg-booking absolute h-screen w-screen flex flex-col justify-between items-center z-50 overflow-hidden
+  }
+  .menu-fill{
+    @apply flex 
   }
   .menu-items-list{
-    @apply flex flex-col pt-32  mr-36 items-start gap-8
+    @apply flex  flex-col   mr-36 items-start gap-6
   }
   .menu-item-lg{
     @apply font-semibold text-3xl text-white
@@ -56,7 +59,7 @@
     @apply font-normal text-2xl text-white
   }
   .hero{
-    @apply  flex-1 flex flex-col w-screen justify-center pl-12 p-20
+    @apply  flex-1 flex flex-col w-screen justify-center pl-12 
   }
   .booking-container{
     @apply bg-booking relative rounded-t-xl
@@ -96,7 +99,7 @@
     @apply w-screen  absolute top-6 bg-confirm-block z-20 slide rounded-t-xl bottom-0 flex-col flex justify-between items-center pt-8 px-8 
   }
   .btn-container{
-    @apply pt-12 pb-6  gap-4 h-56 min-h-0  flex flex-col font-roboto
+    @apply pt-6 pb-6  gap-4 min-h-0  flex flex-col font-roboto
   }
   .btn-primary-lg {
     @apply w-72 h-16 px-4 rounded-lg flex justify-center items-center  bg-success text-white font-semibold shadow-md ; 
@@ -104,8 +107,11 @@
   .btn-remove-lg{
     @apply w-72 h-16 px-4 rounded-lg flex justify-center bg-error items-center font-semibold text-white;
   }
-  .btn-empty-lg {
+  .btn-clean-lg {
     @apply w-72 h-16 px-4 rounded-lg flex justify-center items-center font-semibold text-black;
+  }
+  .btn-empty-lg {
+    @apply w-72 h-16 px-4 rounded-lg flex;
   }
   .login-form-container{
     @apply flex flex-col mt-8 gap-4 

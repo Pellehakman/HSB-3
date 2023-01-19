@@ -10,7 +10,8 @@
     @click="(showMenu = true), userStore.$reset()"
   />
 
-  <div v-if="showMenu" class="menu-container screen-col-standard">
+  <div v-if="showMenu" class="menu-container">
+    <div class="menu-fill"></div>
     <font-awesome-icon
       style="color: white; font-size: 2rem"
       class="absolute right-6 top-6"
@@ -32,7 +33,7 @@
         >Felanmälan</RouterLink
       >
 
-      <span class="h-px w-full bg-white mt-10 mb-10 opacity-30"></span>
+      <span class="h-px w-full bg-white opacity-30"></span>
 
       <label class="menu-item-s flex justify-center items-center"
         >Notiser
@@ -48,6 +49,7 @@
         @click="SignOut()"
         value="Logga ut"
       />
+      <div class="btn-empty-lg"></div>
     </div>
   </div>
 </template>

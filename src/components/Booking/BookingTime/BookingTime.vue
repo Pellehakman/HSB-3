@@ -17,9 +17,10 @@
           class="booking-time-item"
           :class="{
             'time-free': timeItem.bookingid === null,
-            'time-booked': timeItem.bookingid != null,
-            'bg-green-600': timeItem.userid === uid,
-            [`${timeItem.bookingid} animate-pulse bg-yellow-400`]:
+            'time-booked':
+              timeItem.bookingid !== null && timeItem.userid !== uid,
+            'time-you': timeItem.userid === uid,
+            [`${timeItem.bookingid} animate-pulse bg-warning`]:
               userStore.editObject.bookingid === timeItem.bookingid,
           }"
         >
