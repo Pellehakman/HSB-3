@@ -44,7 +44,7 @@
     @apply flex flex-col items-center justify-between h-screen w-screen
   }
   .menu-container{
-    @apply bg-main-active absolute justify-between z-50 overflow-hidden
+    @apply bg-booking absolute justify-between z-50 overflow-hidden
   }
   .menu-items-list{
     @apply flex flex-col pt-32  mr-36 items-start gap-8
