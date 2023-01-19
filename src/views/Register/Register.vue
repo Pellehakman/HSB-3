@@ -5,7 +5,7 @@
     <div class="flex flex-col justify-center items-center">
       <img class="mt-8 mb-6" src="../../assets/HSB_logo.svg" alt="" />
       <h1>Välkommen!</h1>
-      <h2>Registrera ny användare</h2>
+      <h4>Registrera ny användare</h4>
 
       <div class="login-form-container">
         <input
@@ -36,7 +36,7 @@
       >
         Registrera
       </button>
-      <div class="btn-empty-lg bg-transparent text-black font-normal">
+      <div class="btn-clean-lg">
         <RouterLink to="/login">Tillbaka</RouterLink>
       </div>
     </div>

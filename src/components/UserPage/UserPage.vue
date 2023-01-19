@@ -4,8 +4,8 @@
   <div class="screen-col-standard">
     <div class="hero">
       <h1>Mina tvättider</h1>
-      <h3>Här finns dina tvättider</h3>
-      <h3>{{ thisDayDate }}</h3>
+      <h4>Här finns dina tvättider</h4>
+      <h4>{{ thisDayDate }}</h4>
     </div>
 
     <div class="booking-container w-screen">

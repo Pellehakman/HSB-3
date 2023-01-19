@@ -17,7 +17,8 @@ module.exports = {
       },
       fontFamily: {
         'pragati': ["var(--ff-pragati)"],
-        'roboto': ["var(--ff-roboto)"]
+        'roboto': ["var(--ff-roboto)"],
+        'kalam' : ["var(--ff-kalam)"],
       },
       keyframes: {
         slide: {

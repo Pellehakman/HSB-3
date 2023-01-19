@@ -26,7 +26,7 @@
     @apply font-roboto text-main-active h-screen w-screen 
   }
   h1 {
-    @apply text-5xl font-pragati font-bold;
+    @apply text-4xl font-kalam font-bold;
   }
   h2 {
     @apply text-2xl font-bold;
@@ -35,7 +35,7 @@
     @apply text-xl font-bold text-blackish
   }
   h4{
-    @apply text-xl font-normal
+    @apply text-xl font-normal text-blackish
   }
 }
 @layer components {
@@ -77,24 +77,27 @@
     @apply w-28 px-2 h-16 flex shadow-lg items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-white border-opacity-10
   }
   .booking-time-grid{
-    @apply px-6 gap-4 w-screen grid grid-cols-2 grid-rows-2 
+    @apply px-6 pb-4 gap-4 w-screen grid grid-cols-2 grid-rows-2 
   }
   .booking-time-item{
     @apply h-16 flex justify-center shadow-md items-center border border-white border-opacity-10 rounded-lg  text-white transition ease-in-out
+  }
+  .guide-container{
+    @apply px-6  flex w-screen justify-between items-center text-white
+  }
+  .guide-bullet{
+    @apply  h-3 w-3 rounded-full
   }
   .time-free{
     @apply peer-checked:bg-main-active peer-checked:border-0
   }
   /* VISA ZARA NÄR DU HAR "time-you" i BookingTime.vue som klass  */
   .time-you{
-    @apply border-0  bg-green-600
+    @apply border-0  bg-success
   }
   .time-booked{
     @apply border-0 bg-error
   }
-  /* .time-edit{
-    @apply  bg-yellow-300 animate-pulse
-  } */
   .booking-confirm-container{
     @apply w-screen  absolute top-6 bg-confirm-block z-20 slide rounded-t-xl bottom-0 flex-col flex justify-between items-center pt-8 px-8 
   }

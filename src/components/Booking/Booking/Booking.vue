@@ -4,8 +4,8 @@
   <div class="screen-col-standard">
     <div class="hero">
       <h1>Tidsbokning</h1>
-      <h3>Välkommen</h3>
-      <h3>{{ thisDayDate }}</h3>
+      <h4>Välkommen</h4>
+      <h4>{{ thisDayDate }}</h4>
     </div>
 
     <div class="booking-container">
@@ -45,6 +45,22 @@
             />
           </Suspense>
         </div>
+        <div class="guide-container">
+          <div class="flex items-center">
+            <fig
+              class="guide-bullet border border-white border-opacity-50"
+            ></fig>
+            <p class="ml-2">Ledig tider</p>
+          </div>
+          <div class="flex items-center">
+            <fig class="guide-bullet bg-error"></fig>
+            <p class="ml-2">Bokat</p>
+          </div>
+          <div class="flex items-center">
+            <fig class="guide-bullet bg-success"></fig>
+            <p class="ml-2">Dina bokningar</p>
+          </div>
+        </div>
         <div class="btn-container">
           <input
             type="button"
@@ -52,7 +68,7 @@
             :disabled="timeValue.length < 1 ? true : false"
             :class="{
               'bg-gray-500 text-gray-600': timeValue.length < 1,
-              'bg-green-600': timeValue.length > 1,
+              'bg-success': timeValue.length > 1,
             }"
             class="btn-primary-lg"
             @click.prevent="handleConfirm()"
@@ -62,10 +78,10 @@
             type="button"
             v-if="handleEdit === true"
             @click="abortEdit"
-            class="btn-empty-lg"
+            class="btn-clean-lg text-white"
             value="avbryt"
           />
-          <div class="btn-empty-lg"></div>
+          <div v-if="handleEdit === false" class="btn-empty-lg"></div>
         </div>
       </form>
 
@@ -84,7 +100,7 @@
             value="Ja, boka!"
           />
 
-          <div class="btn-empty-lg">
+          <div class="btn-clean-lg">
             <button @click="readybook = false">Avbryt</button>
           </div>
         </div>
