@@ -2,7 +2,7 @@
 
 <template>
   <div class="screen-col-standard">
-    <div class="flex-1 flex flex-col w-screen justify-center pl-12">
+    <div class="hero">
       <h1>Tidsbokning</h1>
       <h3>Välkommen</h3>
       <h3>{{ thisDayDate }}</h3>

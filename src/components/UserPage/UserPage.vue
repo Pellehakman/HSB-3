@@ -2,10 +2,10 @@
 
 <template>
   <div class="screen-col-standard">
-    <div class="flex-1 flex flex-col w-screen justify-center pl-12">
+    <div class="hero">
       <h1>Mina tvättider</h1>
       <h3>här finns dina tvättider</h3>
-      <h3>dagens datum</h3>
+      <h3>{{ thisDayDate }}</h3>
     </div>
 
     <div class="booking-container w-screen">
@@ -13,26 +13,25 @@
         <h2>Dina senaste bokningar</h2>
       </div>
 
-      <div @click="handleActiveBooking"
-        v-for="day in findBookings"
-        className="datebox"
-      >
-        <div className="booking-item" :id="day.bookingid">
-          {{ day.date }} {{ day.time }}
+      <div class="userPage-item-container">
+        <!-- eslint-disable-next-line vue/require-v-for-key -->
+        <div @click="handleActiveBooking" v-for="day in findBookings" class="">
+          <label>
+            <input
+              name="user"
+              type="radio"
+              class="hidden peer"
+              :id="day.bookingid"
+            />
+            <div class="userPage-item">{{ day.date }} {{ day.time }}</div>
+          </label>
         </div>
       </div>
-      <div class="btn-container">
-        <button @click="handleEdit">ÄNDRA</button>
+      <div class="btn-container items-center">
+        <button class="btn-primary-lg" @click="handleEdit">ÄNDRA</button>
 
-        <button @click="handleRemove">AVBOKA</button>
-
-        <div class="btn-empty-lg"></div>
+        <button class="btn-empty-lg" @click="handleRemove">AVBOKA</button>
       </div>
     </div>
-    <!-- <RouterLink to="/home">Tillbaka</RouterLink> -->
-
-    <!-- <div>
-    {{ BookingObject }}
-  </div> -->
   </div>
 </template>

@@ -7,7 +7,8 @@
     style="color: currentColor; font-size: 2rem"
     class="absolute right-6 top-6"
     icon="fa-solid fa-bars "
-    @click="showMenu = true"
+    @click="(showMenu = true), hej"
+    
   />
 
   <div v-if="showMenu" class="menu-container screen-col-standard">

@@ -7,6 +7,8 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
+import { format } from "date-fns";
+import { sv } from "date-fns/locale";
 import { defineComponent, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
 import { storeToRefs } from "pinia";
@@ -16,6 +18,10 @@ export default defineComponent({
   name: "UserPage",
 
   async setup() {
+    const todayDate = ref(new Date()).value;
+    const thisDayDate = ref(
+      format(todayDate, "eeee d MMMM", { locale: sv })
+    ).value;
     const router = useRouter();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
@@ -93,6 +99,7 @@ export default defineComponent({
       handleRemove,
       handleEdit,
       BookingObject,
+      thisDayDate,
     };
   },
   components: {},
