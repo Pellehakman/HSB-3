@@ -14,7 +14,7 @@
         <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
       </div>
 
-      <form class="flex flex-col items-center justify-center ">
+      <form class="flex flex-col items-center justify-center">
         <div id="date" class="booking-day">
           <div class="booking-day-chevron-l">
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        <span class="h-px w-4/5 bg-white opacity-30"></span>
+        <span class="divider"></span>
         <div class="">
           <Suspense>
             <BookingTime
@@ -48,7 +48,7 @@
         <div class="btn-container">
           <input
             type="button"
-            value="Boka tid"
+            :value="`${btnMsg}`"
             :disabled="timeValue.length < 1 ? true : false"
             :class="{
               'bg-gray-500 text-gray-600': timeValue.length < 1,
@@ -66,8 +66,8 @@
         <div class="flex flex-col self-start gap-1">
           <h2 class="text-3xl">Bekräfta bokning</h2>
           <h3>Vill du boka denna tid?</h3>
-          <h3>{{ timeValue }}</h3>
-          <h3>{{ dateValue }}</h3>
+          <h5>{{ timeValue }} {{ dateValue }}</h5>
+          <h5></h5>
         </div>
         <div class="btn-container">
           <input

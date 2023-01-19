@@ -1,13 +1,13 @@
 <script src="./Login.ts" lang="ts"></script>
 
 <template>
-  <div class="screen-col-standard">
+  <form class="screen-col-standard">
     <div class="flex flex-col justify-center items-center">
       <img class="mt-8 mb-6" src="../../assets/HSB_logo.svg" alt="" />
       <h1>Välkommen!</h1>
       <h2>Logga in för att boka en tvättid!</h2>
 
-      <form class="login-form-container">
+      <div class="login-form-container">
         <input
           required
           class="input-form"
@@ -26,7 +26,7 @@
         <p class="error-input">
           {{ displayErrors }}
         </p>
-      </form>
+      </div>
     </div>
 
     <div class="btn-container">
@@ -37,5 +37,5 @@
         <RouterLink to="/register">Inget Konto? Skapa konto här!</RouterLink>
       </div>
     </div>
-  </div>
+  </form>
 </template>

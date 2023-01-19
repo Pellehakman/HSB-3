@@ -32,17 +32,20 @@ export default defineComponent({
     ).value;
 
     const handleEdit = ref(false);
+
     const readybook = ref(false);
     const timeValue = ref("");
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
 
+    const btnMsg = ref("Boka tid");
     if (userStore.editObject.date) {
       dateValue.value = userStore.editObject.date;
       timeValue.value = userStore.editObject.time;
     }
     if (userStore.editObject.date) {
       handleEdit.value = true;
+      btnMsg.value = "Ändra tid";
     }
 
     const BookingDayData = (chosenDate: string) => {
@@ -137,6 +140,7 @@ export default defineComponent({
       dateObject,
       BookingTimeData,
       thisDayDate,
+      btnMsg,
     };
   },
 });
