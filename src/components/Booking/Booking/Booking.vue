@@ -9,7 +9,7 @@
     </div>
 
     <div class="booking-container">
-      <div class="p-7 text-2xl text-white">
+      <div class="p-6 text-2xl text-white">
         <h2 v-if="handleEdit">Ändra tid</h2>
         <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
       </div>
@@ -58,7 +58,13 @@
             @click.prevent="handleConfirm()"
           />
 
-          <div class="btn-empty-lg"></div>
+          <input
+            type="button"
+            v-if="handleEdit === true"
+            @click="abortEdit"
+            class="btn-empty-lg"
+            value="avbryt"
+          />
         </div>
       </form>
 

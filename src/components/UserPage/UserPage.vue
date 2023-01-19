@@ -4,12 +4,12 @@
   <div class="screen-col-standard">
     <div class="hero">
       <h1>Mina tvättider</h1>
-      <h3>här finns dina tvättider</h3>
+      <h3>Här finns dina tvättider</h3>
       <h3>{{ thisDayDate }}</h3>
     </div>
 
     <div class="booking-container w-screen">
-      <div class="p-7 text-2xl text-white">
+      <div class="p-6 text-2xl text-white">
         <h2>Dina senaste bokningar</h2>
       </div>
 
@@ -28,9 +28,9 @@
         </div>
       </div>
       <div class="btn-container items-center">
-        <button class="btn-primary-lg" @click="handleEdit">ÄNDRA</button>
+        <button class="btn-primary-lg" @click="handleEdit">Ändra</button>
 
-        <button class="btn-empty-lg" @click="handleRemove">AVBOKA</button>
+        <button class="btn-remove-lg" @click="handleRemove">Avboka</button>
       </div>
     </div>
   </div>

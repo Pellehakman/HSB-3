@@ -11,10 +11,6 @@ export default defineComponent({
     const userStore: any = useuserStore();
     const showMenu = ref(false);
 
-    function hej() {
-      console.log("hej");
-      userStore.$reset();
-    }
     function SignOut() {
       sessionStorage.clear();
       router.push({ path: "/login" });
@@ -24,7 +20,6 @@ export default defineComponent({
       showMenu,
       SignOut,
       userStore,
-      hej,
     };
   },
 });

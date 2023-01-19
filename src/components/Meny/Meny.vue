@@ -7,13 +7,12 @@
     style="color: currentColor; font-size: 2rem"
     class="absolute right-6 top-6"
     icon="fa-solid fa-bars "
-    @click="(showMenu = true), hej"
-    
+    @click="(showMenu = true), userStore.$reset()"
   />
 
   <div v-if="showMenu" class="menu-container screen-col-standard">
     <font-awesome-icon
-      style="color: currentColor; font-size: 2rem"
+      style="color: white; font-size: 2rem"
       class="absolute right-6 top-6"
       icon="fa-solid fa-xmark"
       @click="showMenu = false"
@@ -42,9 +41,13 @@
       <div class="menu-item-s">English</div>
     </div>
 
-    <div class="btn-container justify-center">
-      <button class="btn-primary-lg" @click.prevent="SignOut">Logga ut</button>
-      <div class="btn-empty-lg bg-transparent text-black font-normal"></div>
+    <div class="btn-container">
+      <input
+        type="button"
+        class="btn-primary-lg"
+        @click="SignOut()"
+        value="Logga ut"
+      />
     </div>
   </div>
 </template>

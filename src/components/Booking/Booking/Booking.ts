@@ -126,7 +126,11 @@ export default defineComponent({
       }
     }
     // end of submit
-
+    function abortEdit() {
+      userStore.$reset();
+      handleEdit.value = false;
+      btnMsg.value = "Boka tid";
+    }
     return {
       submitBooking,
       dateDocs,
@@ -141,6 +145,7 @@ export default defineComponent({
       BookingTimeData,
       thisDayDate,
       btnMsg,
+      abortEdit,
     };
   },
 });

@@ -74,7 +74,7 @@
     @apply w-28 px-2 h-16 flex shadow-lg items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-white border-opacity-10
   }
   .booking-time-grid{
-    @apply px-5 pt-6 gap-4 w-screen grid grid-cols-2 grid-rows-2 
+    @apply px-6 gap-4 w-screen grid grid-cols-2 grid-rows-2 
   }
   .booking-time-item{
     @apply h-16 flex justify-center shadow-md items-center border border-white border-opacity-10 rounded-lg  text-white transition ease-in-out
@@ -96,14 +96,16 @@
     @apply w-screen  absolute top-6 bg-confirm-block z-20 slide rounded-t-xl bottom-0 flex-col flex justify-between items-center pt-8 px-8 
   }
   .btn-container{
-    @apply mt-12 pb-8 flex flex-col gap-4 font-roboto
+    @apply pt-12 pb-6  gap-4 h-56 min-h-0  flex flex-col font-roboto
   }
   .btn-primary-lg {
-    @apply flex justify-center items-center w-72 h-16 px-4 bg-success text-white font-semibold rounded-lg shadow-md ; 
+    @apply w-72 h-16 px-4 rounded-lg flex justify-center items-center  bg-success text-white font-semibold shadow-md ; 
   }
-  
+  .btn-remove-lg{
+    @apply w-72 h-16 px-4 rounded-lg flex justify-center bg-error items-center font-semibold text-white;
+  }
   .btn-empty-lg {
-    @apply flex justify-center items-center w-72 h-14 px-4 font-semibold text-black;
+    @apply w-72 h-16 px-4 rounded-lg flex justify-center items-center font-semibold text-black;
   }
   .login-form-container{
     @apply flex flex-col mt-8 gap-4 
@@ -116,13 +118,13 @@
   }
   /* from-booking via-booking from-booking */
   .divider{
-    @apply h-px w-4/5 bg-gradient-to-l from-white via-white opacity-30 from-transparent
+    @apply mb-6 h-px w-4/5 bg-gradient-to-l via-white opacity-30 from-transparent
   }
   .userPage-item-container{
-    @apply  gap-5 px-5 overflow-y-scroll flex flex-col max-h-64 
+    @apply  gap-4 px-6 overflow-y-scroll flex flex-col h-64 
     
   }
   .userPage-item{
-    @apply text-white p-6 flex items-center border bottom-4 border-solid rounded-lg border-opacity-10 border-white peer-checked:bg-main-active peer-checked:border-0 
+    @apply text-white h-16 flex items-center justify-center border border-solid rounded-lg border-opacity-10 border-white peer-checked:bg-main-active peer-checked:border-0 
   }
 }
