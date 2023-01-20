@@ -5,7 +5,6 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/HSB-3/",
   plugins: [vue()],
   resolve: {
     alias: {
