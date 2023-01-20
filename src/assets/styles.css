@@ -4,18 +4,13 @@
 @tailwind utilities;
 
 .slide{
-  animation: slide 70ms ease-in-out ;
-
+  animation: slide 200ms forwards ;
+  animation-timing-function: cubic-bezier(0,.69,.3,1.07)
 }
 @keyframes slide {
-  from {transform: translateY(100%);}
-  to {transform: translateY(0);}
+  from {top: 70rem;}
+  to {top: 2rem;} 
 }
-
-.success{
-  background-color: var(--success)
-}
-
 
 
 @layer base {
@@ -99,7 +94,7 @@
     @apply border-0 bg-error
   }
   .booking-confirm-container{
-    @apply w-screen  absolute top-6 bg-confirm-block z-20 rounded-t-xl bottom-0 flex-col flex justify-between items-center pt-8 px-8 
+    @apply w-screen  absolute top-6 bg-confirm-block z-20 slide rounded-t-xl bottom-0 flex-col flex justify-between items-center pt-8 px-8 
   }
   .btn-container{
     @apply pt-6 pb-6  gap-4 min-h-0  flex flex-col font-roboto

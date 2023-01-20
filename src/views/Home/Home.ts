@@ -1,6 +1,7 @@
 import Booking from "@/components/Booking/Booking/Booking.vue";
 import Calender from "@/components/CreateCalender/Calender/Calender.vue";
 import Meny from "@/components/Meny/Meny.vue";
+import { useBookingStore } from "@/stores/bookingStore";
 import {
   collection,
   getDocs,
@@ -8,6 +9,7 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
+import { storeToRefs } from "pinia";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import User from "../User/User.vue";
@@ -17,20 +19,28 @@ export default defineComponent({
   name: "Home",
 
   async setup() {
-    const db = getFirestore();
+    const bookingStore: any = useBookingStore();
+    const { bookingArray } = storeToRefs(bookingStore);
+
+    console.log(bookingArray);
+
     const router = useRouter();
     if (JSON.parse(sessionStorage.getItem("uid") || "{}")) {
       /* empty */
     } else {
       router.push({ path: "/login" });
     }
-    const dateRef = query(collection(db, "calender"), orderBy("timeID"));
-    const snapshots = await getDocs(dateRef);
-    const dateDocs = snapshots.docs.map((doc) => {
-      const data = doc.data();
-      return data;
-    });
-    console.log(dateDocs);
+
+    // const collectFireBase = query(
+    //   collection(db, "calender"),
+    //   orderBy("timeID")
+    // );
+    // const snapshots = await getDocs(collectFireBase);
+    // const bookingArray = snapshots.docs.map((doc) => {
+    //   const data = doc.data();
+    //   return data;
+    // });
+    // bookingStore.addBookingArray(bookingArray);
 
     return {};
   },
