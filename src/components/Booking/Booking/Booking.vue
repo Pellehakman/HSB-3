@@ -15,13 +15,17 @@
       </div>
 
       <form class="flex flex-col items-center justify-center">
-        <div id="date" class="booking-day">
+        <div id="date" class="booking-day snap-mandatory snap-x">
           <div class="booking-day-chevron-l">
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
           </div>
 
           <Suspense>
-            <div v-for="(date, index) in dateDocs" :key="`dag_${index}`">
+            <div
+              class=""
+              v-for="(date, index) in dateDocs"
+              :key="`dag_${index}`"
+            >
               <BookingDate
                 :todaysDate="dateValue"
                 :date="date.date"

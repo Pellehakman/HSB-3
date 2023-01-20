@@ -2,9 +2,8 @@
 <template>
   <Meny />
 
-  <Suspense>
-    <Booking />
-  </Suspense>
+  <Booking />
+
   <!-- 
   <Suspense>
     <Calender />

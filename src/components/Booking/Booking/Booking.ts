@@ -32,6 +32,11 @@ export default defineComponent({
     ).value;
 
     const handleEdit = ref(false);
+    const btnMsg = ref("Boka tid");
+    if (userStore.editObject.date) {
+      handleEdit.value = true;
+      btnMsg.value = "Ändra tid";
+    }
 
     const handlePopup = ref("");
     const timeValue = ref("");
@@ -39,14 +44,9 @@ export default defineComponent({
     const dateValue = ref(thisDayDate);
     const tooManyBookings = ref(false);
 
-    const btnMsg = ref("Boka tid");
     if (userStore.editObject.date) {
       dateValue.value = userStore.editObject.date;
       timeValue.value = userStore.editObject.time;
-    }
-    if (userStore.editObject.date) {
-      handleEdit.value = true;
-      btnMsg.value = "Ändra tid";
     }
 
     const BookingDayData = (chosenDate: string) => {

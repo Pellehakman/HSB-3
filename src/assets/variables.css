@@ -6,13 +6,13 @@
     
     --main-blue: #e5eff9;
     --booking: #036;
-    --booking-active: rgb(0, 43, 87);
+    --booking-active: rgb(3, 35, 66);
     --confirm-block: #fbf8f2;
     --blackish: #333;
 
-    --success: #2c8f23;
-    --warning: #b2bd1a;
-    --error: #a7505b;
+    --success: #446441;
+    --warning: #c7ce6e;
+    --error: #813d46;
     
     --ff-pragati: 'Pragati Narrow', sans-serif;
     --ff-roboto : 'Roboto', sans-serif;
