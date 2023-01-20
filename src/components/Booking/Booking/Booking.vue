@@ -47,17 +47,17 @@
         </div>
         <div class="guide-container">
           <div class="flex items-center">
-            <fig
+            <section
               class="guide-bullet border border-white border-opacity-50"
-            ></fig>
+            ></section>
             <p class="ml-2">Ledig tider</p>
           </div>
           <div class="flex items-center">
-            <fig class="guide-bullet bg-error"></fig>
+            <section class="guide-bullet bg-error"></section>
             <p class="ml-2">Bokat</p>
           </div>
           <div class="flex items-center">
-            <fig class="guide-bullet bg-success"></fig>
+            <section class="guide-bullet bg-success"></section>
             <p class="ml-2">Dina bokningar</p>
           </div>
         </div>
