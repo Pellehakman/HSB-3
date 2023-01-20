@@ -11,7 +11,7 @@
           class="hidden peer"
           name="time"
           @change="timeUpdate"
-          :disabled="timeItem.bookingid != null ? true : false"
+          :disabled="timeItem.userid !== null ? true : false"
         />
         <div
           class="booking-time-item"
