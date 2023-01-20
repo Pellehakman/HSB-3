@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .slide{
-  animation: slide 400ms forwards ;
+  animation: slide 200ms forwards ;
   animation-timing-function: cubic-bezier(0,.69,.3,1.07)
 }
 @keyframes slide {

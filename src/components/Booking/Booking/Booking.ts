@@ -33,10 +33,11 @@ export default defineComponent({
 
     const handleEdit = ref(false);
 
-    const readybook = ref(false);
+    const handlePopup = ref("");
     const timeValue = ref("");
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
+    const tooManyBookings = ref(false);
 
     const btnMsg = ref("Boka tid");
     if (userStore.editObject.date) {
@@ -81,15 +82,43 @@ export default defineComponent({
         }
       });
 
-      const checkIfNull = findSlot.map(
-        (b) => b[`${timeValue.value}`].bookingid
-      );
+      // gör egen komponent
+      const a = dateDocs
+        .map((f) => f["07:00 till 11:00"])
+        .filter((v) => v.userid === uid);
 
-      if (checkIfNull[0] != null) {
-        console.log("välj ett annat datum");
+      const b = dateDocs
+        .map((f) => f["11:00 till 15:00"])
+        .filter((v) => v.userid === uid);
+
+      const c = dateDocs
+        .map((f) => f["15:00 till 19:00"])
+        .filter((v) => v.userid === uid);
+
+      const d = dateDocs
+        .map((f) => f["19:00 till 23:00"])
+        .filter((v) => v.userid === uid);
+
+      const findBookings = a.concat(b, c, d);
+      // allow three max 4 bookings if "edit mode"
+      console.log(findBookings);
+      const bookingsAllowed = ref(2);
+      if (userStore.editObject.date) {
+        bookingsAllowed.value = 3;
+      }
+      if (findBookings.length > bookingsAllowed.value) {
+        handlePopup.value = "tooMany";
       } else {
-        readybook.value = true;
-        console.log("please confirm");
+        const checkIfNull = findSlot.map(
+          (b) => b[`${timeValue.value}`].bookingid
+        );
+
+        if (checkIfNull[0] != null) {
+          console.log("välj ett annat datum");
+        } else {
+          handlePopup.value = "confirm";
+          console.log("please confirm");
+        }
       }
     }
 
@@ -107,7 +136,7 @@ export default defineComponent({
         },
       });
       console.log("you have booked");
-      readybook.value = false;
+      handlePopup.value = "";
 
       // Remove booking
       if (userStore.editObject.date) {
@@ -121,8 +150,11 @@ export default defineComponent({
           },
         });
       }
+
       if (handleEdit.value === true) {
         router.push({ path: "/user" });
+      } else {
+        window.location.reload();
       }
     }
     // end of submit
@@ -138,7 +170,7 @@ export default defineComponent({
       dateValue,
       BookingDayData,
       handleEdit,
-      readybook,
+      handlePopup,
       handleConfirm,
       DateObj,
       dateObject,
@@ -146,6 +178,7 @@ export default defineComponent({
       thisDayDate,
       btnMsg,
       abortEdit,
+      tooManyBookings,
     };
   },
 });

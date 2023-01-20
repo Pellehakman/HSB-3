@@ -5,7 +5,7 @@
     <div class="hero">
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
-      <h4>{{ thisDayDate }}</h4>
+      <h5>{{ thisDayDate }}</h5>
     </div>
 
     <div class="booking-container">
@@ -79,18 +79,20 @@
             v-if="handleEdit === true"
             @click="abortEdit"
             class="btn-clean-lg text-white"
-            value="avbryt"
+            value="Avbryt"
           />
           <div v-if="handleEdit === false" class="btn-empty-lg"></div>
         </div>
       </form>
 
-      <div v-if="readybook" className="booking-confirm-container ">
+      <div
+        v-if="handlePopup === 'confirm'"
+        className="booking-confirm-container "
+      >
         <div class="flex flex-col self-start gap-1">
           <h2 class="text-3xl">Bekräfta bokning</h2>
           <h3>Vill du boka denna tid?</h3>
           <h5>{{ timeValue }} {{ dateValue }}</h5>
-          <h5></h5>
         </div>
         <div class="btn-container">
           <input
@@ -101,7 +103,26 @@
           />
 
           <div class="btn-clean-lg">
-            <button @click="readybook = false">Avbryt</button>
+            <button @click="handlePopup = ''">Avbryt</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        v-if="handlePopup === 'tooMany'"
+        className="booking-confirm-container "
+      >
+        <div class="flex flex-col self-start gap-1">
+          <h2 class="text-3xl">Varning</h2>
+          <h4>
+            Du har nått maximalt antal bokningar. Gå till
+            <span class="font-bo">mina sidor</span> och ta bort befintlig
+            bokning för att boka igen.
+          </h4>
+        </div>
+        <div class="btn-container">
+          <div class="btn-clean-lg">
+            <button @click="handlePopup = ''">Avbryt</button>
           </div>
         </div>
       </div>

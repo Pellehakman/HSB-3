@@ -5,7 +5,7 @@
     <div class="hero">
       <h1>Mina tvättider</h1>
       <h4>Här finns dina tvättider</h4>
-      <h4>{{ thisDayDate }}</h4>
+      <h5>{{ thisDayDate }}</h5>
     </div>
 
     <div class="booking-container w-screen">
@@ -31,6 +31,27 @@
         <button class="btn-primary-lg" @click="handleEdit">Ändra</button>
 
         <button class="btn-remove-lg" @click="handleRemove">Avboka</button>
+      </div>
+      <div
+        v-if="handlePopup === 'handleRemove'"
+        className="booking-confirm-container "
+      >
+        <div class="flex flex-col self-start gap-1">
+          <h2 class="text-3xl">Avboka tid</h2>
+          <h4>Vill du ta bort denna tid?</h4>
+          <h5>{{ activeBooking.time }} {{ activeBooking.date }}</h5>
+        </div>
+        <div class="btn-container">
+          <input
+            type="button"
+            class="btn-primary-lg bg-error"
+            @click="submitRemove()"
+            value="Ja, avboka"
+          />
+          <div class="btn-clean-lg ">
+            <button @click="handlePopup = ''">Avbryt</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

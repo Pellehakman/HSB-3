@@ -1,5 +1,11 @@
 import { defineComponent, ref } from "vue";
-import { format, addDays, startOfWeek, getDaysInMonth } from "date-fns";
+import {
+  format,
+  addDays,
+  startOfWeek,
+  getDaysInMonth,
+  formatISO,
+} from "date-fns";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import AddNewDay from "../AddNewDay/AddNewDay.vue";
 import { sv } from "date-fns/locale";
@@ -14,7 +20,7 @@ export default defineComponent({
     const weekStartDate = format(startOfWeek(todayDate), "eeee d MMMM", {
       locale: sv,
     });
-    console.log(weekStartDate)
+    console.log(weekStartDate);
 
     async function createDate() {
       const daysInMonth = getDaysInMonth(todayDate);
@@ -32,7 +38,7 @@ export default defineComponent({
           date: format(addDays(weekStartDate, day), "eeee d MMMM", {
             locale: sv,
           }),
-          timeID: objects.toISOString(),
+          timeID: formatISO(objects, { format: "basic" }),
           ["07:00 till 11:00"]: {
             time: "07:00 till 11:00",
             userid: null,

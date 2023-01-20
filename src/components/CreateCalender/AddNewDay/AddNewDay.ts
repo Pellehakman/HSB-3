@@ -1,5 +1,5 @@
 import { defineComponent, ref } from "vue";
-import { format, addDays, getDaysInMonth } from "date-fns";
+import { format, addDays, getDaysInMonth, formatISO } from "date-fns";
 import {
   doc,
   getFirestore,
@@ -41,7 +41,7 @@ export default defineComponent({
         console.log("lets add day");
         await setDoc(doc(db, "calender", `${addDayFormat}`), {
           date: addDayFormat,
-          timeID: addDay.toISOString(),
+          timeID: formatISO(addDay, { format: "basic" }),
           ["07:00 till 11:00"]: {
             time: "07:00 till 11:00",
             userid: null,

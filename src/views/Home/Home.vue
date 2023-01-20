@@ -1,5 +1,3 @@
-import type Menu from '@/components/Meny/Menu';
-
 <script src="./Home.ts" lang="ts"></script>
 <template>
   <Meny />
@@ -7,8 +5,8 @@ import type Menu from '@/components/Meny/Menu';
   <Suspense>
     <Booking />
   </Suspense>
-
-  <!-- <Suspense>
+  <!-- 
+  <Suspense>
     <Calender />
   </Suspense> -->
 </template>
