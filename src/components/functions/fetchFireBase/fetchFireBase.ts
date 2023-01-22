@@ -1,4 +1,4 @@
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import {
   collection,
   orderBy,
@@ -6,24 +6,23 @@ import {
   getFirestore,
   query,
 } from "firebase/firestore";
+import { useFireStore } from "@/stores/firestore";
 
 export default defineComponent({
   name: "fetch-firebase",
-  setup() {
-    onMounted(() => {
-      fetchData();
+  async setup() {
+    const firestore = useFireStore();
+
+
+    const db = getFirestore();
+    const dateRef = query(collection(db, "calender"), orderBy("timeID"));
+    const snapshots = await getDocs(dateRef);
+    const fetchFireBase = snapshots.docs.map((doc) => {
+      const data = doc.data();
+      return data;
     });
-    console.log("hej");
-    async function fetchData() {
-      const db = getFirestore();
-      const dateRef = query(collection(db, "calender"), orderBy("timeID"));
-      const snapshots = await getDocs(dateRef);
-      const dateDocs = snapshots.docs.map((doc) => {
-        const data = doc.data();
-        return data;
-      });
-      console.log(dateDocs);
-      console.log("dateDocs");
-    }
+    firestore.addFireArray(fetchFireBase);
+
+    // console.log(dateDocs);
   },
 });

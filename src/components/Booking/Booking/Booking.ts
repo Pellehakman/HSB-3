@@ -1,15 +1,7 @@
-import { defineComponent, ref, onMounted, computed } from "vue";
+import { defineComponent, ref } from "vue";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
-import {
-  collection,
-  orderBy,
-  updateDoc,
-  doc,
-  getDocs,
-  getFirestore,
-  query,
-} from "firebase/firestore";
+import { updateDoc, doc, getFirestore } from "firebase/firestore";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import { useuserStore } from "@/stores/userStore";
@@ -17,13 +9,14 @@ import { useRouter } from "vue-router";
 import { sv } from "date-fns/locale";
 import Meny from "@/components/Meny/Meny";
 import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
+import { useFireStore } from "@/stores/firestore";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { BookingDate, BookingTime, Meny, fetchFireBase },
+  components: { fetchFireBase, BookingDate, BookingTime, Meny },
 
   async setup() {
-    console.log("booking");
+    const fireStore = useFireStore();
     const router = useRouter();
     const userStore: any = useuserStore();
     const db = getFirestore();
@@ -36,7 +29,7 @@ export default defineComponent({
     const handleEdit = ref(false);
 
     const handlePopup = ref("");
-    const timeValue = ref("");
+    const timeValue = ref<string>("");
     const dateObject = ref();
     const dateValue = ref(thisDayDate);
     const tooManyBookings = ref(false);
@@ -63,47 +56,33 @@ export default defineComponent({
       dateObject.value = dateObj;
     };
 
-    // get data from firebase and sort by timeID
-    const dateRef = query(collection(db, "calender"), orderBy("timeID"));
-    const snapshots = await getDocs(dateRef);
-    const dateDocs = snapshots.docs.map((doc) => {
-      const data = doc.data();
-      return data;
-    });
-
     async function handleConfirm() {
-      const bookingRef = query(collection(db, "calender"));
-      const snapshots = await getDocs(bookingRef);
-      const bookingDocs = snapshots.docs.map((doc) => {
-        const data = doc.data();
-        return data;
-      });
-      const findSlot = bookingDocs.filter((f) => {
+      const findSlot = fireStore.fireArray.filter((f) => {
         if (f.date === dateValue.value) {
           return f;
         }
       });
 
       // gör egen komponent
-      const a = dateDocs
-        .map((f) => f["07:00 till 11:00"])
-        .filter((v) => v.userid === uid);
+      const a = fireStore.fireArray
+        .map((f: { [x: string]: any }) => f["07:00 till 11:00"])
+        .filter((v: { userid: any }) => v.userid === uid);
 
-      const b = dateDocs
-        .map((f) => f["11:00 till 15:00"])
-        .filter((v) => v.userid === uid);
+      const b = fireStore.fireArray
+        .map((f: { [x: string]: any }) => f["11:00 till 15:00"])
+        .filter((v: { userid: any }) => v.userid === uid);
 
-      const c = dateDocs
-        .map((f) => f["15:00 till 19:00"])
-        .filter((v) => v.userid === uid);
+      const c = fireStore.fireArray
+        .map((f: { [x: string]: any }) => f["15:00 till 19:00"])
+        .filter((v: { userid: any }) => v.userid === uid);
 
-      const d = dateDocs
-        .map((f) => f["19:00 till 23:00"])
-        .filter((v) => v.userid === uid);
+      const d = fireStore.fireArray
+        .map((f: { [x: string]: any }) => f["19:00 till 23:00"])
+        .filter((v: { userid: any }) => v.userid === uid);
 
       const findBookings = a.concat(b, c, d);
       // allow three max 4 bookings if "edit mode"
-      console.log(findBookings);
+
       const bookingsAllowed = ref(2);
       if (userStore.editObject.date) {
         bookingsAllowed.value = 3;
@@ -167,7 +146,7 @@ export default defineComponent({
     }
     return {
       submitBooking,
-      dateDocs,
+
       timeValue,
       dateValue,
       BookingDayData,
@@ -181,6 +160,7 @@ export default defineComponent({
       btnMsg,
       abortEdit,
       tooManyBookings,
+      fireStore,
     };
   },
 });

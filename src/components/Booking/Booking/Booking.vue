@@ -1,17 +1,14 @@
-
-import type fetchFireBase from '@/components/functions/fetchFireBase/fetchFireBase';
-
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
-  <fetchFireBase />
+  <!-- <fetchFireBase /> -->
   <div class="screen-col-standard">
     <div class="hero">
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
       <h5>{{ thisDayDate }}</h5>
     </div>
-
+    <!-- {{ fireStore.fireArray }} -->
     <div class="booking-container">
       <div class="p-6 text-2xl text-white">
         <h2 v-if="handleEdit">Ändra tid</h2>
@@ -25,7 +22,10 @@ import type fetchFireBase from '@/components/functions/fetchFireBase/fetchFireBa
           </div>
 
           <Suspense>
-            <div v-for="(date, index) in dateDocs" :key="`dag_${index}`">
+            <div
+              v-for="(date, index) in fireStore.fireArray"
+              :key="`dag_${index}`"
+            >
               <BookingDate
                 :todaysDate="dateValue"
                 :date="date.date"
