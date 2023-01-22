@@ -1,5 +1,6 @@
 import Booking from "@/components/Booking/Booking/Booking.vue";
-import Calender from "@/components/CreateCalender/Calender/Calender.vue";
+import Calender from "@/components/functions/CreateCalender/Calender/Calender";
+
 import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
 import Meny from "@/components/Meny/Meny.vue";
 import { defineComponent } from "vue";
