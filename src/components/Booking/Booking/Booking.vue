@@ -1,6 +1,10 @@
+
+import type fetchFireBase from '@/components/functions/fetchFireBase/fetchFireBase';
+
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
+  <fetchFireBase />
   <div class="screen-col-standard">
     <div class="hero">
       <h1>Tidsbokning</h1>

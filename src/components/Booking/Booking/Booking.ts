@@ -16,12 +16,14 @@ import { useuserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import { sv } from "date-fns/locale";
 import Meny from "@/components/Meny/Meny";
+import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { BookingDate, BookingTime, Meny },
+  components: { BookingDate, BookingTime, Meny, fetchFireBase },
 
   async setup() {
+    console.log("booking");
     const router = useRouter();
     const userStore: any = useuserStore();
     const db = getFirestore();
