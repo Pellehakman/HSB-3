@@ -13,7 +13,6 @@ export default defineComponent({
   async setup() {
     const firestore = useFireStore();
 
-
     const db = getFirestore();
     const dateRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(dateRef);
@@ -22,7 +21,5 @@ export default defineComponent({
       return data;
     });
     firestore.addFireArray(fetchFireBase);
-
-    // console.log(dateDocs);
   },
 });

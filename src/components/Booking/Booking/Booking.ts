@@ -1,15 +1,15 @@
 import { defineComponent, ref } from "vue";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
+import { sv } from "date-fns/locale";
 import { updateDoc, doc, getFirestore } from "firebase/firestore";
+import { useuserStore } from "@/stores/userStore";
+import { useFireStore } from "@/stores/firestore";
+import { useRouter } from "vue-router";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
-import { useuserStore } from "@/stores/userStore";
-import { useRouter } from "vue-router";
-import { sv } from "date-fns/locale";
 import Meny from "@/components/Meny/Meny";
 import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
-import { useFireStore } from "@/stores/firestore";
 
 export default defineComponent({
   name: "Booking-component",

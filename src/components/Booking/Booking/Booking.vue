@@ -21,19 +21,17 @@
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
           </div>
 
-          <Suspense>
-            <div
-              v-for="(date, index) in fireStore.fireArray"
-              :key="`dag_${index}`"
-            >
-              <BookingDate
-                :todaysDate="dateValue"
-                :date="date.date"
-                @onDateUpdate="BookingDayData"
-                @onDateObj="DateObj"
-              />
-            </div>
-          </Suspense>
+          <div
+            v-for="(date, index) in fireStore.fireArray"
+            :key="`dag_${index}`"
+          >
+            <BookingDate
+              :todaysDate="dateValue"
+              :date="date.date"
+              @onDateUpdate="BookingDayData"
+              @onDateObj="DateObj"
+            />
+          </div>
 
           <div class="booking-day-chevron-r">
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -42,12 +40,7 @@
 
         <span class="divider"></span>
         <div class="">
-          <Suspense>
-            <BookingTime
-              @onTimeObj="BookingTimeData"
-              :dateObject="dateObject"
-            />
-          </Suspense>
+          <BookingTime @onTimeObj="BookingTimeData" :dateObject="dateObject" />
         </div>
         <div class="guide-container">
           <div class="flex items-center">
