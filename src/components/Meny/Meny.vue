@@ -2,13 +2,14 @@
 
 <template>
   <!-- <button >MENY</button> -->
-
-  <font-awesome-icon
-    style="color: currentColor; font-size: 2rem"
-    class="absolute right-6 top-6"
-    icon="fa-solid fa-bars "
-    @click="(showMenu = true), userStore.$reset()"
-  />
+  <div class="sticky">
+    <font-awesome-icon
+      style="color: currentColor; font-size: 2rem"
+      class="absolute right-6 top-6"
+      icon="fa-solid fa-bars "
+      @click="(showMenu = true), userStore.$reset()"
+    />
+  </div>
 
   <div v-if="showMenu" class="menu-container">
     <div class="menu-fill"></div>

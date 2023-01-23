@@ -36,12 +36,7 @@
 
           <button class="btn-remove-lg" @click="handleRemove">Avboka</button>
         </div>
-        <RouterLink
-          @click="userStore.$reset()"
-          class="btn-clean-lg text-white"
-          to="/home"
-          >Tillbaka</RouterLink
-        >
+        <input type="button" class="btn-empty-lg text-white" to="/home" />
       </div>
       <div
         v-if="handlePopup === 'handleRemove'"
