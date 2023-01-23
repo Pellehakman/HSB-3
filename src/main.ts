@@ -18,12 +18,19 @@ import {
   faUserSecret,
   faXmark,
   faChevronLeft,
-  faChevronRight
-  
+  faChevronRight,
+  faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret, faBars, faXmark, faChevronLeft, faChevronRight);
+library.add(
+  faUserSecret,
+  faBars,
+  faXmark,
+  faChevronLeft,
+  faChevronRight,
+  faCircleCheck
+);
 
 initializeApp(firebaseConfig);
 

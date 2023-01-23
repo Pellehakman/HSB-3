@@ -23,3 +23,4 @@ export default defineComponent({
     firestore.addFireArray(fetchFireBase);
   },
 });
+

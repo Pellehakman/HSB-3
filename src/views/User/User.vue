@@ -1,8 +1,7 @@
 <script src="./User.ts" lang="ts"></script>
 <template>
+  <fetchFireBase />
   <Meny />
-  <Suspense>
-    <UserPage />
-  </Suspense>
+  <UserPage />
 </template>
 <style></style>

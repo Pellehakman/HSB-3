@@ -1,14 +1,13 @@
 <script src="./Booking.ts" lang="ts"></script>
 
 <template>
-  <!-- <fetchFireBase /> -->
   <div class="screen-col-standard">
     <div class="hero">
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
       <h5>{{ thisDayDate }}</h5>
     </div>
-    <!-- {{ fireStore.fireArray }} -->
+
     <div class="booking-container">
       <div class="p-6 text-2xl text-white">
         <h2 v-if="handleEdit">Ändra tid</h2>
@@ -86,16 +85,24 @@
         v-if="handlePopup === 'confirm'"
         className="booking-confirm-container "
       >
-        <div class="flex flex-col self-start gap-1">
+        <div class="flex flex-col self-start gap-1 relative">
           <h2 class="text-3xl">Bekräfta bokning</h2>
           <h3>Vill du boka denna tid?</h3>
           <h5>{{ timeValue }} {{ dateValue }}</h5>
         </div>
+        <div v-if="submitPing === true">
+          <font-awesome-icon
+            style="color: currentColor; font-size: 5rem"
+            class="animate-ping"
+            icon="fa-solid fa-circle-check"
+          />
+        </div>
+
         <div class="btn-container">
           <input
             type="button"
             class="btn-primary-lg"
-            @click="submitBooking()"
+            @click="submitEffect()"
             value="Ja, boka!"
           />
 
@@ -113,8 +120,8 @@
           <h2 class="text-3xl">Varning</h2>
           <h4>
             Du har nått maximalt antal bokningar. Gå till
-            <span class="font-bo">mina sidor</span> och ta bort befintlig
-            bokning för att boka igen.
+            <RouterLink class="text-bold" to="/user">mina sidor</RouterLink>
+            och ta bort befintlig bokning för att boka igen.
           </h4>
         </div>
         <div class="btn-container">

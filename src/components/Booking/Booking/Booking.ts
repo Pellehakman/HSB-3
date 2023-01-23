@@ -16,29 +16,29 @@ export default defineComponent({
   components: { fetchFireBase, BookingDate, BookingTime, Meny },
 
   async setup() {
+    const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const fireStore = useFireStore();
     const router = useRouter();
     const userStore: any = useuserStore();
     const db = getFirestore();
-    const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
+
     const todayDate = ref(new Date()).value;
-    const thisDayDate = ref(
-      format(todayDate, "eeee d MMMM", { locale: sv })
-    ).value;
-
     const handleEdit = ref(false);
-
     const handlePopup = ref("");
     const timeValue = ref<string>("");
     const dateObject = ref();
-    const dateValue = ref(thisDayDate);
     const tooManyBookings = ref(false);
+    const thisDayDate = ref(
+      format(todayDate, "eeee d MMMM", { locale: sv })
+    ).value;
+    const dateValue = ref(thisDayDate);
 
-    const btnMsg = ref("Boka tid");
     if (userStore.editObject.date) {
       dateValue.value = userStore.editObject.date;
       timeValue.value = userStore.editObject.time;
     }
+
+    const btnMsg = ref("Boka tid");
     if (userStore.editObject.date) {
       handleEdit.value = true;
       btnMsg.value = "Ändra tid";
@@ -63,7 +63,6 @@ export default defineComponent({
         }
       });
 
-      // gör egen komponent
       const a = fireStore.fireArray
         .map((f: { [x: string]: any }) => f["07:00 till 11:00"])
         .filter((v: { userid: any }) => v.userid === uid);
@@ -81,8 +80,8 @@ export default defineComponent({
         .filter((v: { userid: any }) => v.userid === uid);
 
       const findBookings = a.concat(b, c, d);
-      // allow three max 4 bookings if "edit mode"
 
+      // allow three max "4" bookings if "edit mode"
       const bookingsAllowed = ref(2);
       if (userStore.editObject.date) {
         bookingsAllowed.value = 3;
@@ -95,18 +94,20 @@ export default defineComponent({
         );
 
         if (checkIfNull[0] != null) {
-          console.log("välj ett annat datum");
+          // console.log("välj ett annat datum");
         } else {
           handlePopup.value = "confirm";
-          console.log("please confirm");
+          // console.log("please confirm");
         }
       }
     }
-
-    // FUNCTION this is submit
+    //effect when you book
+    const submitPing = ref(false);
+    function submitEffect() {
+      submitPing.value = true;
+      setInterval(submitBooking, 300);
+    }
     async function submitBooking() {
-      // new ref from firebase that runs every submit
-      // filter slot from firebase with date value from form
       const updateRef = doc(db, "calender", dateValue.value);
       await updateDoc(updateRef, {
         [`${timeValue.value}`]: {
@@ -116,7 +117,7 @@ export default defineComponent({
           date: dateValue.value,
         },
       });
-      console.log("you have booked");
+      // console.log("you have booked");
       handlePopup.value = "";
 
       // Remove booking
@@ -145,8 +146,9 @@ export default defineComponent({
       btnMsg.value = "Boka tid";
     }
     return {
-      submitBooking,
-
+      // submitBooking,
+      submitEffect,
+      submitPing,
       timeValue,
       dateValue,
       BookingDayData,

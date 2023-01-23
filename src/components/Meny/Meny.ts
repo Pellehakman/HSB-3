@@ -7,7 +7,6 @@ export default defineComponent({
   name: "Menu-item",
 
   setup() {
-    console.log("1, meny");
     const router = useRouter();
     const userStore: any = useuserStore();
     const showMenu = ref(false);

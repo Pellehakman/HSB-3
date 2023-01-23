@@ -11,24 +11,16 @@ import { format } from "date-fns";
 import { sv } from "date-fns/locale";
 import { defineComponent, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
-import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "UserPage",
 
   async setup() {
-    const handlePopup = ref("");
-    const todayDate = ref(new Date()).value;
-    const thisDayDate = ref(
-      format(todayDate, "eeee d MMMM", { locale: sv })
-    ).value;
     const router = useRouter();
     const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
     const userStore: any = useuserStore();
-    const { BookingObject } = storeToRefs(userStore);
-    const activeBooking = ref();
     userStore.$reset();
     const bookingRef = query(collection(db, "calender"), orderBy("timeID"));
     const snapshots = await getDocs(bookingRef);
@@ -36,8 +28,14 @@ export default defineComponent({
       const data = doc.data();
       return data;
     });
-    // hitta alla bokningar med din UID
-    //denna kan du använda från separat komponent liksom från booking
+
+    const handlePopup = ref("");
+    const activeBooking = ref();
+    const todayDate = ref(new Date()).value;
+    const thisDayDate = ref(
+      format(todayDate, "eeee d MMMM", { locale: sv })
+    ).value;
+
     const a = mybookingsDocs
       .map((f) => f["07:00 till 11:00"])
       .filter((v) => v.userid === uid);
@@ -55,26 +53,25 @@ export default defineComponent({
       .filter((v) => v.userid === uid);
 
     const findBookings = a.concat(b, c, d);
-    console.log(findBookings);
 
-    //
+    const displayBtn = ref(false);
+
     const handleActiveBooking = (event: any) => {
+      displayBtn.value = true;
       const editValue: string = ref(event.target.id).value;
-
       const findBookingID = Object(
         findBookings.filter((f: any) => f.bookingid === editValue)
       );
-      //updating activeBooking REF
       activeBooking.value = findBookingID[0];
-
-      // //SEND local scope findBookinId-object to PINIA
       userStore.addBookingObj(findBookingID[0]);
     };
+    // console.log(displayBtn.value);
     function handleRemove() {
       handlePopup.value = "handleRemove";
     }
+
     async function submitRemove() {
-      console.log(activeBooking.value.date);
+      // console.log(activeBooking.value.date);
       const RemoveRef = doc(db, "calender", activeBooking.value.date);
 
       await updateDoc(RemoveRef, {
@@ -91,8 +88,6 @@ export default defineComponent({
     }
 
     function handleEdit() {
-      console.log(userStore.editObject.date);
-
       if (userStore.editObject.date) {
         router.push({ path: "/home" });
       }
@@ -104,10 +99,11 @@ export default defineComponent({
       handleRemove,
       submitRemove,
       handleEdit,
-      BookingObject,
       thisDayDate,
       handlePopup,
       activeBooking,
+      displayBtn,
+      userStore,
     };
   },
   components: {},

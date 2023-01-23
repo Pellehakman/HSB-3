@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import router from "@/router";
 
 export default defineComponent({
-  name: "Register",
+  name: "_register",
 
   setup() {
     const email = ref("");
@@ -17,12 +17,12 @@ export default defineComponent({
       createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
           router.push({ path: "/login" });
         })
         .catch((error: { code: any; message: any }) => {
-          const errorCode = error.code;
-          console.log(errorCode);
+          // const errorCode = error.code;
+          // console.log(errorCode);
           if (error.code === "auth/wrong-password") {
             pswErrors.value = "Ditt lösenord är felaktigt.";
           }

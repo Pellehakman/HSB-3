@@ -1,13 +1,15 @@
+import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
 import Meny from "@/components/Meny/Meny.vue";
-import UserPage from "@/components/UserPage/UserPage.vue"
+import UserPage from "@/components/UserPage/UserPage.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "User",
+  name: "User-view",
 
   setup() {},
   components: {
     UserPage,
-    Meny
+    Meny,
+    fetchFireBase,
   },
 });

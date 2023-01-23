@@ -25,7 +25,7 @@ export const useFireStore = defineStore("firestore", {
   actions: {
     addFireArray(fetchFireBase: any) {
       this.fireArray = fetchFireBase;
-      console.log(fetchFireBase);
+      // console.log(fetchFireBase);
     },
   },
 });

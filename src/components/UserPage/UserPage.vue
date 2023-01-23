@@ -27,10 +27,21 @@
           </label>
         </div>
       </div>
-      <div class="btn-container items-center">
-        <button class="btn-primary-lg" @click="handleEdit">Ändra</button>
+      <div class="btn-container items-center justify-center">
+        <div v-if="displayBtn === false" class="btn-empty-lg"></div>
+        <div v-if="displayBtn === true" class="flex w-72 gap-4">
+          <button class="btn-primary-lg bg-warning" @click="handleEdit">
+            Ändra tid
+          </button>
 
-        <button class="btn-remove-lg" @click="handleRemove">Avboka</button>
+          <button class="btn-remove-lg" @click="handleRemove">Avboka</button>
+        </div>
+        <RouterLink
+          @click="userStore.$reset()"
+          class="btn-clean-lg text-white"
+          to="/home"
+          >Tillbaka</RouterLink
+        >
       </div>
       <div
         v-if="handlePopup === 'handleRemove'"
@@ -48,7 +59,7 @@
             @click="submitRemove()"
             value="Ja, avboka"
           />
-          <div class="btn-clean-lg ">
+          <div class="btn-clean-lg">
             <button @click="handlePopup = ''">Avbryt</button>
           </div>
         </div>

@@ -17,16 +17,15 @@ export default defineComponent({
           // Signed in
           const user = userCredential.user;
           if (user) {
-            console.log("lets go");
-            console.log(user.email);
-            console.log(user.uid);
+            // console.log(user.email);
+            // console.log(user.uid);
             sessionStorage.setItem("uid", JSON.stringify(user.uid));
             router.push({ path: "/home" });
           }
         })
         .catch((error) => {
-          const errorCode = error.code;
-          console.log(errorCode);
+          // const errorCode = error.code;
+          // console.log(errorCode);
           if (error.code === "auth/wrong-password") {
             displayErrors.value = "Felaktigt användarnamn eller lösenord.";
           }
