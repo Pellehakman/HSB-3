@@ -25,7 +25,7 @@ export default defineComponent({
     const todayDate = ref(new Date()).value;
     const handleEdit = ref(false);
     const handlePopup = ref("");
-    const timeValue = ref<string>("");
+    const timeValue: any = ref("");
     const dateObject = ref();
     const tooManyBookings = ref(false);
     const thisDayDate = ref(
@@ -90,7 +90,7 @@ export default defineComponent({
         handlePopup.value = "tooMany";
       } else {
         const checkIfNull = findSlot.map(
-          (b) => b[`${timeValue.value}`].bookingid
+          (b: any) => b[`${timeValue.value}`].bookingid
         );
 
         if (checkIfNull[0] != null) {
