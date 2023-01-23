@@ -43,7 +43,7 @@
         className="booking-confirm-container "
       >
         <div class="flex flex-col self-start gap-1">
-          <h2 class="text-3xl">Avboka tid</h2>
+          <h2 class="text-3xl text-black">Avboka tid</h2>
           <h4>Vill du ta bort denna tid?</h4>
           <h5>{{ activeBooking.time }} {{ activeBooking.date }}</h5>
         </div>

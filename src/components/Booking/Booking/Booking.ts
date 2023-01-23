@@ -4,20 +4,23 @@ import { nanoid } from "nanoid";
 import { sv } from "date-fns/locale";
 import { updateDoc, doc, getFirestore } from "firebase/firestore";
 import { useuserStore } from "@/stores/userStore";
-import { useFireStore } from "@/stores/firestore";
+
 import { useRouter } from "vue-router";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
-import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
+import Help from "@/components/Help/Help.vue";
+
+import $firebaseService from "@/services/FirebaseService";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { fetchFireBase, BookingDate, BookingTime, Meny },
+  components: { BookingDate, BookingTime, Meny, Help },
 
   async setup() {
+    const calenderData = await $firebaseService.getCalender();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
-    const fireStore = useFireStore();
+
     const router = useRouter();
     const userStore: any = useuserStore();
     const db = getFirestore();
@@ -43,7 +46,7 @@ export default defineComponent({
       handleEdit.value = true;
       btnMsg.value = "Ändra tid";
     }
-
+    console.log(userStore.editObject.date)
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
     };
@@ -55,33 +58,28 @@ export default defineComponent({
     const DateObj = (dateObj: Object) => {
       dateObject.value = dateObj;
     };
+    function getUserBookingsBySlot(slot: string) {
+      return calenderData
+        .map((f: { [x: string]: any }) => f[slot])
+        .filter((v: { userid: any }) => v.userid === uid);
+    }
+    function getAllUserBookings() {
+      const a = getUserBookingsBySlot("07:00 till 11:00");
+      const b = getUserBookingsBySlot("11:00 till 15:00");
+      const c = getUserBookingsBySlot("15:00 till 19:00");
+      const d = getUserBookingsBySlot("19:00 till 23:00");
+      return a.concat(b, c, d);
+    }
+
+    const findBookings = getAllUserBookings();
 
     async function handleConfirm() {
-      const findSlot = fireStore.fireArray.filter((f) => {
+      const findSlot = calenderData.filter((f) => {
         if (f.date === dateValue.value) {
           return f;
         }
       });
 
-      const a = fireStore.fireArray
-        .map((f: { [x: string]: any }) => f["07:00 till 11:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const b = fireStore.fireArray
-        .map((f: { [x: string]: any }) => f["11:00 till 15:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const c = fireStore.fireArray
-        .map((f: { [x: string]: any }) => f["15:00 till 19:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const d = fireStore.fireArray
-        .map((f: { [x: string]: any }) => f["19:00 till 23:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const findBookings = a.concat(b, c, d);
-
-      // allow three max "4" bookings if "edit mode"
       const bookingsAllowed = ref(2);
       if (userStore.editObject.date) {
         bookingsAllowed.value = 3;
@@ -147,6 +145,7 @@ export default defineComponent({
     }
     return {
       // submitBooking,
+      calenderData,
       submitEffect,
       submitPing,
       timeValue,
@@ -162,7 +161,6 @@ export default defineComponent({
       btnMsg,
       abortEdit,
       tooManyBookings,
-      fireStore,
     };
   },
 });

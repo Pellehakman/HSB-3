@@ -10,7 +10,6 @@
       @click="(showMenu = true), userStore.$reset()"
     />
   </div>
-
   <div v-if="showMenu" class="menu-container">
     <div class="menu-fill"></div>
     <font-awesome-icon

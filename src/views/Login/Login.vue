@@ -35,7 +35,8 @@
       </button>
       <div class="btn-clean-lg">
         <RouterLink to="/register"
-          ><span class="font-normal">Inget Konto? </span>Skapa konto här!</RouterLink
+          ><span class="font-normal">Inget Konto? </span>Skapa konto
+          här!</RouterLink
         >
       </div>
     </div>

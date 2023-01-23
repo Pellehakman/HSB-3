@@ -1,7 +1,7 @@
 import Booking from "@/components/Booking/Booking/Booking.vue";
-import Calender from "@/components/functions/CreateCalender/Calender/Calender";
-import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
+import Calender from "@/components/functions/CreateCalender/Calender/Calender.vue";
 import Meny from "@/components/Meny/Meny.vue";
+
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import User from "../User/User.vue";
@@ -22,7 +22,6 @@ export default defineComponent({
   },
   components: {
     Booking,
-    fetchFireBase,
     Meny,
     Calender,
     User,

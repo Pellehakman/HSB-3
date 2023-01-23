@@ -1,10 +1,7 @@
 <script src="./Home.ts" lang="ts"></script>
 <template>
-  <fetchFireBase />
   <Meny />
   <Booking />
-  <!-- 
-  <Suspense>
-    <Calender />
-  </Suspense> -->
+
+  <!-- <Calender /> -->
 </template>
