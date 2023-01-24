@@ -15,6 +15,13 @@
 .success{
   background-color: var(--success)
 }
+.big{
+  
+  transition: all 1s;
+  transform: scale(100);
+  z-index: 9999;
+}
+
 
 
 
@@ -39,7 +46,16 @@
   }
 }
 @layer components {
-  
+  .help-container{
+    @apply bg-yellow-500 text-sm text-dark-blue absolute text-center flex items-center justify-center right-6 bottom-9 w-20 h-20 rounded-full
+  }
+  .help-big{
+    @apply  big bg-yellow-500 z-50
+  }
+  .help-content{
+    @apply text-center flex font-bold text-main-active text-sm 
+  }
+
   .screen-col-standard{
     @apply flex flex-col items-center justify-between h-screen w-screen
   }

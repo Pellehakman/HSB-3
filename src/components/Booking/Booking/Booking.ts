@@ -10,7 +10,7 @@ import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
 
 import $firebaseService from "@/services/FirebaseService";
-import Help from "@/components/Help/Help";
+import Help from "@/components/Help/Help.vue";
 
 export default defineComponent({
   name: "Booking-component",

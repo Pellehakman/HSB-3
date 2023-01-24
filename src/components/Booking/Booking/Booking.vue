@@ -6,11 +6,14 @@
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
       <h5>{{ thisDayDate }}</h5>
+      <!-- <div>
+        <Help />
+      </div> -->
     </div>
 
     <div class="booking-container">
-      <Help />
-      <div class="p-6 text-2xl text-white">
+      <div class="p-6 text-2xl text-white relative">
+        <Help />
         <h2 v-if="handleEdit">Ändra tid</h2>
         <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
       </div>
@@ -84,7 +87,7 @@
         className="booking-confirm-container "
       >
         <div class="flex flex-col self-start gap-1 relative">
-          <h2 class="text-3xl">Bekräfta bokning</h2>
+          <h2 class="text-3xl text-black">Bekräfta bokning</h2>
           <h3>Vill du boka denna tid?</h3>
           <h5>{{ timeValue }} {{ dateValue }}</h5>
         </div>
@@ -115,7 +118,7 @@
         className="booking-confirm-container "
       >
         <div class="flex flex-col self-start gap-1">
-          <h2 class="text-3xl">Varning</h2>
+          <h2 class="text-3xl text-black">Varning</h2>
           <h4>
             Du har nått maximalt antal bokningar. Gå till
             <RouterLink class="text-bold" to="/user">mina sidor</RouterLink>

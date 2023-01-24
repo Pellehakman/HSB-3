@@ -2,6 +2,6 @@
 
 <template>
   <div :class="{ 'help-container': active, 'help-big': !active }">
-    <button @click="active = !active">hek</button>
+    <button @click="active = !active">Behöver du hjälp?</button>
   </div>
 </template>
