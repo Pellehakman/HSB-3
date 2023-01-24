@@ -21,7 +21,7 @@ export default defineComponent({
       const data = await $firebaseService.getCalender();
       calenderData.value = data;
     });
-    // $firebaseService.postBooking();
+
     const calenderData = ref();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const router = useRouter();
@@ -110,37 +110,30 @@ export default defineComponent({
       submitPing.value = true;
       setInterval(submitBooking, 300);
     }
-    async function submitBooking() {
-      const updateRef = doc(db, "calender", dateValue.value);
-      await updateDoc(updateRef, {
-        [`${timeValue.value}`]: {
-          userid: uid,
-          bookingid: nanoid(),
-          time: timeValue.value,
-          date: dateValue.value,
-        },
-      });
-      // console.log("you have booked");
+
+    function submitBooking() {
+      $firebaseService.postBooking(dateValue.value, timeValue.value, uid);
+
       handlePopup.value = "";
 
       // Remove booking
-      if (userStore.editObject.date) {
-        const RemoveRef = doc(db, "calender", userStore.editObject.date);
-        await updateDoc(RemoveRef, {
-          [userStore.editObject.time]: {
-            userid: null,
-            bookingid: null,
-            time: userStore.editObject.time,
-            date: userStore.editObject.date,
-          },
-        });
-      }
+      // if (userStore.editObject.date) {
+      //   const RemoveRef = doc(db, "calender", userStore.editObject.date);
+      //   await updateDoc(RemoveRef, {
+      //     [userStore.editObject.time]: {
+      //       userid: null,
+      //       bookingid: null,
+      //       time: userStore.editObject.time,
+      //       date: userStore.editObject.date,
+      //     },
+      //   });
+      // }
 
-      if (handleEdit.value === true) {
-        router.push({ path: "/user" });
-      } else {
-        window.location.reload();
-      }
+      // if (handleEdit.value === true) {
+      //   router.push({ path: "/user" });
+      // } else {
+      // window.location.reload();
+      // }
     }
     // end of submit
     function abortEdit() {

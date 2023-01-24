@@ -22,7 +22,6 @@ export default defineComponent({
   },
   components: {
     Booking,
-   
     Meny,
     Calender,
     User,

@@ -1,10 +1,8 @@
 <script src="./Home.ts" lang="ts"></script>
 <template>
-  
   <Meny />
-  <Booking />
-  <!-- 
   <Suspense>
     <Calender />
-  </Suspense> -->
+  </Suspense>
+  <Booking />
 </template>

@@ -1,5 +1,6 @@
 import database from "@/firebase/config";
 import { ref } from "firebase/database";
+import { nanoid } from "nanoid";
 import {
   collection,
   orderBy,
@@ -9,6 +10,7 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
+
 const db = ref(database, "calender");
 
 class FirebaseService {
@@ -25,16 +27,18 @@ class FirebaseService {
     });
     return fetchFirebase;
   }
-  async postBooking() {
-    // const updateRef = doc(db, "calender", dateValue.value);
-    // await updateDoc(updateRef, {
-    //   [`${timeValue.value}`]: {
-    //     userid: uid,
-    //     bookingid: nanoid(),
-    //     time: timeValue.value,
-    //     date: dateValue.value,
-    //   },
-    // });
+  async postBooking(dateValue: any, timeValue: any, uid: any) {
+    const firestore = getFirestore();
+    const updateRef = doc(firestore, "calender", dateValue);
+    await updateDoc(updateRef, {
+      [`${timeValue}`]: {
+        userid: uid,
+        bookingid: nanoid(),
+        time: timeValue,
+        date: dateValue,
+      },
+    });
+    window.location.reload();
   }
 }
 
