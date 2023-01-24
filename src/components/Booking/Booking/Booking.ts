@@ -1,4 +1,4 @@
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 import { sv } from "date-fns/locale";
@@ -10,12 +10,19 @@ import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
 import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
+import $firebaseService from "@/services/FirebaseService";
 
 export default defineComponent({
   name: "Booking-component",
   components: { fetchFireBase, BookingDate, BookingTime, Meny },
 
   async setup() {
+    onMounted(async () => {
+      const data = await $firebaseService.getCalender();
+      calenderData.value = data;
+    });
+    const calenderData = ref();
+    console.log(calenderData);
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const fireStore = useFireStore();
     const router = useRouter();
@@ -57,25 +64,25 @@ export default defineComponent({
     };
 
     async function handleConfirm() {
-      const findSlot = fireStore.fireArray.filter((f) => {
+      const findSlot = data.value.filter((f) => {
         if (f.date === dateValue.value) {
           return f;
         }
       });
 
-      const a = fireStore.fireArray
+      const a = data.value
         .map((f: { [x: string]: any }) => f["07:00 till 11:00"])
         .filter((v: { userid: any }) => v.userid === uid);
 
-      const b = fireStore.fireArray
+      const b = data.value
         .map((f: { [x: string]: any }) => f["11:00 till 15:00"])
         .filter((v: { userid: any }) => v.userid === uid);
 
-      const c = fireStore.fireArray
+      const c = data.value
         .map((f: { [x: string]: any }) => f["15:00 till 19:00"])
         .filter((v: { userid: any }) => v.userid === uid);
 
-      const d = fireStore.fireArray
+      const d = data.value
         .map((f: { [x: string]: any }) => f["19:00 till 23:00"])
         .filter((v: { userid: any }) => v.userid === uid);
 
@@ -162,7 +169,7 @@ export default defineComponent({
       btnMsg,
       abortEdit,
       tooManyBookings,
-      fireStore,
+      calenderData,
     };
   },
 });

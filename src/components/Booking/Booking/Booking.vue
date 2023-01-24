@@ -20,10 +20,7 @@
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
           </div>
 
-          <div
-            v-for="(date, index) in fireStore.fireArray"
-            :key="`dag_${index}`"
-          >
+          <div v-for="(date, index) in calenderData" :key="`dag_${index}`">
             <BookingDate
               :todaysDate="dateValue"
               :date="date.date"
