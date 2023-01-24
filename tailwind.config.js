@@ -14,7 +14,7 @@ module.exports = {
         'booking': 'var(--booking)',
         'confirm-block':'var(--confirm-block)',
         'blackish': 'var(--blackish)',
-        'dark-blue': 'var(--bg-dark-blue)',
+        'dark-blue': 'var(--dark-blue)',
   
       },
       fontFamily: {

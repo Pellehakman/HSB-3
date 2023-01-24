@@ -6,6 +6,8 @@ import {
   getDocs,
   getFirestore,
   query,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 const db = ref(database, "calender");
 
@@ -22,6 +24,17 @@ class FirebaseService {
       return data;
     });
     return fetchFirebase;
+  }
+  async postBooking() {
+    // const updateRef = doc(db, "calender", dateValue.value);
+    // await updateDoc(updateRef, {
+    //   [`${timeValue.value}`]: {
+    //     userid: uid,
+    //     bookingid: nanoid(),
+    //     time: timeValue.value,
+    //     date: dateValue.value,
+    //   },
+    // });
   }
 }
 

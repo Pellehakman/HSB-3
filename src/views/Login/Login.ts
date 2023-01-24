@@ -26,18 +26,36 @@ export default defineComponent({
         .catch((error) => {
           // const errorCode = error.code;
           // console.log(errorCode);
-          if (error.code === "auth/wrong-password") {
-            displayErrors.value = "Felaktigt användarnamn eller lösenord.";
-          }
-          if (error.code === "auth/user-not-found") {
-            displayErrors.value = "Felaktigt användarnamn eller lösenord.";
-          }
-          if (error.code === "auth/invalid-email") {
-            displayErrors.value = "Felaktigt användarnamn eller lösenord.";
-          }
-          if (error.code === "auth/internal-error") {
+
+          const errorMessage = getErrorMessage(error.code);
+          if (!errorMessage) {
             return;
           }
+          displayErrors.value = errorMessage;
+
+          function getErrorMessage(errorCode: string): string {
+            switch (errorCode) {
+              case "auth/wrong-password":
+              case "auth/user-not-found":
+              case "auth/invalid-email":
+                return "Felaktigt användarnamn eller lösenhord.";
+                break;
+              default:
+                return "";
+            }
+          }
+          // if (error.code === "auth/wrong-password") {
+          //   displayErrors.value = "Felaktigt användarnamn eller lösenord.";
+          // }
+          // if (error.code === "auth/user-not-found") {
+          //   displayErrors.value = "Felaktigt användarnamn eller lösenord.";
+          // }
+          // if (error.code === "auth/invalid-email") {
+          //   displayErrors.value = "Felaktigt användarnamn eller lösenord.";
+          // }
+          // if (error.code === "auth/internal-error") {
+          //   return;
+          // }
         });
     }
 

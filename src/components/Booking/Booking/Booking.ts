@@ -21,6 +21,7 @@ export default defineComponent({
       const data = await $firebaseService.getCalender();
       calenderData.value = data;
     });
+    // $firebaseService.postBooking();
     const calenderData = ref();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const router = useRouter();

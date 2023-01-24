@@ -16,12 +16,12 @@
   background-color: var(--success)
 }
 .big{
-  
-  transition: all 1s;
+  transition: 1s all;
+  position: absolute;
   transform: scale(100);
-  z-index: 9999;
+  z-index: 100;
+  
 }
-
 
 
 
@@ -30,7 +30,7 @@
     @apply bg-main
   }
   #app{
-    @apply font-roboto text-main-active h-screen w-screen 
+    @apply font-roboto text-main-active h-screen w-screen overflow-hidden
   }
   h1 {
     @apply text-7xl font-square text-dark-blue;
@@ -47,20 +47,23 @@
 }
 @layer components {
   .help-container{
-    @apply bg-yellow-500 text-sm text-dark-blue absolute text-center flex items-center justify-center right-6 bottom-9 w-20 h-20 rounded-full
+    @apply bg-yellow-500 text-sm font-bold text-dark-blue absolute text-center p-2 flex items-center justify-center right-6 bottom-9 w-20 h-20 rounded-full transition-all
   }
   .help-big{
-    @apply  big bg-yellow-500 z-50
+    @apply  big bg-yellow-500 right-6 bottom-9 
   }
   .help-content{
-    @apply text-center flex font-bold text-main-active text-sm 
+    @apply bg-yellow-500 text-sm font-bold text-dark-blue absolute text-center p-2 flex items-center justify-center right-6 bottom-9 w-20 h-20 rounded-full 
+  
   }
-
   .screen-col-standard{
     @apply flex flex-col items-center justify-between h-screen w-screen
   }
+  .menu-icon{
+    @apply  absolute right-6 top-6 z
+  }
   .menu-container{
-    @apply bg-booking absolute h-screen w-screen flex flex-col justify-between items-center z-50 overflow-hidden
+    @apply bg-dark-blue absolute h-screen w-screen flex flex-col justify-between items-center z-50 overflow-hidden
   }
   .menu-fill{
     @apply flex 

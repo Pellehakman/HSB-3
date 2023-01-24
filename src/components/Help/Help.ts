@@ -5,7 +5,15 @@ export default defineComponent({
 
   setup() {
     const active = ref(true);
+    const helpText = ref("");
 
-    return { active };
+    if (active.value === true) {
+      helpText.value = "Behöver du hjälp?";
+    }
+    if (active.value === false) {
+      helpText.value = "Lets fix ";
+    }
+
+    return { active, helpText };
   },
 });
