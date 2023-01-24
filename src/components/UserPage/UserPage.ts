@@ -1,17 +1,10 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  getFirestore,
-  orderBy,
-  query,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { format } from "date-fns";
 import { sv } from "date-fns/locale";
 import { defineComponent, ref } from "vue";
 import { useuserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
+import $firebaseService from "@/services/FirebaseService";
 
 export default defineComponent({
   name: "UserPage",
@@ -22,12 +15,7 @@ export default defineComponent({
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
     const userStore: any = useuserStore();
     userStore.$reset();
-    const bookingRef = query(collection(db, "calender"), orderBy("timeID"));
-    const snapshots = await getDocs(bookingRef);
-    const mybookingsDocs = snapshots.docs.map((doc) => {
-      const data = doc.data();
-      return data;
-    });
+    const calenderData = await $firebaseService.getCalender();
 
     const handlePopup = ref("");
     const activeBooking = ref();
@@ -36,23 +24,20 @@ export default defineComponent({
       format(todayDate, "eeee d MMMM", { locale: sv })
     ).value;
 
-    const a = mybookingsDocs
-      .map((f) => f["07:00 till 11:00"])
-      .filter((v) => v.userid === uid);
+    function getUserBookingsBySlot(slot: string) {
+      return calenderData.map((f) => f[slot]).filter((v) => v.userid === uid);
+    }
 
-    const b = mybookingsDocs
-      .map((f) => f["11:00 till 15:00"])
-      .filter((v) => v.userid === uid);
+    function getAllUserBookings() {
+      const a = getUserBookingsBySlot("07:00 till 11:00");
+      const b = getUserBookingsBySlot("11:00 till 15:00");
+      const c = getUserBookingsBySlot("15:00 till 19:00");
+      const d = getUserBookingsBySlot("19:00 till 23:00");
+      return a.concat(b, c, d);
+    }
+    const findBookings = getAllUserBookings();
 
-    const c = mybookingsDocs
-      .map((f) => f["15:00 till 19:00"])
-      .filter((v) => v.userid === uid);
-
-    const d = mybookingsDocs
-      .map((f) => f["19:00 till 23:00"])
-      .filter((v) => v.userid === uid);
-
-    const findBookings = a.concat(b, c, d);
+    console.log(findBookings);
 
     const displayBtn = ref(false);
 
@@ -65,13 +50,12 @@ export default defineComponent({
       activeBooking.value = findBookingID[0];
       userStore.addBookingObj(findBookingID[0]);
     };
-    // console.log(displayBtn.value);
+
     function handleRemove() {
       handlePopup.value = "handleRemove";
     }
 
     async function submitRemove() {
-      // console.log(activeBooking.value.date);
       const RemoveRef = doc(db, "calender", activeBooking.value.date);
 
       await updateDoc(RemoveRef, {
@@ -88,6 +72,7 @@ export default defineComponent({
     }
 
     function handleEdit() {
+      console.log(userStore.editObject.date);
       if (userStore.editObject.date) {
         router.push({ path: "/home" });
       }

@@ -4,7 +4,6 @@ import { nanoid } from "nanoid";
 import { sv } from "date-fns/locale";
 import { updateDoc, doc, getFirestore } from "firebase/firestore";
 import { useuserStore } from "@/stores/userStore";
-import { useFireStore } from "@/stores/firestore";
 import { useRouter } from "vue-router";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
@@ -24,7 +23,6 @@ export default defineComponent({
     const calenderData = ref();
     console.log(calenderData);
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
-    const fireStore = useFireStore();
     const router = useRouter();
     const userStore: any = useuserStore();
     const db = getFirestore();
@@ -64,29 +62,26 @@ export default defineComponent({
     };
 
     async function handleConfirm() {
-      const findSlot = data.value.filter((f) => {
+      const findSlot = calenderData.value.filter((f: { date: string }) => {
         if (f.date === dateValue.value) {
           return f;
         }
       });
 
-      const a = data.value
-        .map((f: { [x: string]: any }) => f["07:00 till 11:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
+      function getUserBookingsBySlot(slot: string) {
+        return calenderData.value
+          .map((f: { [x: string]: any }) => f[slot])
+          .filter((v: { userid: any }) => v.userid === uid);
+      }
+      function getAllUserBookings() {
+        const a = getUserBookingsBySlot("07:00 till 11:00");
+        const b = getUserBookingsBySlot("11:00 till 15:00");
+        const c = getUserBookingsBySlot("15:00 till 19:00");
+        const d = getUserBookingsBySlot("19:00 till 23:00");
+        return a.concat(b, c, d);
+      }
 
-      const b = data.value
-        .map((f: { [x: string]: any }) => f["11:00 till 15:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const c = data.value
-        .map((f: { [x: string]: any }) => f["15:00 till 19:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const d = data.value
-        .map((f: { [x: string]: any }) => f["19:00 till 23:00"])
-        .filter((v: { userid: any }) => v.userid === uid);
-
-      const findBookings = a.concat(b, c, d);
+      const findBookings = getAllUserBookings();
 
       // allow three max "4" bookings if "edit mode"
       const bookingsAllowed = ref(2);
