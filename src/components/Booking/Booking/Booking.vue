@@ -9,6 +9,7 @@
     </div>
 
     <div class="booking-container">
+      <Help />
       <div class="p-6 text-2xl text-white">
         <h2 v-if="handleEdit">Ändra tid</h2>
         <h2 class="text-inherit" v-else>Välj tid för att boka</h2>

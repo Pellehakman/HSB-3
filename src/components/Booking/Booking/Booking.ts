@@ -10,10 +10,11 @@ import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
 
 import $firebaseService from "@/services/FirebaseService";
+import Help from "@/components/Help/Help";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { BookingDate, BookingTime, Meny },
+  components: { BookingDate, BookingTime, Meny, Help },
 
   async setup() {
     onMounted(async () => {
