@@ -8,12 +8,12 @@ import { useRouter } from "vue-router";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
-import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
+
 import $firebaseService from "@/services/FirebaseService";
 
 export default defineComponent({
   name: "Booking-component",
-  components: { fetchFireBase, BookingDate, BookingTime, Meny },
+  components: { BookingDate, BookingTime, Meny },
 
   async setup() {
     onMounted(async () => {
@@ -21,7 +21,6 @@ export default defineComponent({
       calenderData.value = data;
     });
     const calenderData = ref();
-    console.log(calenderData);
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const router = useRouter();
     const userStore: any = useuserStore();

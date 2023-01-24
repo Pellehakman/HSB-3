@@ -1,4 +1,4 @@
-import fetchFireBase from "@/components/functions/fetchFireBase/fetchFireBase";
+
 import Meny from "@/components/Meny/Meny.vue";
 import UserPage from "@/components/UserPage/UserPage.vue";
 import { defineComponent } from "vue";
@@ -10,6 +10,6 @@ export default defineComponent({
   components: {
     UserPage,
     Meny,
-    fetchFireBase,
+  
   },
 });

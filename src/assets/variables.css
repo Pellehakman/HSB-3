@@ -1,12 +1,11 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Pragati+Narrow&family=Roboto&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Pragati+Narrow&family=Ranga:wght@400;700&family=Roboto&family=Square+Peg&display=swap');
 
 :root{
     
     --main-blue: #e5eff9;
-    --booking: #036;
-    --booking-active: rgb(0, 43, 87);
+    --booking: rgb(12, 108, 163);
+    --booking-active: rgb(10, 76, 114);
+    --bg-dark-blue: rgb(0, 0, 0);
     --confirm-block: #fbf8f2;
     --blackish: #333;
 
@@ -17,6 +16,7 @@
     --ff-pragati: 'Pragati Narrow', sans-serif;
     --ff-roboto : 'Roboto', sans-serif;
     --ff-kalam: 'Kalam', 'sans-serif';
+    --ff-square: 'Square Peg', 'sans-serif';
     
     --fs-main-h1: 2.5rem;
     --fs-main-h2: 1.2rem;

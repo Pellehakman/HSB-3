@@ -13,13 +13,15 @@ module.exports = {
         'main-active': 'var(--booking-active)',
         'booking': 'var(--booking)',
         'confirm-block':'var(--confirm-block)',
-        'blackish': 'var(--blackish)'
+        'blackish': 'var(--blackish)',
+        'dark-blue': 'var(--bg-dark-blue)',
   
       },
       fontFamily: {
         'pragati': ["var(--ff-pragati)"],
         'roboto': ["var(--ff-roboto)"],
         'kalam' : ["var(--ff-kalam)"],
+        'square' : ["var(--ff-square)"],
       },
       keyframes: {
         slide: {
