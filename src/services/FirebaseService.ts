@@ -40,6 +40,35 @@ class FirebaseService {
     });
     window.location.reload();
   }
+  async updateBooking(userStore: any) {
+    const firestore = getFirestore();
+    const RemoveRef = doc(firestore, "calender", userStore.editObject.date);
+    await updateDoc(RemoveRef, {
+      [userStore.editObject.time]: {
+        userid: null,
+        bookingid: null,
+        time: userStore.editObject.time,
+        date: userStore.editObject.date,
+      },
+    });
+  }
+
+  async removeBooking(activeBooking: any, userStore: any) {
+    const firestore = getFirestore();
+    const RemoveRef = doc(firestore, "calender", activeBooking.date);
+
+    await updateDoc(RemoveRef, {
+      [activeBooking.time]: {
+        userid: null,
+        bookingid: null,
+        time: activeBooking.time,
+        date: activeBooking.date,
+      },
+    });
+
+    userStore.$reset();
+    window.location.reload();
+  }
 }
 
 const $firebaseService = new FirebaseService();

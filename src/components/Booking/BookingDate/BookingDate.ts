@@ -1,12 +1,6 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
 import { useuserStore } from "../../../stores/userStore";
-import {
-  collection,
-  orderBy,
-  getDocs,
-  getFirestore,
-  query,
-} from "firebase/firestore";
+import $firebaseService from "@/services/FirebaseService";
 export default defineComponent({
   name: "BookingDay",
   props: {
@@ -20,9 +14,11 @@ export default defineComponent({
     const focusView = ref(props.todaysDate);
     const onDateRef = ref(props.todaysDate);
     const userStore: any = useuserStore();
-    const db = getFirestore();
 
-    onMounted(() => {
+    onMounted(async () => {
+      const data = await $firebaseService.getCalender();
+      calenderData.value = data;
+
       dateUpdate(props.todaysDate);
       if (userStore.editObject.date === props.date && input.value != null) {
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
@@ -32,32 +28,26 @@ export default defineComponent({
         input.value.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
     });
-    const bookingRef = query(collection(db, "calender"), orderBy("timeID"));
-    const snapshots = await getDocs(bookingRef);
-    const mybookingsDocs = snapshots.docs.map((doc) => {
-      const data = doc.data();
-      return data;
-    });
+
+    const calenderData = ref();
     function dateUpdate(date: any) {
       onDateRef.value = date;
+      function getUserBookingsBySlot(slot: string) {
+        return calenderData.value
+          .map((f: { [x: string]: any }) => f[slot])
+          .filter(
+            (v: { date: string | undefined }) => v.date === onDateRef.value
+          );
+      }
 
-      const a = mybookingsDocs
-        .map((f) => f["07:00 till 11:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const b = mybookingsDocs
-        .map((f) => f["11:00 till 15:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const c = mybookingsDocs
-        .map((f) => f["15:00 till 19:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const d = mybookingsDocs
-        .map((f) => f["19:00 till 23:00"])
-        .filter((v) => v.date === onDateRef.value);
-
-      const findBookings = a.concat(b, c, d);
+      function getAllUserBookings() {
+        const a = getUserBookingsBySlot("07:00 till 11:00");
+        const b = getUserBookingsBySlot("11:00 till 15:00");
+        const c = getUserBookingsBySlot("15:00 till 19:00");
+        const d = getUserBookingsBySlot("19:00 till 23:00");
+        return a.concat(b, c, d);
+      }
+      const findBookings = getAllUserBookings();
       emit("onDateObj", findBookings);
       emit("onDateUpdate", onDateRef.value);
     }

@@ -6,9 +6,7 @@
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
       <h5>{{ thisDayDate }}</h5>
-      <!-- <div>
-        <Help />
-      </div> -->
+
     </div>
 
     <div class="booking-container">

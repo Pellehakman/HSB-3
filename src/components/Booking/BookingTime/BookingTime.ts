@@ -22,7 +22,7 @@ export default defineComponent({
         refDateObject.value = props.dateObject;
       }
     );
-    // const hej = props.dateObject;
+
     function timeUpdate(event: any) {
       emit("onTimeObj", event.target.value);
       console.log(event.target.value);

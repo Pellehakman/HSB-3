@@ -11,7 +11,6 @@ export default defineComponent({
 
   async setup() {
     const router = useRouter();
-    const db = getFirestore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
     const userStore: any = useuserStore();
     userStore.$reset();
@@ -36,9 +35,6 @@ export default defineComponent({
       return a.concat(b, c, d);
     }
     const findBookings = getAllUserBookings();
-
-    console.log(findBookings);
-
     const displayBtn = ref(false);
 
     const handleActiveBooking = (event: any) => {
@@ -56,19 +52,7 @@ export default defineComponent({
     }
 
     async function submitRemove() {
-      const RemoveRef = doc(db, "calender", activeBooking.value.date);
-
-      await updateDoc(RemoveRef, {
-        [activeBooking.value.time]: {
-          userid: null,
-          bookingid: null,
-          time: activeBooking.value.time,
-          date: activeBooking.value.date,
-        },
-      });
-
-      userStore.$reset();
-      window.location.reload();
+      $firebaseService.removeBooking(activeBooking.value, userStore);
     }
 
     function handleEdit() {

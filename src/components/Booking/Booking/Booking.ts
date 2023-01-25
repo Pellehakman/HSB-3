@@ -1,14 +1,10 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { format } from "date-fns";
-import { nanoid } from "nanoid";
 import { sv } from "date-fns/locale";
-import { updateDoc, doc, getFirestore } from "firebase/firestore";
 import { useuserStore } from "@/stores/userStore";
-import { useRouter } from "vue-router";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
-
 import $firebaseService from "@/services/FirebaseService";
 import Help from "@/components/Help/Help.vue";
 
@@ -24,10 +20,7 @@ export default defineComponent({
 
     const calenderData = ref();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
-    const router = useRouter();
     const userStore: any = useuserStore();
-    const db = getFirestore();
-
     const todayDate = ref(new Date()).value;
     const handleEdit = ref(false);
     const handlePopup = ref("");
@@ -97,10 +90,10 @@ export default defineComponent({
         );
 
         if (checkIfNull[0] != null) {
-          // console.log("välj ett annat datum");
+          //
         } else {
           handlePopup.value = "confirm";
-          // console.log("please confirm");
+          //
         }
       }
     }
@@ -114,28 +107,13 @@ export default defineComponent({
     function submitBooking() {
       $firebaseService.postBooking(dateValue.value, timeValue.value, uid);
 
+      if (userStore.editObject.date) {
+        $firebaseService.updateBooking(userStore);
+      }
+
       handlePopup.value = "";
-
-      // Remove booking
-      // if (userStore.editObject.date) {
-      //   const RemoveRef = doc(db, "calender", userStore.editObject.date);
-      //   await updateDoc(RemoveRef, {
-      //     [userStore.editObject.time]: {
-      //       userid: null,
-      //       bookingid: null,
-      //       time: userStore.editObject.time,
-      //       date: userStore.editObject.date,
-      //     },
-      //   });
-      // }
-
-      // if (handleEdit.value === true) {
-      //   router.push({ path: "/user" });
-      // } else {
-      // window.location.reload();
-      // }
     }
-    // end of submit
+
     function abortEdit() {
       userStore.$reset();
       handleEdit.value = false;
