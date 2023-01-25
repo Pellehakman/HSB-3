@@ -36,19 +36,35 @@ export default defineComponent({
       dateValue.value = userStore.editObject.date;
       timeValue.value = userStore.editObject.time;
     }
-
-    const btnMsg = ref("Boka tid");
+    const h2Message = ref("Välj tid för att boka");
+    const btnMsg = ref("");
     if (userStore.editObject.date) {
       handleEdit.value = true;
+      h2Message.value = "Ändra tid";
       btnMsg.value = "Ändra tid";
     }
 
+    // HÄR SLUTADE DU
+    function checkIfDayPassed() {
+      const aTime = dateValue.value.match(/\d+/g).map(Number);
+      const bTime = thisDayDate.match(/\d+/g).map(Number);
+      if (bTime <= aTime) {
+        btnMsg.value = "Boka tid";
+        h2Message.value = "Välj tid för att boka";
+        dateValue.value;
+      } else {
+        timeValue.value = "";
+        h2Message.value = "Välj idag eller senare";
+      }
+    }
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
+      checkIfDayPassed();
     };
 
     const BookingTimeData = (chosenTime: string) => {
       timeValue.value = chosenTime;
+      checkIfDayPassed();
     };
 
     const DateObj = (dateObj: Object) => {
@@ -56,6 +72,7 @@ export default defineComponent({
     };
 
     async function handleConfirm() {
+      checkIfDayPassed();
       const findSlot = calenderData.value.filter((f: { date: string }) => {
         if (f.date === dateValue.value) {
           return f;
@@ -101,7 +118,7 @@ export default defineComponent({
     const submitPing = ref(false);
     function submitEffect() {
       submitPing.value = true;
-      setInterval(submitBooking, 300);
+      setInterval(submitBooking, 400);
     }
 
     function submitBooking() {
@@ -137,6 +154,7 @@ export default defineComponent({
       abortEdit,
       tooManyBookings,
       calenderData,
+      h2Message,
     };
   },
 });

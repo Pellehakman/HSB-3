@@ -6,14 +6,16 @@
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
       <h5>{{ thisDayDate }}</h5>
-
+      <!-- <div>
+        <Help />
+      </div> -->
     </div>
 
     <div class="booking-container">
       <div class="p-6 text-2xl text-white relative">
         <Help />
-        <h2 v-if="handleEdit">Ändra tid</h2>
-        <h2 class="text-inherit" v-else>Välj tid för att boka</h2>
+        <h2>{{ h2Message }}</h2>
+        <!-- <h2 class="text-inherit" v-else>Välj tid för att boka</h2> -->
       </div>
 
       <form class="flex flex-col items-center justify-center">
@@ -72,7 +74,7 @@
           <input
             type="button"
             v-if="handleEdit === true"
-            @click="abortEdit"
+            @click="abortEdit(), (h2Message = 'Välj tid för att boka')"
             class="btn-clean-lg text-white"
             value="Avbryt"
           />
