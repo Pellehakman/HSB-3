@@ -1,12 +1,15 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
+type Credentials = {
+  email: string;
+}
 export default defineComponent({
   name: "Login",
 
   setup() {
     const router = useRouter();
-    const email = ref("");
+    const email = ref<string>("");
     const password = ref("");
 
     const auth = getAuth();

@@ -1,4 +1,3 @@
-import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { format } from "date-fns";
 import { sv } from "date-fns/locale";
 import { defineComponent, ref } from "vue";

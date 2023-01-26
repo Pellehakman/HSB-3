@@ -7,6 +7,7 @@ import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
 import $firebaseService from "@/services/FirebaseService";
 import Help from "@/components/Help/Help.vue";
+import { BookingHeading, handlePop } from "@/components/models/enums";
 
 export default defineComponent({
   name: "Booking-component",
@@ -27,10 +28,10 @@ export default defineComponent({
     const timeValue: any = ref("");
     const dateObject = ref();
     const tooManyBookings = ref(false);
-    const thisDayDate = ref(
+    const thisDayDate = ref<string | any>(
       format(todayDate, "eeee d MMMM", { locale: sv })
     ).value;
-    const dateValue = ref(thisDayDate);
+    const dateValue = ref<string | any>(thisDayDate);
 
     if (userStore.editObject.date) {
       dateValue.value = userStore.editObject.date;
@@ -43,23 +44,26 @@ export default defineComponent({
       h2Message.value = "Ändra tid";
       btnMsg.value = "Ändra tid";
     }
-
+    const passedActive = ref(false);
     // HÄR SLUTADE DU
     function checkIfDayPassed() {
       const aTime = dateValue.value.match(/\d+/g).map(Number);
       const bTime = thisDayDate.match(/\d+/g).map(Number);
       if (bTime <= aTime) {
         btnMsg.value = "Boka tid";
-        h2Message.value = "Välj tid för att boka";
+        h2Message.value = BookingHeading.title;
+        passedActive.value = false;
         dateValue.value;
       } else {
         timeValue.value = "";
-        h2Message.value = "Välj idag eller senare";
+        h2Message.value = BookingHeading.passed;
+        passedActive.value = true;
       }
     }
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
       checkIfDayPassed();
+      console.log(chosenDate)
     };
 
     const BookingTimeData = (chosenTime: string) => {
@@ -105,16 +109,13 @@ export default defineComponent({
         const checkIfNull = findSlot.map(
           (b: any) => b[`${timeValue.value}`].bookingid
         );
-
         if (checkIfNull[0] != null) {
           //
         } else {
           handlePopup.value = "confirm";
-          //
         }
       }
     }
-    //effect when you book
     const submitPing = ref(false);
     function submitEffect() {
       submitPing.value = true;
@@ -138,6 +139,7 @@ export default defineComponent({
     }
     return {
       // submitBooking,
+      BookingHeading,
       submitEffect,
       submitPing,
       timeValue,
@@ -155,6 +157,8 @@ export default defineComponent({
       tooManyBookings,
       calenderData,
       h2Message,
+      handlePop,
+      passedActive,
     };
   },
 });

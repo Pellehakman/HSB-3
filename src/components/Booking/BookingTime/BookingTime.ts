@@ -9,19 +9,49 @@ export default defineComponent({
   emit: [],
   props: {
     dateObject: Object,
+    passedActive: Boolean,
   },
 
   async setup(props, { emit }) {
-    const userStore: any = useuserStore();
 
+    const userStore: any = useuserStore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const refDateObject = ref();
-    watch(
-      () => props.dateObject,
-      () => {
-        refDateObject.value = props.dateObject;
-      }
-    );
+    const refPassedActive = ref();
+
+
+
+
+
+
+
+
+
+
+    // HÄR SLUTADE DU, ta in ONUPDATE FRÅN BOOKING DATE SÅ ATT DET UPPDATERAS I
+    // REALTID. Så om dag uppdateras, checked = false
+    // const BookingDayData = (chosenDate: string) => {
+    //   dateValue.value = chosenDate;
+    //   checkIfDayPassed();
+    //   console.log(chosenDate)
+    // };
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    // eslint-disable-next-line prettier/prettier
+    watch(() => props.dateObject, () => { refDateObject.value = props.dateObject });
+    // eslint-disable-next-line prettier/prettier
+    watch(() => props.passedActive, () => { refPassedActive.value = props.passedActive});
 
     function timeUpdate(event: any) {
       emit("onTimeObj", event.target.value);
@@ -29,6 +59,6 @@ export default defineComponent({
     }
     onMounted(() => {});
 
-    return { timeUpdate, refDateObject, uid, userStore };
+    return { timeUpdate, refDateObject, uid, userStore, props };
   },
 });

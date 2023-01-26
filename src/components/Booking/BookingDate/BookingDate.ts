@@ -34,7 +34,7 @@ export default defineComponent({
       onDateRef.value = date;
       function getUserBookingsBySlot(slot: string) {
         return calenderData.value
-          .map((f: { [x: string]: any }) => f[slot])
+          .map((f: { [slot: string]: any }) => f[slot])
           .filter(
             (v: { date: string | undefined }) => v.date === onDateRef.value
           );

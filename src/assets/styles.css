@@ -107,6 +107,9 @@
   .guide-bullet{
     @apply  h-3 w-3 rounded-full
   }
+  .time-clean{
+    @apply bg-main bg-gray-500 text-gray-600 
+  }
   .time-free{
     @apply peer-checked:bg-main-active peer-checked:border-0
   }

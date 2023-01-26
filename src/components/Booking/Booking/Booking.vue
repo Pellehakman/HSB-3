@@ -6,16 +6,12 @@
       <h1>Tidsbokning</h1>
       <h4>Välkommen</h4>
       <h5>{{ thisDayDate }}</h5>
-      <!-- <div>
-        <Help />
-      </div> -->
     </div>
 
     <div class="booking-container">
       <div class="p-6 text-2xl text-white relative">
         <Help />
         <h2>{{ h2Message }}</h2>
-        <!-- <h2 class="text-inherit" v-else>Välj tid för att boka</h2> -->
       </div>
 
       <form class="flex flex-col items-center justify-center">
@@ -40,7 +36,12 @@
 
         <span class="divider"></span>
         <div class="">
-          <BookingTime @onTimeObj="BookingTimeData" :dateObject="dateObject" />
+          <BookingTime
+            :passedActive="passedActive"
+            @onTimeObj="BookingTimeData"
+            :dateObject="dateObject"
+            :dateValue="dateValue"
+          />
         </div>
         <div class="guide-container">
           <div class="flex items-center">
@@ -83,7 +84,7 @@
       </form>
 
       <div
-        v-if="handlePopup === 'confirm'"
+        v-if="handlePopup === handlePop.confirm"
         className="booking-confirm-container "
       >
         <div class="flex flex-col self-start gap-1 relative">
