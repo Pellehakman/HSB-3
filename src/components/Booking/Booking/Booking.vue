@@ -9,13 +9,13 @@
     </div>
 
     <div class="booking-container">
-      <div class="p-6 text-2xl text-white relative">
+      <div class="p-6 text-2xl text-white relative tablet:px-20">
         <Help />
         <h2>{{ h2Message }}</h2>
       </div>
 
-      <form class="flex flex-col items-center justify-center">
-        <div id="date" class="booking-day">
+      <form class="booking-form ">
+        <div id="date" class="booking-day tablet:px-20">
           <div class="booking-day-chevron-l">
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
           </div>
@@ -35,7 +35,7 @@
         </div>
 
         <span class="divider"></span>
-        <div class="">
+        <div class="booking-time">
           <BookingTime
             :passedActive="passedActive"
             @onTimeObj="BookingTimeData"

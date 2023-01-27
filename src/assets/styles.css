@@ -23,11 +23,36 @@
   
 }
 
+/* width */
+::-webkit-scrollbar {
+ 
+  height: 8px;
+ 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg-main-active);
+ 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  ;
+  border-radius: 999px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 
 
 @layer base {
   body{
-    @apply bg-main
+    @apply bg-main 
   }
   #app{
     @apply font-roboto text-main-active h-screen w-screen overflow-hidden
@@ -45,6 +70,7 @@
     @apply text-xl font-normal text-blackish
   }
 }
+
 @layer components {
   .help-container{
     @apply bg-yellow-500 text-sm font-bold text-dark-blue absolute text-center p-2 flex items-center justify-center right-6 bottom-9 w-20 h-20 rounded-full transition-all
@@ -83,6 +109,12 @@
   .booking-container{
     @apply bg-booking relative rounded-t-xl
   }
+  .booking-form{
+    @apply flex flex-col items-center justify-center 
+  }
+  .booking-time{
+    @apply  tablet:flex tablet:justify-center
+  }
   .booking-day{
     @apply flex flex-row overflow-x-scroll w-screen items-center gap-4 pb-6 
   }
@@ -96,10 +128,11 @@
     @apply w-28 px-2 h-16 flex shadow-lg items-center text-center text-white font-medium peer-checked:bg-main-active peer-checked:border-0 select-none cursor-pointer rounded-lg border-solid border border-white border-opacity-10
   }
   .booking-time-grid{
-    @apply px-6 pb-4 gap-4 w-screen grid grid-cols-2 grid-rows-2 
+    @apply px-6 pb-4 gap-4 w-screen grid grid-cols-2 grid-rows-2 justify-center items-center
+    /* @apply flex flex-wrap max-w-lg justify-center gap-4 px-6 */
   }
   .booking-time-item{
-    @apply h-16 flex justify-center shadow-md items-center border border-white border-opacity-10 rounded-lg  text-white transition ease-in-out
+    @apply h-16 flex max-w-xs mr-0 justify-center shadow-md items-center border border-white border-opacity-10 rounded-lg  text-white transition ease-in-out
   }
   .guide-container{
     @apply px-6  flex w-screen justify-between items-center text-white
@@ -111,7 +144,7 @@
     @apply bg-main bg-gray-500 text-gray-600 
   }
   .time-free{
-    @apply peer-checked:bg-main-active peer-checked:border-0
+    @apply peer-checked:border-0
   }
   /* VISA ZARA NÄR DU HAR "time-you" i BookingTime.vue som klass  */
   .time-you{

@@ -16,8 +16,9 @@
         <div
           class="booking-time-item"
           :class="{
-            'time-clean': props.passedActive === true,
-            'time-free': timeItem.bookingid === null,
+            'time-clean peer-checked:bg-gray-500': props.passedActive === true,
+            'time-free peer-checked:bg-main-active':
+              timeItem.bookingid === null && props.passedActive === false,
             'time-booked':
               timeItem.bookingid !== null && timeItem.userid !== uid,
             'time-you': timeItem.userid === uid,
@@ -30,5 +31,4 @@
       </label>
     </div>
   </div>
-  <BookingDate @onDateUpdate="BookingDayData" />
 </template>
