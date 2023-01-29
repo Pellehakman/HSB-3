@@ -27,7 +27,7 @@ class FirebaseService {
     });
     return fetchFirebase;
   }
-  async postBooking(dateValue: any, timeValue: any, uid: any) {
+  async postBooking(dateValue: string, timeValue: string, uid: string) {
     const firestore = getFirestore();
     const updateRef = doc(firestore, "calender", dateValue);
     await updateDoc(updateRef, {

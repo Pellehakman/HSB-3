@@ -7,11 +7,9 @@ export type fireType = {
   timeValue: string;
 };
 
-export type StoreType = {
-  editObject: {
-    date: string;
-    bookingid: string;
-    time: string;
-    userid: string;
-  };
+export type TimeType = {
+  date: string;
+  bookingid: string;
+  time: string;
+  userid: string;
 };

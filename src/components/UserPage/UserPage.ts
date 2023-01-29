@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { sv } from "date-fns/locale";
 import { defineComponent, ref } from "vue";
-import { useuserStore } from "../../stores/userStore";
+import { useUserStore } from "../../stores/userStore";
 import { useRouter } from "vue-router";
 import $firebaseService from "@/services/FirebaseService";
 
@@ -11,7 +11,7 @@ export default defineComponent({
   async setup() {
     const router = useRouter();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "");
-    const userStore: any = useuserStore();
+    const userStore: any = useUserStore();
     userStore.$reset();
     const calenderData = await $firebaseService.getCalender();
 

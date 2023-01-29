@@ -1,6 +1,7 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
-import { useuserStore } from "../../../stores/userStore";
+import { useUserStore } from "../../../stores/userStore";
 import $firebaseService from "@/services/FirebaseService";
+import type { TimeType } from "@/components/models/models";
 export default defineComponent({
   name: "BookingDay",
   props: {
@@ -13,7 +14,7 @@ export default defineComponent({
     const input = ref<HTMLElement | null>(null);
     const focusView = ref(props.todaysDate);
     const onDateRef = ref(props.todaysDate);
-    const userStore: any = useuserStore();
+    const userStore: any = useUserStore();
 
     onMounted(async () => {
       const data = await $firebaseService.getCalender();
@@ -47,7 +48,8 @@ export default defineComponent({
         const d = getUserBookingsBySlot("19:00 till 23:00");
         return a.concat(b, c, d);
       }
-      const findBookings = getAllUserBookings();
+      const findBookings: TimeType = getAllUserBookings();
+      console.log(JSON.parse(JSON.stringify(findBookings)));
       emit("onDateObj", findBookings);
       emit("onDateUpdate", onDateRef.value);
     }

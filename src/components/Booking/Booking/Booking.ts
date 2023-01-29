@@ -1,13 +1,14 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { format } from "date-fns";
 import { sv } from "date-fns/locale";
-import { useuserStore } from "@/stores/userStore";
+import { useUserStore } from "@/stores/userStore";
 import BookingDate from "../BookingDate/BookingDate.vue";
 import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
 import $firebaseService from "@/services/FirebaseService";
 import Help from "@/components/Help/Help.vue";
 import { BookingHeading, handlePop } from "@/components/models/enums";
+import type { TimeType } from "@/components/models/models";
 
 export default defineComponent({
   name: "Booking-component",
@@ -19,14 +20,15 @@ export default defineComponent({
       calenderData.value = data;
     });
 
-    const calenderData = ref();
-    const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
-    const userStore: any = useuserStore();
+    const calenderData = ref<any>();
+    const uid: string = JSON.parse(sessionStorage.getItem("uid") || "{}");
+    const userStore = useUserStore();
     const todayDate = ref(new Date()).value;
-    const handleEdit = ref(false);
-    const handlePopup = ref("");
-    const timeValue: any = ref("");
-    const dateObject = ref();
+    const handleEdit = ref<boolean>(false);
+    const handlePopup = ref<string>("");
+    const timeValue = ref<string>("");
+    const dateObject = ref<TimeType>();
+    console.log(dateObject.value);
     const tooManyBookings = ref(false);
     const thisDayDate = ref<string | any>(
       format(todayDate, "eeee d MMMM", { locale: sv })
@@ -63,7 +65,6 @@ export default defineComponent({
     const BookingDayData = (chosenDate: string) => {
       dateValue.value = chosenDate;
       checkIfDayPassed();
-      console.log(chosenDate)
     };
 
     const BookingTimeData = (chosenTime: string) => {
@@ -71,7 +72,7 @@ export default defineComponent({
       checkIfDayPassed();
     };
 
-    const DateObj = (dateObj: Object) => {
+    const DateObj = (dateObj: TimeType) => {
       dateObject.value = dateObj;
     };
 

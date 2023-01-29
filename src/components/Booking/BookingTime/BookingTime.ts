@@ -1,7 +1,7 @@
 import { defineComponent, onMounted, ref, watch } from "vue";
 // import { format, getTime } from "date-fns";
 import BookingDate from "../BookingDate/BookingDate.vue";
-import { useuserStore } from "@/stores/userStore";
+import { useUserStore } from "@/stores/userStore";
 
 export default defineComponent({
   name: "BookingSlot",
@@ -13,7 +13,7 @@ export default defineComponent({
   },
 
   async setup(props, { emit }) {
-    const userStore: any = useuserStore();
+    const userStore: any = useUserStore();
     const uid = JSON.parse(sessionStorage.getItem("uid") || "{}");
     const refDateObject = ref();
     const refPassedActive = ref();

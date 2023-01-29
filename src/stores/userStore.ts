@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 // //Options
-export const useuserStore = defineStore("user", {
+export const useUserStore = defineStore("user", {
   // collect string to myData
   state: () => ({
     editObject: [],
