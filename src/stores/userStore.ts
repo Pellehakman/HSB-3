@@ -13,7 +13,7 @@ export const useUserStore = defineStore("user", {
   },
 
   actions: {
-    addBookingObj(findBookings: any) {
+    addBookingObj(findBookings: TimeType) {
       this.editObject = findBookings;
     },
   },
