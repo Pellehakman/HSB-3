@@ -10,7 +10,7 @@
 
     <div class="booking-container">
       <div class="p-6 text-2xl text-white relative tablet:px-20">
-        <Help />
+        <!-- <Help /> -->
         <h2>{{ h2Message }}</h2>
       </div>
 

@@ -139,7 +139,6 @@ export default defineComponent({
       btnMsg.value = "Boka tid";
     }
     return {
-      // submitBooking,
       BookingHeading,
       submitEffect,
       submitPing,

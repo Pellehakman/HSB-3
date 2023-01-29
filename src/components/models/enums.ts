@@ -1,5 +1,5 @@
 export enum BookingHeading {
-  title = "Välj tidf för att boka",
+  title = "Välj tid för att boka",
   passed = "Välj idag eller senare",
   Left = "LEFT",
   Right = "RIGHT",
