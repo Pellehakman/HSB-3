@@ -1,8 +1,7 @@
 export enum BookingHeading {
   title = "Välj tid för att boka",
   passed = "Välj idag eller senare",
-  Left = "LEFT",
-  Right = "RIGHT",
+  edit = "Ändra tid",
 }
 export enum handlePop {
   nothing = "",

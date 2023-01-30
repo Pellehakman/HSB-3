@@ -14,7 +14,7 @@
         <h2>{{ h2Message }}</h2>
       </div>
 
-      <form class="booking-form ">
+      <form class="booking-form">
         <div id="date" class="booking-day tablet:px-20">
           <div class="booking-day-chevron-l">
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -109,13 +109,13 @@
           />
 
           <div class="btn-clean-lg">
-            <button @click="handlePopup = ''">Avbryt</button>
+            <button @click="handlePopup = Abort.yes">Avbryt</button>
           </div>
         </div>
       </div>
 
       <div
-        v-if="handlePopup === 'tooMany'"
+        v-if="handlePopup === handlePop.tooMany"
         className="booking-confirm-container "
       >
         <div class="flex flex-col self-start gap-1">
@@ -128,7 +128,7 @@
         </div>
         <div class="btn-container">
           <div class="btn-clean-lg">
-            <button @click="handlePopup = ''">Avbryt</button>
+            <button @click="handlePopup = Abort.yes">Avbryt</button>
           </div>
         </div>
       </div>

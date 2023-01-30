@@ -7,8 +7,8 @@ import BookingTime from "../BookingTime/BookingTime.vue";
 import Meny from "@/components/Meny/Meny";
 import $firebaseService from "@/services/FirebaseService";
 import Help from "@/components/Help/Help.vue";
-import { BookingHeading, handlePop } from "@/components/models/enums";
-import type { TimeType } from "@/components/models/models";
+import { BookingHeading, handlePop, Abort } from "@/components/models/enums";
+import type { TimeType } from "@/components/models/TimeType";
 
 export default defineComponent({
   name: "Booking-component",
@@ -29,7 +29,7 @@ export default defineComponent({
     const timeValue = ref<string>("");
     const dateObject = ref<TimeType>();
     console.log(dateObject.value);
-    const tooManyBookings = ref(false);
+    const tooManyBookings = ref<boolean>(false);
     const thisDayDate = ref<string | any>(
       format(todayDate, "eeee d MMMM", { locale: sv })
     ).value;
@@ -39,18 +39,17 @@ export default defineComponent({
       dateValue.value = userStore.editObject.date;
       timeValue.value = userStore.editObject.time;
     }
-    const h2Message = ref("Välj tid för att boka");
-    const btnMsg = ref("");
+    const h2Message = ref<string>("Välj tid för att boka");
+    const btnMsg = ref<string>("");
     if (userStore.editObject.date) {
       handleEdit.value = true;
-      h2Message.value = "Ändra tid";
-      btnMsg.value = "Ändra tid";
+      h2Message.value = BookingHeading.edit;
+      btnMsg.value = BookingHeading.edit;
     }
     const passedActive = ref(false);
-    // HÄR SLUTADE DU
     function checkIfDayPassed() {
-      const aTime = dateValue.value.match(/\d+/g).map(Number);
-      const bTime = thisDayDate.match(/\d+/g).map(Number);
+      const aTime: Number = dateValue.value.match(/\d+/g).map(Number);
+      const bTime: Number = thisDayDate.match(/\d+/g).map(Number);
       if (bTime <= aTime) {
         btnMsg.value = "Boka tid";
         h2Message.value = BookingHeading.title;
@@ -105,7 +104,7 @@ export default defineComponent({
         bookingsAllowed.value = 3;
       }
       if (findBookings.length > bookingsAllowed.value) {
-        handlePopup.value = "tooMany";
+        handlePopup.value = handlePop.tooMany;
       } else {
         const checkIfNull = findSlot.map(
           (b: any) => b[`${timeValue.value}`].bookingid
@@ -113,7 +112,7 @@ export default defineComponent({
         if (checkIfNull[0] != null) {
           //
         } else {
-          handlePopup.value = "confirm";
+          handlePopup.value = handlePop.confirm;
         }
       }
     }
@@ -159,6 +158,7 @@ export default defineComponent({
       h2Message,
       handlePop,
       passedActive,
+      Abort,
     };
   },
 });

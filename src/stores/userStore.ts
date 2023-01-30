@@ -1,4 +1,4 @@
-import type { TimeType } from "@/components/models/models";
+import type { TimeType } from "@/components/models/TimeType";
 import { defineStore } from "pinia";
 
 export const useUserStore = defineStore("user", {

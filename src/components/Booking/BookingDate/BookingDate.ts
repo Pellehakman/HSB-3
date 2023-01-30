@@ -1,7 +1,7 @@
 import { computed, defineComponent, onMounted, ref } from "vue";
 import { useUserStore } from "../../../stores/userStore";
 import $firebaseService from "@/services/FirebaseService";
-import type { TimeType } from "@/components/models/models";
+import type { TimeType } from "@/components/models/TimeType";
 export default defineComponent({
   name: "BookingDay",
   props: {
