@@ -15,7 +15,7 @@
       </div>
 
       <form class="booking-form">
-        <div id="date" class="booking-day tablet:px-20">
+        <div id="date" class="booking-day">
           <div class="booking-day-chevron-l">
             <font-awesome-icon icon="fa-solid fa-chevron-left" />
           </div>
